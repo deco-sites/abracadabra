@@ -1,4 +1,8 @@
+import { useState } from "preact/hooks";
+import classnames from "$classnames/index.ts";
+
 import Avatar from "$store/components/ui/Avatar.tsx";
+import Icon from "$store/components/ui/Icon.tsx";
 import { parseRange } from "deco-sites/std/utils/filters.ts";
 import { formatPrice } from "$store/sdk/format.ts";
 import type {
@@ -22,7 +26,7 @@ function ValueItem(
     <a href={url} class="flex items-center gap-2">
       <div aria-checked={selected} class="checkbox" />
       <span class="text-sm">{label}</span>
-      {quantity > 0 && <span class="text-sm text-base-300">({quantity})</span>}
+      {/* {quantity > 0 && <span class="text-sm text-base-300">({quantity})</span>} */}
     </a>
   );
 }
@@ -66,14 +70,59 @@ function FilterValues({ key, values }: FilterToggle) {
 }
 
 function Filters({ filters }: Props) {
+  const [open, setOpen] = useState<string[]>([]);
+
   return (
     <ul class="flex flex-col gap-6 p-4">
       {filters
         .filter(isToggle)
         .map((filter) => (
-          <li class="flex flex-col gap-4">
-            <span>{filter.label}</span>
-            <FilterValues {...filter} />
+          <li
+            class={classnames(
+              "flex",
+              "flex-col",
+              "gap-4",
+              open.includes(filter.key) ? "open" : "",
+            )}
+          >
+            <div>
+              <div
+                class={"flex justify-between cursor-pointer border-b border-gray-5"}
+                onClick={() => {
+                  if (open.includes(filter.key)) {
+                    const myArray = JSON.parse(JSON.stringify(open));
+                    const index = myArray.indexOf(filter.key);
+                    myArray.splice(index, 1);
+                    setOpen([...myArray]);
+                  } else {
+                    setOpen([...open, filter.key]);
+                  }
+                }}
+              >
+                <span>{filter.label}</span>
+                <span class={"flex content-center flex-wrap"}>
+                  <Icon
+                    class={classnames(
+                      "text-gray-4",
+                      "h-[8px]",
+                      "w-[14px]",
+                      open.includes(filter.key) ? "rotate-180" : "",
+                      "transition-all",
+                    )}
+                    id="FilterArrow"
+                  />
+                </span>
+              </div>
+              <div
+                class={classnames(
+                  "transition-all",
+                  "overflow-auto",
+                  open.includes(filter.key) ? "" : "h-0",
+                )}
+              >
+                <FilterValues {...filter} />
+              </div>
+            </div>
           </li>
         ))}
     </ul>

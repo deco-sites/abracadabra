@@ -1,5 +1,6 @@
-import Filters from "$store/components/search/Filters.tsx";
+import Filters from "$store/islands/Filters.tsx";
 import Icon from "$store/components/ui/Icon.tsx";
+import Breadcrumb from "$store/components/ui/Breadcrumb.tsx";
 import SearchControls from "$store/islands/SearchControls.tsx";
 import { SendEventOnLoad } from "$store/sdk/analytics.tsx";
 import { mapProductToAnalyticsItem } from "deco-sites/std/commerce/utils/productToAnalyticsItem.ts";
@@ -34,24 +35,32 @@ function Result({
 }: Omit<Props, "page"> & { page: ProductListingPage }) {
   const { products, filters, breadcrumb, pageInfo, sortOptions } = page;
 
+  console.log(pageInfo);
+
   return (
     <>
       <div class="container px-4 sm:py-10">
-        <SearchControls
-          sortOptions={sortOptions}
-          filters={filters}
-          breadcrumb={breadcrumb}
-          displayFilter={variant === "drawer"}
-        />
+        <div class="flex flex-row items-center sm:p-0 mb-2">
+          <Breadcrumb itemListElement={breadcrumb?.itemListElement} />
+        </div>
 
         <div class="flex flex-row">
-          {variant === "aside" && filters.length > 0 && (
-            <aside class="hidden sm:block w-min min-w-[250px]">
+          {filters.length > 0 && (
+            <aside class="hidden lg:block w-min min-w-[250px]">
               <Filters filters={filters} />
             </aside>
           )}
           <div class="flex-grow">
-            <ProductGallery products={products} />
+            <SearchControls
+              sortOptions={sortOptions}
+              pageInfo={pageInfo}
+              filters={filters}
+              displayFilter={variant === "drawer"}
+            />
+
+            <ProductGallery
+              products={products}
+            />
           </div>
         </div>
 

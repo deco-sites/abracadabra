@@ -8,11 +8,20 @@ interface Props extends UseAddToCartProps {
   /**
    * @description Product id
    */
+  text?: string;
   sellerId: string;
 }
 
 function AddToCartButton(
-  { skuId, sellerId, discount, price, productGroupId, name }: Props,
+  {
+    text = "Adicionar à Sacola",
+    skuId,
+    sellerId,
+    discount,
+    price,
+    productGroupId,
+    name,
+  }: Props,
 ) {
   const props = useAddToCart({
     skuId,
@@ -25,7 +34,7 @@ function AddToCartButton(
 
   return (
     <Button data-deco="add-to-cart" {...props} class="w-full">
-      Adicionar à Sacola
+      {text}
     </Button>
   );
 }

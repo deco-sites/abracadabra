@@ -1,6 +1,11 @@
 import Image from "deco-sites/std/components/Image.tsx";
 import Avatar from "$store/components/ui/Avatar.tsx";
 import WishlistIcon from "$store/islands/WishlistButton.tsx";
+import AddToCartButton from "$store/islands/AddToCartButton.tsx";
+import OutOfStock from "$store/islands/OutOfStock.tsx";
+import Installments from "./Installments.tsx";
+import Discount from "./Discount.tsx";
+
 import { useOffer } from "$store/sdk/useOffer.ts";
 import { formatPrice } from "$store/sdk/format.ts";
 import { useVariantPossibilities } from "$store/sdk/useVariantPossiblities.ts";
@@ -34,9 +39,25 @@ function ProductCard({ product, preload, itemListName }: Props) {
     offers,
     isVariantOf,
   } = product;
+
+  const { listPrice, price, seller, installments, availability } = useOffer(
+    offers,
+  );
+
+  // http://localhost:8000/bicama-sofa-paglia-carvalho-malva/p?skuId=2012788
+  // http://localhost:8000/beliche-contemporanea-com-cama-de-embutir-branco/p?skuId=2006625
+  if (
+    product.url?.includes("/beliche-contemporanea-com-cama-de-embutir-branco/p")
+  ) {
+    // TODO: Verificar preços
+    // console.log(product);
+    // console.log(offers);
+    // console.log({ listPrice, price, seller, installments, availability });
+  }
+
   const productGroupID = isVariantOf?.productGroupID;
   const [front, back] = images ?? [];
-  const { listPrice, price } = useOffer(offers);
+
   const possibilities = useVariantPossibilities(product);
   const variants = Object.entries(Object.values(possibilities)[0] ?? {});
   const clickEvent = {
@@ -53,9 +74,12 @@ function ProductCard({ product, preload, itemListName }: Props) {
     },
   };
 
+  console.log(possibilities);
+  console.log(variants);
+
   return (
     <div
-      class="card card-compact card-bordered border-transparent hover:border-base-200 group w-full"
+      class="card card-compact card-bordered p-2 pb-3 border-black rounded-[3px] group w-full"
       data-deco="view-product"
       id={`product-card-${productID}`}
       {...sendEventOnClick(clickEvent)}
@@ -93,8 +117,10 @@ function ProductCard({ product, preload, itemListName }: Props) {
             decoding="async"
           />
         </a>
-        <figcaption class="glass card-body card-actions absolute bottom-0 left-0 w-full transition-opacity opacity-0 group-hover:opacity-100">
-          {/* SKU Selector */}
+
+        {/* SKU Selector */}
+        {
+          /* <figcaption class="glass card-body card-actions absolute bottom-0 left-0 w-full transition-opacity opacity-0 group-hover:opacity-100">
           <ul class="flex justify-center items-center gap-2 w-full">
             {variants.map(([value, [link]]) => (
               <a href={link}>
@@ -105,19 +131,51 @@ function ProductCard({ product, preload, itemListName }: Props) {
               </a>
             ))}
           </ul>
-        </figcaption>
+        </figcaption> */
+        }
       </figure>
       {/* Prices & Name */}
-      <div class="card-body">
-        <h2 class="card-title whitespace-nowrap overflow-hidden">{name}</h2>
-        <div class="flex items-end gap-2">
-          <span class="line-through text-base-300 text-xs">
-            {formatPrice(listPrice, offers!.priceCurrency!)}
-          </span>
+      <div class="">
+        <h2 class="">{name}</h2>
+        <div class="gap-2">
+          {Math.floor((listPrice ?? 0) - (price ?? 0)) > 0 && (
+            <div class="flex">
+              <span class="line-through text-base-300 text-xs">
+                {formatPrice(listPrice, offers!.priceCurrency!)}
+              </span>
+              <Discount
+                listPrice={listPrice ?? 0}
+                price={price ?? 0}
+                currencySimbol={offers!.priceCurrency!}
+              />
+            </div>
+          )}
           <span class="text-secondary">
             {formatPrice(price, offers!.priceCurrency!)}
           </span>
         </div>
+        <span class={"flex"}>
+          <Installments installments={installments} />
+        </span>
+      </div>
+      <div>
+        {availability === "https://schema.org/InStock"
+          ? (
+            <>
+              {seller && (
+                <AddToCartButton
+                  text="ADICIONAR AO CARRINHO"
+                  skuId={productID}
+                  sellerId={seller}
+                  price={price ?? 0}
+                  discount={price && listPrice ? listPrice - price : 0}
+                  name={product.name ?? ""}
+                  productGroupId={product.isVariantOf?.productGroupID ?? ""}
+                />
+              )}
+            </>
+          )
+          : <OutOfStock productID={productID} />}
       </div>
     </div>
   );
