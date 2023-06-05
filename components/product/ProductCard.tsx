@@ -173,12 +173,12 @@ function ProductCard(
           }
         </figure>
         <div
-          class={"flex flex-col sm:flex-row justify-between h-9 sm:h-6 mb-2"}
+          class={"flex flex-col lg:flex-row justify-between min-h-9 lg:min-h-6 mb-2"}
         >
           <Clusters
             cluster={cluster}
             additionalProperty={additionalProperty}
-            class="sm:w-[calc(50%-0.25rem)] gap-2 content-center justify-center h-4 sm:h-6"
+            class="lg:w-[calc(50%-0.25rem)] gap-2 content-center justify-center min-h-4 lg:min-h-6 text-center"
           />
         </div>
         {/* Name */}

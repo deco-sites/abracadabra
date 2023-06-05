@@ -18,6 +18,8 @@ export interface Props {
 function ProductGallery(
   { products, columns, clusterIdExclusiveFlag, cluster }: Props,
 ) {
+  console.log(columns);
+
   const columnsClass = {
     desktop: "sm:grid-cols-3",
     mobile: "grid-cols-2",
@@ -31,6 +33,8 @@ function ProductGallery(
       columnsClass.mobile = `grid-cols-${columns.mobile}`;
     }
   }
+
+  console.log(columnsClass);
 
   return (
     <div
