@@ -22,8 +22,6 @@ export type AvailableIcons =
   | "Visa"
   | "Pix"
   | "Logo"
-  | "Facebook"
-  | "Instagram"
   | "Tiktok"
   | "Truck"
   | "Discount"
@@ -33,8 +31,20 @@ export type AvailableIcons =
   | "Discord"
   | "Trash"
   | "FilterList"
+  | "ArrowsPointingOut"
+  | "Search"
+  | "BlogDaCa"
+  | "Instagram"
+  | "Facebook"
+  | "Youtube"
+  | "Pinterest"
+  | "Spotify"
   | "WhatsApp"
-  | "ArrowsPointingOut";
+  | "TruckPng"
+  | "DiscountPng"
+  | "InstallmentsPng"
+  | "UserPng"
+  | "MinicartPng"
 
 interface Props extends JSX.SVGAttributes<SVGSVGElement> {
   /**

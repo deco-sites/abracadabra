@@ -98,7 +98,7 @@ export interface OptionalColors {
 export interface Colors {
   /**
    * @format color
-   * @default #003232
+   * @default #6d6e71
    */
   "primary": string;
 
@@ -216,11 +216,11 @@ export interface Miscellaneous {
 
 export interface Font {
   /**
-   * @default 'Albert Sans'
+   * @default 'Roboto'
    */
   fontFamily: string;
   /**
-   * @default @import url('https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;500;700&display=swap');
+   * @default @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
    * \@format css
    */
   styleInnerHtml: string;
@@ -338,9 +338,9 @@ function Section({
   colors,
   miscellaneous,
   fonts = {
-    fontFamily: "Albert Sans",
+    fontFamily: "Roboto",
     styleInnerHtml:
-      "@import url('https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;500;700&display=swap');",
+      "@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');",
   },
 }: Props) {
   const id = useId();

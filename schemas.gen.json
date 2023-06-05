@@ -7360,7 +7360,7 @@
         "primary": {
           "type": "string",
           "format": "color",
-          "default": "#003232",
+          "default": "#6d6e71",
           "title": "Primary"
         },
         "secondary": {
@@ -7567,7 +7567,7 @@
       "required": [],
       "title": "OptionalColors"
     },
-    "ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9zZWN0aW9ucy9EZXNpZ25TeXN0ZW0udHN4@93b8c70f3e6e426e09703e95eaa189a4&Colors": {
+    "ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9zZWN0aW9ucy9EZXNpZ25TeXN0ZW0udHN4@Colors&a5ce80c79f905bd12908a860da98e643": {
       "allOf": [
         {
           "$ref": "#/definitions/ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9zZWN0aW9ucy9EZXNpZ25TeXN0ZW0udHN4@Colors"
@@ -7583,7 +7583,7 @@
           "required": []
         }
       ],
-      "title": "93b8c70f3e6e426e09703e95eaa189a4&Colors"
+      "title": "Colors&a5ce80c79f905bd12908a860da98e643"
     },
     "ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9zZWN0aW9ucy9EZXNpZ25TeXN0ZW0udHN4@Miscellaneous": {
       "type": "object",
@@ -7668,7 +7668,7 @@
       "properties": {
         "fontFamily": {
           "type": "string",
-          "default": "'Albert Sans'",
+          "default": "'Roboto'",
           "title": "Font Family"
         },
         "styleInnerHtml": {
@@ -7686,7 +7686,7 @@
       "type": "object",
       "properties": {
         "colors": {
-          "$ref": "#/definitions/ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9zZWN0aW9ucy9EZXNpZ25TeXN0ZW0udHN4@93b8c70f3e6e426e09703e95eaa189a4&Colors",
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9zZWN0aW9ucy9EZXNpZ25TeXN0ZW0udHN4@Colors&a5ce80c79f905bd12908a860da98e643",
           "title": "Colors"
         },
         "miscellaneous": {
@@ -7788,14 +7788,6 @@
             },
             {
               "type": "string",
-              "const": "Facebook"
-            },
-            {
-              "type": "string",
-              "const": "Instagram"
-            },
-            {
-              "type": "string",
               "const": "Tiktok"
             },
             {
@@ -7832,11 +7824,59 @@
             },
             {
               "type": "string",
+              "const": "ArrowsPointingOut"
+            },
+            {
+              "type": "string",
+              "const": "Search"
+            },
+            {
+              "type": "string",
+              "const": "BlogDaCa"
+            },
+            {
+              "type": "string",
+              "const": "Instagram"
+            },
+            {
+              "type": "string",
+              "const": "Facebook"
+            },
+            {
+              "type": "string",
+              "const": "Youtube"
+            },
+            {
+              "type": "string",
+              "const": "Pinterest"
+            },
+            {
+              "type": "string",
+              "const": "Spotify"
+            },
+            {
+              "type": "string",
               "const": "WhatsApp"
             },
             {
               "type": "string",
-              "const": "ArrowsPointingOut"
+              "const": "TruckPng"
+            },
+            {
+              "type": "string",
+              "const": "DiscountPng"
+            },
+            {
+              "type": "string",
+              "const": "InstallmentsPng"
+            },
+            {
+              "type": "string",
+              "const": "UserPng"
+            },
+            {
+              "type": "string",
+              "const": "MinicartPng"
             }
           ],
           "type": "string",
@@ -7986,14 +8026,6 @@
             },
             {
               "type": "string",
-              "const": "Facebook"
-            },
-            {
-              "type": "string",
-              "const": "Instagram"
-            },
-            {
-              "type": "string",
               "const": "Tiktok"
             },
             {
@@ -8030,11 +8062,59 @@
             },
             {
               "type": "string",
+              "const": "ArrowsPointingOut"
+            },
+            {
+              "type": "string",
+              "const": "Search"
+            },
+            {
+              "type": "string",
+              "const": "BlogDaCa"
+            },
+            {
+              "type": "string",
+              "const": "Instagram"
+            },
+            {
+              "type": "string",
+              "const": "Facebook"
+            },
+            {
+              "type": "string",
+              "const": "Youtube"
+            },
+            {
+              "type": "string",
+              "const": "Pinterest"
+            },
+            {
+              "type": "string",
+              "const": "Spotify"
+            },
+            {
+              "type": "string",
               "const": "WhatsApp"
             },
             {
               "type": "string",
-              "const": "ArrowsPointingOut"
+              "const": "TruckPng"
+            },
+            {
+              "type": "string",
+              "const": "DiscountPng"
+            },
+            {
+              "type": "string",
+              "const": "InstallmentsPng"
+            },
+            {
+              "type": "string",
+              "const": "UserPng"
+            },
+            {
+              "type": "string",
+              "const": "MinicartPng"
             }
           ],
           "type": "string",
@@ -8100,6 +8180,71 @@
       "required": [],
       "title": "deco-sites/abracadabra/components/footer/Footer.tsx@Props"
     },
+    "ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL2hlYWRlci9Ub3BiYXIudHN4@TopbarLeftProp": {
+      "type": "object",
+      "properties": {
+        "src": {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvY29tcG9uZW50cy90eXBlcy50cw==@Image",
+          "title": "Src"
+        },
+        "imgAlt": {
+          "type": "string",
+          "title": "Img Alt"
+        },
+        "imgWidth": {
+          "type": "number",
+          "title": "Img Width"
+        },
+        "imgHeight": {
+          "type": "number",
+          "title": "Img Height"
+        },
+        "text": {
+          "type": "string",
+          "title": "Text"
+        }
+      },
+      "required": [
+        "src",
+        "imgAlt",
+        "imgWidth",
+        "imgHeight",
+        "text"
+      ],
+      "title": "TopbarLeftProp"
+    },
+    "ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL2hlYWRlci9Ub3BiYXIudHN4@TopbarLeftProp[]": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL2hlYWRlci9Ub3BiYXIudHN4@TopbarLeftProp"
+      },
+      "title": "TopbarLeftProp[]"
+    },
+    "ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL2hlYWRlci9Ub3BiYXIudHN4@TopbarRightProp": {
+      "type": "object",
+      "properties": {
+        "text": {
+          "type": "string",
+          "title": "Text"
+        },
+        "href": {
+          "type": "string",
+          "title": "Href"
+        }
+      },
+      "required": [
+        "text",
+        "href"
+      ],
+      "title": "TopbarRightProp"
+    },
+    "ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL2hlYWRlci9Ub3BiYXIudHN4@TopbarRightProp[]": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL2hlYWRlci9Ub3BiYXIudHN4@TopbarRightProp"
+      },
+      "title": "TopbarRightProp[]"
+    },
     "ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL3NlYXJjaC9TZWFyY2hiYXIudHN4@EditableProps": {
       "type": "object",
       "properties": {
@@ -8110,7 +8255,7 @@
           ],
           "title": "Placeholder",
           "description": "Search bar default placeholder message",
-          "default": "What are you looking for?"
+          "default": "O que você está procurando hoje?"
         },
         "action": {
           "type": [
@@ -8229,12 +8374,13 @@
     "ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL2hlYWRlci9IZWFkZXIudHN4@Props": {
       "type": "object",
       "properties": {
-        "alerts": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "title": "Alerts"
+        "topbarLeft": {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL2hlYWRlci9Ub3BiYXIudHN4@TopbarLeftProp[]",
+          "title": "Topbar Left"
+        },
+        "topbarRight": {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL2hlYWRlci9Ub3BiYXIudHN4@TopbarRightProp[]",
+          "title": "Topbar Right"
         },
         "searchbar": {
           "$ref": "#/definitions/ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL3NlYXJjaC9TZWFyY2hiYXIudHN4@EditableProps",
@@ -8255,9 +8401,7 @@
           "title": "Enable Top Search terms"
         }
       },
-      "required": [
-        "alerts"
-      ],
+      "required": [],
       "title": "deco-sites/abracadabra/components/header/Header.tsx@Props"
     },
     "ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL3VpL0hpZ2hsaWdodHMudHN4@Highlight": {
