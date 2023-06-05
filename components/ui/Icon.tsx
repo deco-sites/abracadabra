@@ -44,7 +44,7 @@ export type AvailableIcons =
   | "DiscountPng"
   | "InstallmentsPng"
   | "UserPng"
-  | "MinicartPng"
+  | "MinicartPng";
 
 interface Props extends JSX.SVGAttributes<SVGSVGElement> {
   /**

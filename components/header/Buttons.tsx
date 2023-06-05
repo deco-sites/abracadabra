@@ -87,7 +87,7 @@ function CartButton() {
         )}
         <img
           class="object-cover"
-          src={asset('/icon-minicart.png')}
+          src={asset("/icon-minicart.png")}
           width={28}
           height={31}
         />

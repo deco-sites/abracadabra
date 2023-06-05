@@ -43,10 +43,14 @@ function Navbar({ items, searchbar }: {
             <Searchbar searchbar={searchbar} />
           </div>
           <div class="flex-auto flex justify-center">
-            <a href="/" aria-label="Abracadabra" class="block px-4 py-3 w-[122px]">
+            <a
+              href="/"
+              aria-label="Abracadabra"
+              class="block px-4 py-3 w-[122px]"
+            >
               <img
                 class="object-cover"
-                src={asset('/logo_cadabra_site.png')}
+                src={asset("/logo_cadabra_site.png")}
                 width={90}
                 height={90}
               />
@@ -60,7 +64,7 @@ function Navbar({ items, searchbar }: {
             >
               <img
                 class="object-cover"
-                src={asset('/icon-user.png')}
+                src={asset("/icon-user.png")}
                 width={20}
                 height={23}
               />

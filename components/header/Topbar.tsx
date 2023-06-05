@@ -15,14 +15,14 @@ export interface TopbarRightProp {
 }
 
 export interface Props {
-  topbarLeft?: TopbarLeftProp[];
+  topbarLeft: TopbarLeftProp[];
   topbarRight: TopbarRightProp[];
 }
 
 function Topbar(
   { topbarLeft, topbarRight }: Props,
 ) {
-  if(topbarLeft && topbarRight) {
+  if (topbarLeft && topbarRight) {
     return (
       <div class="w-30 hidden sm:flex">
         <div class="container flex justify-between items-center min-h-[35px]">
@@ -55,9 +55,8 @@ function Topbar(
         </div>
       </div>
     );
-  }
-  else {
-    return null
+  } else {
+    return null;
   }
 }
 

@@ -27,8 +27,8 @@ export interface NavItem {
 }
 
 export interface Props {
-  topbarLeft?: TopbarLeftProp[];
-  topbarRight?: TopbarRightProp[];
+  topbarLeft: TopbarLeftProp[];
+  topbarRight: TopbarRightProp[];
   /** @title Search Bar */
   searchbar?: SearchbarProps;
   /**

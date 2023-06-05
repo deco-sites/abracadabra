@@ -21,7 +21,7 @@ function NavItem({ item }: { item: INavItem }) {
         (
           <div
             class="absolute hidden hover:flex group-hover:flex bg-base-100 z-50 items-start justify-center gap-6 border-t border-grayBorder-medium"
-            style={{ top: navbarHeight, left: "0px"}}
+            style={{ top: navbarHeight, left: "0px" }}
           >
             {image?.src && (
               <Image

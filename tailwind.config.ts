@@ -6,14 +6,14 @@ export default {
   content: ["./**/*.tsx"],
   theme: {
     container: {
-      center: true
+      center: true,
     },
     fontFamily: {
-      'sans': ['Roboto', 'arial', 'sans-serif'],
-      'serif': ['ui-serif', 'Georgia'],
-      'mono': ['ui-monospace', 'SFMono-Regular'],
-      'display': ['Oswald'],
-      'body': ['"Roboto"'],
+      "sans": ["Roboto", "arial", "sans-serif"],
+      "serif": ["ui-serif", "Georgia"],
+      "mono": ["ui-monospace", "SFMono-Regular"],
+      "display": ["Oswald"],
+      "body": ['"Roboto"'],
     },
     colors: {
       black: {
@@ -28,7 +28,7 @@ export default {
         "2": "#11b0ba",
       },
       text: {
-        graffiti: '#6d6e71',
+        graffiti: "#6d6e71",
         red: "#bb0e4b",
         yellow: "#ffbf00",
         blue: {
@@ -37,12 +37,12 @@ export default {
         },
       },
       grayBorder: {
-        light: '#9d9d9d',
-        medium: '#9b999b',
+        light: "#9d9d9d",
+        medium: "#9b999b",
       },
       grayBG: {
-        light: '#f6f6f6',
-        medium: '#d1d1d1',
+        light: "#f6f6f6",
+        medium: "#d1d1d1",
         heavy: "#B2B2B2",
         heavier: "#D9D9D9",
       },

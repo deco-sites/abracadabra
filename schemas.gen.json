@@ -8401,7 +8401,10 @@
           "title": "Enable Top Search terms"
         }
       },
-      "required": [],
+      "required": [
+        "topbarLeft",
+        "topbarRight"
+      ],
       "title": "deco-sites/abracadabra/components/header/Header.tsx@Props"
     },
     "ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL3VpL0hpZ2hsaWdodHMudHN4@Highlight": {
