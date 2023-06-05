@@ -33,7 +33,11 @@ function AddToCartButton(
   });
 
   return (
-    <Button data-deco="add-to-cart" {...props} class="w-full">
+    <Button
+      data-deco="add-to-cart"
+      {...props}
+      class="w-full h-[41px] min-h-min bg-blue-base hover:bg-blue-hover text-white text-sm border-transparent hover:border-transparent rounded-md mt-2"
+    >
       {text}
     </Button>
   );

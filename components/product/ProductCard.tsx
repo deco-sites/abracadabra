@@ -12,11 +12,15 @@ import { useVariantPossibilities } from "$store/sdk/useVariantPossiblities.ts";
 import { mapProductToAnalyticsItem } from "deco-sites/std/commerce/utils/productToAnalyticsItem.ts";
 import { sendEventOnClick } from "$store/sdk/analytics.tsx";
 import type { Product } from "deco-sites/std/commerce/types.ts";
+import { ClusterProps } from "../search/SearchResult.tsx";
+import Clusters, { ClusterBadge } from "./Clusters.tsx";
 
 interface Props {
   product: Product;
   /** Preload card image */
   preload?: boolean;
+  clusterIdExclusiveFlag?: ClusterProps;
+  cluster?: ClusterProps[];
 
   /** @description used for analytics event */
   itemListName?: string;
@@ -27,10 +31,19 @@ const relative = (url: string) => {
   return `${link.pathname}${link.search}`;
 };
 
-const WIDTH = 200;
-const HEIGHT = 279;
+const DESKTOP_IMAGE_SIZE = {
+  WIDTH: 271,
+  HEIGHT: 259,
+};
 
-function ProductCard({ product, preload, itemListName }: Props) {
+const MOBILE_IMAGE_SIZE = {
+  WIDTH: 271,
+  HEIGHT: 259,
+};
+
+function ProductCard(
+  { product, preload, itemListName, clusterIdExclusiveFlag, cluster }: Props,
+) {
   const {
     url,
     productID,
@@ -38,6 +51,7 @@ function ProductCard({ product, preload, itemListName }: Props) {
     image: images,
     offers,
     isVariantOf,
+    additionalProperty,
   } = product;
 
   const { listPrice, price, seller, installments, availability } = useOffer(
@@ -46,11 +60,16 @@ function ProductCard({ product, preload, itemListName }: Props) {
 
   // http://localhost:8000/bicama-sofa-paglia-carvalho-malva/p?skuId=2012788
   // http://localhost:8000/beliche-contemporanea-com-cama-de-embutir-branco/p?skuId=2006625
+  // https://www.abracadabra.com.br/beliche-montessoriana-madeira-/p
+  // https://www.abracadabra.com.br/bicama-zuka-com-3gavetas-branco/p
+  // https://www.abracadabra.com.br/bicama-square-branco-fosco/p
   if (
-    product.url?.includes("/beliche-contemporanea-com-cama-de-embutir-branco/p")
+    product.url?.includes("/bicama-square-branco-fosco/p")
   ) {
     // TODO: Verificar preços
-    // console.log(product);
+    // console.log(isVariantOf);
+    // console.log(JSON.stringify(product.additionalProperty));
+    // console.log(JSON.stringify(product));
     // console.log(offers);
     // console.log({ listPrice, price, seller, installments, availability });
   }
@@ -74,53 +93,72 @@ function ProductCard({ product, preload, itemListName }: Props) {
     },
   };
 
-  console.log(possibilities);
-  console.log(variants);
-
   return (
     <div
-      class="card card-compact card-bordered p-2 pb-3 border-black rounded-[3px] group w-full"
+      class="card card-compact card-bordered justify-between p-2 pb-3 border-black-opacity80 rounded-[3px] group w-full h-full"
       data-deco="view-product"
       id={`product-card-${productID}`}
       {...sendEventOnClick(clickEvent)}
     >
-      <figure class="relative " style={{ aspectRatio: `${WIDTH} / ${HEIGHT}` }}>
-        {/* Wishlist button */}
-        <div class="absolute top-0 right-0 z-10">
-          <WishlistIcon productGroupID={productGroupID} productID={productID} />
-        </div>
-        {/* Product Images */}
-        <a
-          href={url && relative(url)}
-          aria-label="view product"
-          class="contents"
+      <div class="mb-4">
+        <figure
+          class="relative mb-[6px] sm:mb-3"
+          style={{
+            aspectRatio:
+              `${DESKTOP_IMAGE_SIZE.WIDTH} / ${DESKTOP_IMAGE_SIZE.HEIGHT}`,
+          }}
         >
-          <Image
-            src={front.url!}
-            alt={front.alternateName}
-            width={WIDTH}
-            height={HEIGHT}
-            class="absolute transition-opacity rounded w-full opacity-100 group-hover:opacity-0"
-            sizes="(max-width: 640px) 50vw, 20vw"
-            preload={preload}
-            loading={preload ? "eager" : "lazy"}
-            decoding="async"
-          />
-          <Image
-            src={back?.url ?? front.url!}
-            alt={back?.alternateName ?? front.alternateName}
-            width={WIDTH}
-            height={HEIGHT}
-            class="absolute transition-opacity rounded w-full opacity-0 group-hover:opacity-100"
-            sizes="(max-width: 640px) 50vw, 20vw"
-            loading="lazy"
-            decoding="async"
-          />
-        </a>
+          {/* Wishlist button */}
+          {
+            /* <div class="absolute top-0 right-0 z-10">
+            <WishlistIcon
+              productGroupID={productGroupID}
+              productID={productID}
+            />
+          </div> */
+          }
+          {/* Exclusive Product Tag */}
+          {clusterIdExclusiveFlag && (
+            <div class={"absolute z-10 top-1.5 left-1.5"}>
+              <Clusters
+                cluster={[clusterIdExclusiveFlag]}
+                additionalProperty={additionalProperty}
+                class={"flex px-2 py-1 h-4 sm:h-6 text-[8px] leading-3 sm:text-[12px] sm:leading-4"}
+              />
+            </div>
+          )}
+          {/* Product Images */}
+          <a
+            href={url && relative(url)}
+            aria-label="view product"
+            class="contents"
+          >
+            <Image
+              src={front.url!}
+              alt={front.alternateName}
+              width={DESKTOP_IMAGE_SIZE.WIDTH}
+              height={DESKTOP_IMAGE_SIZE.HEIGHT}
+              class="absolute transition-opacity rounded-[3px] w-full opacity-100 group-hover:opacity-0"
+              sizes="(max-width: 640px) 50vw, 20vw"
+              preload={preload}
+              loading={preload ? "eager" : "lazy"}
+              decoding="async"
+            />
+            <Image
+              src={back?.url ?? front.url!}
+              alt={back?.alternateName ?? front.alternateName}
+              width={DESKTOP_IMAGE_SIZE.WIDTH}
+              height={DESKTOP_IMAGE_SIZE.HEIGHT}
+              class="absolute transition-opacity rounded-[3px] w-full opacity-0 group-hover:opacity-100"
+              sizes="(max-width: 640px) 50vw, 20vw"
+              loading="lazy"
+              decoding="async"
+            />
+          </a>
 
-        {/* SKU Selector */}
-        {
-          /* <figcaption class="glass card-body card-actions absolute bottom-0 left-0 w-full transition-opacity opacity-0 group-hover:opacity-100">
+          {/* SKU Selector */}
+          {
+            /* <figcaption class="glass card-body card-actions absolute bottom-0 left-0 w-full transition-opacity opacity-0 group-hover:opacity-100">
           <ul class="flex justify-center items-center gap-2 w-full">
             {variants.map(([value, [link]]) => (
               <a href={link}>
@@ -132,50 +170,63 @@ function ProductCard({ product, preload, itemListName }: Props) {
             ))}
           </ul>
         </figcaption> */
-        }
-      </figure>
-      {/* Prices & Name */}
-      <div class="">
-        <h2 class="">{name}</h2>
-        <div class="gap-2">
-          {Math.floor((listPrice ?? 0) - (price ?? 0)) > 0 && (
-            <div class="flex">
-              <span class="line-through text-base-300 text-xs">
-                {formatPrice(listPrice, offers!.priceCurrency!)}
-              </span>
-              <Discount
-                listPrice={listPrice ?? 0}
-                price={price ?? 0}
-                currencySimbol={offers!.priceCurrency!}
-              />
-            </div>
-          )}
-          <span class="text-secondary">
-            {formatPrice(price, offers!.priceCurrency!)}
-          </span>
+          }
+        </figure>
+        <div
+          class={"flex flex-col sm:flex-row justify-between h-9 sm:h-6 mb-2"}
+        >
+          <Clusters
+            cluster={cluster}
+            additionalProperty={additionalProperty}
+            class="sm:w-[calc(50%-0.25rem)] gap-2 content-center justify-center h-4 sm:h-6"
+          />
         </div>
-        <span class={"flex"}>
-          <Installments installments={installments} />
-        </span>
+        {/* Name */}
+        <h2 class="text-sm">{name}</h2>
       </div>
       <div>
-        {availability === "https://schema.org/InStock"
-          ? (
-            <>
-              {seller && (
-                <AddToCartButton
-                  text="ADICIONAR AO CARRINHO"
-                  skuId={productID}
-                  sellerId={seller}
+        <div class="">
+          {/* Prices */}
+          <div class="gap-2">
+            {Math.floor((listPrice ?? 0) - (price ?? 0)) > 0 && (
+              <div class="flex flex-col-reverse sm:flex-row gap-2 items-start sm:items-center">
+                <span class="line-through text-gray-base text-sm leading-[22px]">
+                  {formatPrice(listPrice, offers!.priceCurrency!)}
+                </span>
+                <Discount
+                  listPrice={listPrice ?? 0}
                   price={price ?? 0}
-                  discount={price && listPrice ? listPrice - price : 0}
-                  name={product.name ?? ""}
-                  productGroupId={product.isVariantOf?.productGroupID ?? ""}
+                  currencySimbol={offers!.priceCurrency!}
                 />
-              )}
-            </>
-          )
-          : <OutOfStock productID={productID} />}
+              </div>
+            )}
+            <span class="text-black font-extrabold text-[17px] leading-[22px]">
+              {formatPrice(price, offers!.priceCurrency!)}
+            </span>
+          </div>
+          <span class={"flex"}>
+            <Installments installments={installments} />
+          </span>
+        </div>
+        <div>
+          {availability === "https://schema.org/InStock"
+            ? (
+              <>
+                {seller && (
+                  <AddToCartButton
+                    text="ADICIONAR AO CARRINHO"
+                    skuId={productID}
+                    sellerId={seller}
+                    price={price ?? 0}
+                    discount={price && listPrice ? listPrice - price : 0}
+                    name={product.name ?? ""}
+                    productGroupId={product.isVariantOf?.productGroupID ?? ""}
+                  />
+                )}
+              </>
+            )
+            : <OutOfStock productID={productID} />}
+        </div>
       </div>
     </div>
   );

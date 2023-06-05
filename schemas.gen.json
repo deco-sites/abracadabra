@@ -8704,6 +8704,65 @@
       "required": [],
       "title": "Columns"
     },
+    "ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL3NlYXJjaC9TZWFyY2hSZXN1bHQudHN4@FlagProps": {
+      "type": "object",
+      "properties": {
+        "text": {
+          "type": "string",
+          "title": "Text"
+        },
+        "textColor": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "Text Color"
+        },
+        "backgroundColor": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "Background Color"
+        }
+      },
+      "required": [
+        "text"
+      ],
+      "title": "FlagProps"
+    },
+    "ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL3NlYXJjaC9TZWFyY2hSZXN1bHQudHN4@FlagProps[]": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL3NlYXJjaC9TZWFyY2hSZXN1bHQudHN4@FlagProps"
+      },
+      "title": "FlagProps[]"
+    },
+    "ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL3NlYXJjaC9TZWFyY2hSZXN1bHQudHN4@ClusterProps": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "Id"
+        },
+        "flags": {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL3NlYXJjaC9TZWFyY2hSZXN1bHQudHN4@FlagProps[]",
+          "title": "Flags"
+        }
+      },
+      "required": [
+        "id",
+        "flags"
+      ],
+      "title": "ClusterProps"
+    },
+    "ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL3NlYXJjaC9TZWFyY2hSZXN1bHQudHN4@ClusterProps[]": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL3NlYXJjaC9TZWFyY2hSZXN1bHQudHN4@ClusterProps"
+      },
+      "title": "ClusterProps[]"
+    },
     "ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL3NlYXJjaC9TZWFyY2hSZXN1bHQudHN4@Props": {
       "type": "object",
       "properties": {
@@ -8730,6 +8789,32 @@
           "$ref": "#/definitions/ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL3Byb2R1Y3QvUHJvZHVjdEdhbGxlcnkudHN4@Columns",
           "description": "Number of products per line on grid",
           "title": "Columns"
+        },
+        "title": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Title of page",
+          "title": "Title"
+        },
+        "seoText": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "SEO text of page",
+          "title": "Seo Text"
+        },
+        "clusterIdExclusiveFlag": {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL3NlYXJjaC9TZWFyY2hSZXN1bHQudHN4@ClusterProps",
+          "description": "Cluster Exclusive",
+          "title": "Cluster Id Exclusive Flag"
+        },
+        "cluster": {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL3NlYXJjaC9TZWFyY2hSZXN1bHQudHN4@ClusterProps[]",
+          "description": "Cluster config",
+          "title": "Cluster"
         }
       },
       "required": [
@@ -8918,6 +9003,14 @@
             "null"
           ],
           "title": "Canonical URL"
+        },
+        "noIndexNoFollow": {
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "title": "Disable indexing",
+          "description": "In testing, you can use this to prevent search engines from indexing your site"
         },
         "context": {
           "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvY29tbWVyY2UvdHlwZXMudHM=@ProductDetailsPage|null|ProductListingPage|null",

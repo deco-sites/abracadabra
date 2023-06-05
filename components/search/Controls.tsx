@@ -17,15 +17,12 @@ type Props =
 function SearchControls(
   { filters, pageInfo, displayFilter, sortOptions }: Props,
 ) {
-  console.log({ pageInfo });
-
   const open = useSignal(false);
 
   return (
     <div class="flex flex-col justify-between mb-4 p-4 sm:mb-0 sm:p-0 sm:gap-4 sm:h-[53px]">
       <div class="flex flex-row items-center justify-between border-b border-base-200 sm:gap-4 sm:border-none">
-        {
-          /* <Button
+        <Button
           class={displayFilter ? "btn-ghost" : "btn-ghost sm:hidden"}
           onClick={() => {
             open.value = true;
@@ -33,16 +30,14 @@ function SearchControls(
         >
           Filtrar
           <Icon id="FilterList" width={16} height={16} />
-        </Button> */
-        }
-        <div class={"flex"}>
+        </Button>
+        <div class={"hidden sm:flex"}>
           {pageInfo.records && <Counter quant={pageInfo.records} />}
         </div>
         {sortOptions.length > 0 && <Sort sortOptions={sortOptions} />}
       </div>
 
-      {
-        /* <Modal
+      <Modal
         loading="lazy"
         title="Filtrar"
         mode="sidebar-right"
@@ -52,8 +47,7 @@ function SearchControls(
         }}
       >
         <Filters filters={filters} />
-      </Modal> */
-      }
+      </Modal>
     </div>
   );
 }

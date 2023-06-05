@@ -12,12 +12,10 @@ const Installments = ({ installments }: Props) => {
     if (installmentsRegexArray && installmentsRegexArray[0] !== "1x") {
       installmentsText = installments;
     }
-
-    // console.log(installmentsText);
   }
   return installmentsText
     ? (
-      <div>
+      <div class="text-sm leading-[22px]">
         {installmentsText}
       </div>
     )

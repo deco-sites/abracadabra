@@ -9,6 +9,15 @@ import ProductGallery, { Columns } from "../product/ProductGallery.tsx";
 import type { LoaderReturnType } from "$live/types.ts";
 import type { ProductListingPage } from "deco-sites/std/commerce/types.ts";
 
+export interface FlagProps {
+  text: string;
+  textColor?: string;
+  backgroundColor?: string;
+}
+export interface ClusterProps {
+  id: string;
+  flags: FlagProps[];
+}
 export interface Props {
   page: LoaderReturnType<ProductListingPage | null>;
   /**
@@ -19,6 +28,22 @@ export interface Props {
    * @description Number of products per line on grid
    */
   columns: Columns;
+  /**
+   * @description Title of page
+   */
+  title?: string;
+  /**
+   * @description SEO text of page
+   */
+  seoText?: string;
+  /**
+   * @description Cluster Exclusive
+   */
+  clusterIdExclusiveFlag?: ClusterProps;
+  /**
+   * @description Cluster config
+   */
+  cluster?: ClusterProps[];
 }
 
 function NotFound() {
@@ -32,10 +57,13 @@ function NotFound() {
 function Result({
   page,
   variant,
+  columns,
+  title,
+  seoText,
+  clusterIdExclusiveFlag,
+  cluster,
 }: Omit<Props, "page"> & { page: ProductListingPage }) {
   const { products, filters, breadcrumb, pageInfo, sortOptions } = page;
-
-  console.log(pageInfo);
 
   return (
     <>
@@ -43,6 +71,13 @@ function Result({
         <div class="flex flex-row items-center sm:p-0 mb-2">
           <Breadcrumb itemListElement={breadcrumb?.itemListElement} />
         </div>
+
+        {
+          /* <div class="flex flex-col">
+          <div>{title}</div>
+          <div>{seoText}</div>
+        </div> */
+        }
 
         <div class="flex flex-row">
           {filters.length > 0 && (
@@ -60,6 +95,9 @@ function Result({
 
             <ProductGallery
               products={products}
+              columns={columns}
+              clusterIdExclusiveFlag={clusterIdExclusiveFlag}
+              cluster={cluster}
             />
           </div>
         </div>

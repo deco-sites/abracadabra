@@ -1,6 +1,7 @@
 import { Product } from "deco-sites/std/commerce/types.ts";
 
 import ProductCard from "./ProductCard.tsx";
+import { ClusterProps } from "../search/SearchResult.tsx";
 
 export interface Columns {
   mobile?: number;
@@ -9,13 +10,39 @@ export interface Columns {
 
 export interface Props {
   products: Product[] | null;
+  columns: Columns;
+  clusterIdExclusiveFlag?: ClusterProps;
+  cluster?: ClusterProps[];
 }
 
-function ProductGallery({ products }: Props) {
+function ProductGallery(
+  { products, columns, clusterIdExclusiveFlag, cluster }: Props,
+) {
+  const columnsClass = {
+    desktop: "sm:grid-cols-3",
+    mobile: "grid-cols-2",
+  };
+
+  if (columns) {
+    if (columns.desktop) {
+      columnsClass.desktop = `sm:grid-cols-${columns.desktop}`;
+    }
+    if (columns.mobile) {
+      columnsClass.mobile = `grid-cols-${columns.mobile}`;
+    }
+  }
+
   return (
-    <div class="grid grid-cols-2 gap-2 items-center sm:grid-cols-4 sm:gap-10">
+    <div
+      class={`grid auto-rows-fr items-center gap-2 sm:pl-8 sm:gap-3 ${columnsClass.mobile} ${columnsClass.desktop}`}
+    >
       {products?.map((product, index) => (
-        <ProductCard product={product} preload={index === 0} />
+        <ProductCard
+          product={product}
+          clusterIdExclusiveFlag={clusterIdExclusiveFlag}
+          cluster={cluster}
+          preload={index === 0}
+        />
       ))}
     </div>
   );

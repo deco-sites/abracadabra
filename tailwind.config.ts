@@ -9,15 +9,29 @@ export default {
       center: true,
     },
     colors: {
-      redCadabra: "#bb0e4b",
-      yellowCadabra: "#ffbf00",
-      blueCadabra: "#13c1cc",
+      black: {
+        base: "#000000",
+        opacity80: "rgba(0, 0, 0, 0.08)",
+      },
+      white: "#ffffff",
+      red: {
+        base: "#bb0e4b",
+      },
+      yellow: {
+        base: "#ffbf00",
+      },
+      blue: {
+        base: "#13c1cc",
+        hover: "#11b0ba",
+      },
       gray: {
-        "1": "#9d9d9d",
-        "2": "#9b999b",
-        "3": "#6d6e71",
-        "4": "#B2B2B2",
-        "5": "#D9D9D9",
+        base: "#6d6e71",
+        lighter: "#f6f6f6",
+        light: "#D9D9D9",
+        // light: '#d1d1d1',
+        medium: "#B2B2B2",
+        dark: "#9b999b",
+        darker: "#9d9d9d",
       },
     },
   },
