@@ -21,30 +21,23 @@ export default {
         opacity80: "rgba(0, 0, 0, 0.08)",
       },
       white: "#ffffff",
-      red: "#bb0e4b",
-      yellow: "#ffbf00",
+      red: {
+        base: "#bb0e4b",
+      },
+      yellow: {
+        base: "#ffbf00",
+      },
       blue: {
-        "1": "#13c1cc",
-        "2": "#11b0ba",
+        base: "#13c1cc",
+        hover: "#11b0ba",
       },
-      text: {
-        graffiti: "#6d6e71",
-        red: "#bb0e4b",
-        yellow: "#ffbf00",
-        blue: {
-          "1": "#13c1cc",
-          "2": "#11b0ba",
-        },
-      },
-      grayBorder: {
-        light: "#9d9d9d",
-        medium: "#9b999b",
-      },
-      grayBG: {
-        light: "#f6f6f6",
-        medium: "#d1d1d1",
-        heavy: "#B2B2B2",
-        heavier: "#D9D9D9",
+      gray: {
+        base: "#6d6e71",
+        lighter: "#f6f6f6",
+        light: "#D9D9D9",
+        medium: "#B2B2B2",
+        dark: "#9b999b",
+        darker: "#9d9d9d",
       },
     },
   },
