@@ -28,7 +28,6 @@ export default {
         base: "#6d6e71",
         lighter: "#f6f6f6",
         light: "#D9D9D9",
-        // light: '#d1d1d1',
         medium: "#B2B2B2",
         dark: "#9b999b",
         darker: "#9d9d9d",

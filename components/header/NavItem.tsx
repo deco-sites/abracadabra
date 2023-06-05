@@ -1,5 +1,5 @@
 import Image from "deco-sites/std/components/Image.tsx";
-import { headerHeight } from "./constants.ts";
+import { navbarHeight } from "./constants.ts";
 
 export interface INavItem {
   label: string;
@@ -12,18 +12,16 @@ function NavItem({ item }: { item: INavItem }) {
   const { href, label, children, image } = item;
 
   return (
-    <li class="group flex items-center">
+    <li class="group flex items-center relative hover:text-yellow-base">
       <a href={href} class="px-4 py-3">
-        <span class="group-hover:underline">
-          {label}
-        </span>
+        {label}
       </a>
 
       {children && children.length > 0 &&
         (
           <div
-            class="fixed hidden hover:flex group-hover:flex bg-base-100 z-50 items-start justify-center gap-6 border-t border-b-2 border-base-200 w-screen"
-            style={{ top: "0px", left: "0px", marginTop: headerHeight }}
+            class="absolute hidden hover:flex group-hover:flex bg-base-100 z-50 items-start justify-center gap-6 border-t border-grayBorder-medium"
+            style={{ top: navbarHeight, left: "0px" }}
           >
             {image?.src && (
               <Image
@@ -37,7 +35,7 @@ function NavItem({ item }: { item: INavItem }) {
             )}
             <ul class="flex items-start justify-center gap-6">
               {children.map((node) => (
-                <li class="p-6">
+                <li class="p-6 text-gray-base hover:text-yellow-base">
                   <a class="hover:underline" href={node.href}>
                     <span>{node.label}</span>
                   </a>

@@ -46,7 +46,7 @@ export interface EditableProps {
   /**
    * @title Placeholder
    * @description Search bar default placeholder message
-   * @default What are you looking for?
+   * @default O que você está procurando hoje?
    */
   placeholder?: string;
   /**
@@ -72,7 +72,7 @@ export type Props = EditableProps & {
 };
 
 function Searchbar({
-  placeholder = "What are you looking for?",
+  placeholder = "O que você está procurando hoje?",
   action = "/s",
   name = "q",
   query,
@@ -107,8 +107,8 @@ function Searchbar({
             tabIndex={-1}
           >
             <Icon
-              class="text-base-300"
-              id="MagnifyingGlass"
+              fill="yellow"
+              id="Search"
               size={20}
               strokeWidth={0.01}
             />

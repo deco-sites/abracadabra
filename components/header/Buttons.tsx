@@ -1,5 +1,6 @@
 import Icon from "$store/components/ui/Icon.tsx";
 import Button from "$store/components/ui/Button.tsx";
+import { asset } from "$fresh/runtime.ts";
 import { sendEvent } from "$store/sdk/analytics.tsx";
 import { useUI } from "$store/sdk/useUI.ts";
 import { useCart } from "deco-sites/std/packs/vtex/hooks/useCart.ts";
@@ -18,13 +19,13 @@ function SearchButton() {
 
   return (
     <Button
-      class="btn-square btn-ghost"
+      class="btn-square btn-ghost bg-transparent hover:bg-transparent"
       aria-label="search icon button"
       onClick={() => {
         displaySearchbar.value = !displaySearchbar.peek();
       }}
     >
-      <Icon id="MagnifyingGlass" width={20} height={20} strokeWidth={0.1} />
+      <Icon id="Search" width={20} height={20} strokeWidth={0.1} />
     </Button>
   );
 }
@@ -34,7 +35,7 @@ function MenuButton() {
 
   return (
     <Button
-      class="btn-square btn-ghost"
+      class="btn-square btn-ghost bg-transparent hover:bg-transparent"
       aria-label="open menu"
       onClick={() => {
         displayMenu.value = true;
@@ -72,19 +73,24 @@ function CartButton() {
 
   return (
     <Button
-      class="btn-square btn-ghost relative"
+      class="btn-square btn-ghost bg-transparent hover:bg-transparent relative"
       aria-label="open cart"
       data-deco={displayCart.value && "open-cart"}
       loading={loading.value}
       onClick={onClick}
     >
-      <div class="indicator">
+      <div>
         {totalItems && (
-          <span class="indicator-item badge badge-secondary badge-sm">
+          <span class="absolute top-1 text-base">
             {totalItems > 9 ? "9+" : totalItems}
           </span>
         )}
-        <Icon id="ShoppingCart" width={20} height={20} strokeWidth={2} />
+        <img
+          class="object-cover"
+          src={asset("/icon-minicart.png")}
+          width={28}
+          height={31}
+        />
       </div>
     </Button>
   );
