@@ -3,6 +3,7 @@ import { useEffect } from "preact/hooks";
 interface Props {
   rootId: string;
   scroll?: "smooth" | "auto";
+  actionType?: "click" | "mouseover";
   interval?: number;
   infinite?: boolean;
 }
@@ -46,7 +47,9 @@ const isHTMLElement = (x: Element): x is HTMLElement =>
   // deno-lint-ignore no-explicit-any
   typeof (x as any).offsetLeft === "number";
 
-const setup = ({ rootId, scroll, interval, infinite }: Props) => {
+const setup = (
+  { rootId, scroll, actionType, interval, infinite }: Props,
+) => {
   const root = document.getElementById(rootId);
   const slider = root?.querySelector(`[${ATTRIBUTES["data-slider"]}]`);
   const items = root?.querySelectorAll(`[${ATTRIBUTES["data-slider-item"]}]`);
@@ -160,8 +163,14 @@ const setup = ({ rootId, scroll, interval, infinite }: Props) => {
 
   items.forEach((item) => observer.observe(item));
 
+  console.log(actionType);
+
   for (let it = 0; it < (dots?.length ?? 0); it++) {
-    dots?.item(it).addEventListener("click", () => goToItem(it));
+    if (actionType === "click") {
+      dots?.item(it).addEventListener("click", () => goToItem(it));
+    } else if (actionType === "mouseover") {
+      dots?.item(it).addEventListener("mouseover", () => goToItem(it));
+    }
   }
 
   prev?.addEventListener("click", onClickPrev);
@@ -187,10 +196,11 @@ const setup = ({ rootId, scroll, interval, infinite }: Props) => {
 function Slider({
   rootId,
   scroll = "smooth",
+  actionType = "click",
   interval,
   infinite = false,
 }: Props) {
-  useEffect(() => setup({ rootId, scroll, interval, infinite }), [
+  useEffect(() => setup({ rootId, scroll, actionType, interval, infinite }), [
     rootId,
     scroll,
     interval,
