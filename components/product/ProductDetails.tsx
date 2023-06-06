@@ -30,8 +30,8 @@ export interface Props {
   variant?: Variant;
 }
 
-const WIDTH = 360;
-const HEIGHT = 500;
+const WIDTH = 620;
+const HEIGHT = 620;
 const ASPECT_RATIO = `${WIDTH} / ${HEIGHT}`;
 
 /**
@@ -69,20 +69,16 @@ function ProductInfo({ page }: { page: ProductDetailsPage }) {
 
   return (
     <>
-      {/* Breadcrumb */}
-      <Breadcrumb
-        itemListElement={breadcrumbList?.itemListElement.slice(0, -1)}
-      />
       {/* Code and name */}
       <div class="mt-4 sm:mt-8">
+        <h1>
+          <span class="font-medium text-[17px] leading-[21px]">{name}</span>
+        </h1>
         <div>
-          <span class="text-sm text-base-300">
-            Cod. {gtin}
+          <span class="text-xs text-gray-base font-light">
+            Cod. {isVariantOf?.model}
           </span>
         </div>
-        <h1>
-          <span class="font-medium text-xl">{name}</span>
-        </h1>
       </div>
       {/* Prices */}
       <div class="mt-4">
@@ -135,17 +131,6 @@ function ProductInfo({ page }: { page: ProductDetailsPage }) {
             seller: seller ?? "1",
           }]}
         />
-      </div>
-      {/* Description card */}
-      <div class="mt-4 sm:mt-6">
-        <span class="text-sm">
-          {description && (
-            <details>
-              <summary class="cursor-pointer">Descrição</summary>
-              <div class="ml-2 mt-2">{description}</div>
-            </details>
-          )}
-        </span>
       </div>
       {/* Analytics Event */}
       <SendEventOnLoad
@@ -233,9 +218,11 @@ function Details({
   page,
   variant,
 }: { page: ProductDetailsPage; variant: Variant }) {
-  const { product } = page;
+  const { product, breadcrumbList } = page;
   const id = `product-image-gallery:${useId()}`;
   const images = useStableImages(product);
+
+  const { description } = product;
 
   /**
    * Product slider variant
@@ -247,9 +234,13 @@ function Details({
   if (variant === "slider") {
     return (
       <>
+        {/* Breadcrumb */}
+        <Breadcrumb
+          itemListElement={breadcrumbList?.itemListElement.slice(0, -1)}
+        />
         <div
           id={id}
-          class="grid grid-cols-1 gap-4 sm:grid-cols-[max-content_40vw_40vw] sm:grid-rows-1 sm:justify-center"
+          class="grid grid-cols-1 gap-4 sm:grid-cols-[max-content_1fr_316px] sm:grid-rows-1 sm:justify-center"
         >
           {/* Image Slider */}
           <div class="relative sm:col-start-2 sm:col-span-1 sm:row-start-1">
@@ -257,7 +248,7 @@ function Details({
               {images.map((img, index) => (
                 <Slider.Item
                   index={index}
-                  class="carousel-item min-w-[100vw] sm:min-w-[40vw]"
+                  class="carousel-item"
                 >
                   <Image
                     class="w-full"
@@ -275,7 +266,8 @@ function Details({
               ))}
             </Slider>
 
-            <Slider.PrevButton
+            {
+              /* <Slider.PrevButton
               class="no-animation absolute left-2 top-1/2 btn btn-circle btn-outline"
               disabled
             >
@@ -295,19 +287,20 @@ function Details({
                 width={1280}
                 height={1280 * HEIGHT / WIDTH}
               />
-            </div>
+            </div> */
+            }
           </div>
 
           {/* Dots */}
           <ul class="flex gap-2 sm:justify-start overflow-auto px-4 sm:px-0 sm:flex-col sm:col-start-1 sm:col-span-1 sm:row-start-1">
             {images.map((img, index) => (
-              <li class="min-w-[63px] sm:min-w-[100px]">
+              <li class="">
                 <Slider.Dot index={index}>
                   <Image
                     style={{ aspectRatio: ASPECT_RATIO }}
-                    class="group-disabled:border-base-300 border rounded "
-                    width={63}
-                    height={87.5}
+                    class="group-disabled:border-base-300"
+                    width={78}
+                    height={78}
                     src={img.url!}
                     alt={img.alternateName}
                   />
@@ -321,7 +314,37 @@ function Details({
             <ProductInfo page={page} />
           </div>
         </div>
-        <SliderJS rootId={id}></SliderJS>
+        <SliderJS rootId={id} actionType="mouseover"></SliderJS>
+
+        <div>
+          {/* Description card */}
+          <div class="mt-4 sm:mt-6">
+            <h2 class={"border-b border-[#e5e5e5] mb-8 py-3 text-2xl"}>
+              Sobre o produto
+            </h2>
+            {description && (
+              <div
+                class="text-base font-normal mb-8"
+                dangerouslySetInnerHTML={{ "__html": description }}
+              />
+            )}
+          </div>
+
+          {/* Tecnical information */}
+          {
+            /* <div class="mt-4 sm:mt-6">
+            <h2 class={"border-b border-[#e5e5e5] mb-8 py-3 text-2xl"}>
+              Informações Técnicas
+            </h2>
+            {description && (
+              <div
+                class="text-base font-normal mb-8"
+                dangerouslySetInnerHTML={{ "__html": description }}
+              />
+            )}
+          </div> */
+          }
+        </div>
       </>
     );
   }
@@ -362,6 +385,8 @@ function Details({
 }
 
 function ProductDetails({ page, variant: maybeVar = "auto" }: Props) {
+  console.log(JSON.stringify(page?.product));
+
   /**
    * Showcase the different product views we have on this template. In case there are less
    * than two images, render a front-back, otherwhise render a slider
@@ -374,7 +399,7 @@ function ProductDetails({ page, variant: maybeVar = "auto" }: Props) {
     : maybeVar;
 
   return (
-    <div class="container py-0 sm:py-10">
+    <div class="container max-w-[1180px] py-0 sm:py-10">
       {page ? <Details page={page} variant={variant} /> : <NotFound />}
     </div>
   );

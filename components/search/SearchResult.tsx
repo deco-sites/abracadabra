@@ -67,7 +67,7 @@ function Result({
 
   return (
     <>
-      <div class="container px-4 sm:py-10">
+      <div class="container max-w-[1180px] px-4 sm:py-10">
         <div class="flex flex-row items-center sm:p-0 mb-2">
           <Breadcrumb itemListElement={breadcrumb?.itemListElement} />
         </div>
