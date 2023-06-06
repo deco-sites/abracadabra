@@ -35,7 +35,7 @@ function MenuButton() {
 
   return (
     <Button
-      class="btn-square btn-ghost bg-transparent hover:bg-transparent"
+      class="btn-square text-yellow-base btn-ghost bg-transparent hover:bg-transparent"
       aria-label="open menu"
       onClick={() => {
         displayMenu.value = true;

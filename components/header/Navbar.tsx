@@ -1,6 +1,5 @@
 import Searchbar from "$store/islands/HeaderSearchbar.tsx";
 import Buttons from "$store/islands/HeaderButton.tsx";
-import Icon from "$store/components/ui/Icon.tsx";
 import NavItem from "./NavItem.tsx";
 import { asset } from "$fresh/runtime.ts";
 import { navbarHeight } from "./constants.ts";
@@ -18,18 +17,25 @@ function Navbar({ items, searchbar }: {
         style={{ height: navbarHeight }}
         class="md:hidden flex flex-row justify-between items-center border-b border-base-200 w-full pl-2 pr-6 gap-2"
       >
-        <Buttons variant="menu" />
+        <div class="flex justify-start flex-[4_1_0%]">
+          <Buttons variant="menu" />
+        </div>
 
         <a
           href="/"
-          class="flex-grow inline-flex items-center"
+          class="flex  justify-center flex-[5_1_0%]"
           style={{ minHeight: navbarHeight }}
           aria-label="Store logo"
         >
-          <Icon id="Logo" width={126} height={16} />
+          <img
+            class="object-cover"
+            src={asset("/logo_cadabra_site.png")}
+            width={40}
+            height={40}
+          />
         </a>
 
-        <div class="flex gap-1">
+        <div class="flex gap-1 justify-end flex-[3_1_0%]">
           <Buttons variant="search" />
           <Buttons variant="cart" />
         </div>

@@ -7,7 +7,7 @@ import type { TopbarLeftProp, TopbarRightProp } from "./Topbar.tsx";
 
 import Topbar from "./Topbar.tsx";
 import Navbar from "./Navbar.tsx";
-import { headerHeight } from "./constants.ts";
+import { headerHeight, navbarHeight } from "./constants.ts";
 
 export interface NavItem {
   label: string;
@@ -62,7 +62,20 @@ function Header(
   const searchbar = { ..._searchbar, products, suggestions };
   return (
     <>
-      <header style={{ height: headerHeight }}>
+      <header style={{ height: headerHeight }} class="hidden sm:flex">
+        <div class="bg-base-100 fixed w-full z-50">
+          <div class="w-screen ml-auto mr-auto">
+            <Topbar topbarLeft={topbarLeft} topbarRight={topbarRight} />
+            <Navbar items={navItems} searchbar={searchbar} />
+          </div>
+        </div>
+
+        <Modals
+          menu={{ items: navItems }}
+          searchbar={searchbar}
+        />
+      </header>
+      <header style={{ height: navbarHeight }} class="sm:hidden">
         <div class="bg-base-100 fixed w-full z-50">
           <div class="w-screen ml-auto mr-auto">
             <Topbar topbarLeft={topbarLeft} topbarRight={topbarRight} />
