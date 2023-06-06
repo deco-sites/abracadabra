@@ -19,16 +19,14 @@ export interface Props {
   topbarRight: TopbarRightProp[];
 }
 
-function Topbar(
-  { topbarLeft, topbarRight }: Props,
-) {
+function Topbar({ topbarLeft, topbarRight }: Props,) {
   if (topbarLeft && topbarRight) {
     return (
-      <div class="w-30 hidden sm:flex">
-        <div class="container flex justify-between items-center min-h-[35px]">
+      <div class="w-30 hidden sm:flex bg-gray-lighter">
+        <div class="container w-[1180px] flex justify-between items-center min-h-[35px]">
           <div class="flex flex-row">
             {topbarLeft?.map(({ src, imgAlt, imgWidth, imgHeight, text }) => (
-              <div class="flex">
+              <div class="flex ml-[15px]">
                 <figure>
                   <Image
                     src={src}
@@ -46,7 +44,7 @@ function Topbar(
           <div class="flex flex-row">
             {topbarRight?.map(({ href, text }) => (
               <ul class="flex">
-                <li class="flex flex-col mx-[5px]">
+                <li class="flex flex-col ml-[15px]">
                   <a href={href} class="font-medium text-xm">{text}</a>
                 </li>
               </ul>

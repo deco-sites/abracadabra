@@ -62,6 +62,7 @@
               "deco-sites/std/loaders/vtex/wishlist.ts",
               "./islands/AddToCartButton.tsx",
               "./islands/Filters.tsx",
+              "./islands/FooterBanner.tsx",
               "./islands/HeaderButton.tsx",
               "./islands/HeaderModals.tsx",
               "./islands/HeaderSearchbar.tsx",
@@ -71,6 +72,7 @@
               "./islands/SearchControls.tsx",
               "./islands/ShippingSimulation.tsx",
               "./islands/SliderJS.tsx",
+              "./islands/Stamps.tsx",
               "./islands/WishlistButton.tsx",
               "$live/handlers/devPage.ts",
               "$live/handlers/fresh.ts",
@@ -86,6 +88,7 @@
               "deco-sites/abracadabra/sections/BannerGrid.tsx",
               "deco-sites/abracadabra/sections/BannerPLP.tsx",
               "deco-sites/abracadabra/sections/Carousel.tsx",
+              "deco-sites/abracadabra/sections/CategoriesIcons.tsx",
               "deco-sites/abracadabra/sections/CookieConsent.tsx",
               "deco-sites/abracadabra/sections/DesignSystem.tsx",
               "deco-sites/abracadabra/sections/Features.tsx",
@@ -6845,6 +6848,57 @@
       ],
       "title": "deco-sites/std/packs/vtex/loaders/wishlist.ts@Props"
     },
+    "ZGVjby1zaXRlcy9zdGQvY29tcG9uZW50cy90eXBlcy50cw==@Image": {
+      "type": "string",
+      "format": "image-uri",
+      "title": "Image"
+    },
+    "ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL2Zvb3Rlci9Gb290ZXJCYW5uZXIudHN4@FooterBanner": {
+      "type": "object",
+      "properties": {
+        "src": {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvY29tcG9uZW50cy90eXBlcy50cw==@Image",
+          "title": "Src"
+        },
+        "alt": {
+          "type": "string",
+          "title": "Alt"
+        },
+        "width": {
+          "type": "number",
+          "title": "Width"
+        },
+        "height": {
+          "type": "number",
+          "title": "Height"
+        }
+      },
+      "required": [
+        "src",
+        "alt",
+        "width",
+        "height"
+      ],
+      "title": "FooterBanner"
+    },
+    "ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL2Zvb3Rlci9Gb290ZXJCYW5uZXIudHN4@FooterBanner[]": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL2Zvb3Rlci9Gb290ZXJCYW5uZXIudHN4@FooterBanner"
+      },
+      "title": "FooterBanner[]"
+    },
+    "ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL2Zvb3Rlci9Gb290ZXJCYW5uZXIudHN4@Props": {
+      "type": "object",
+      "properties": {
+        "banner": {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL2Zvb3Rlci9Gb290ZXJCYW5uZXIudHN4@FooterBanner[]",
+          "title": "Banner"
+        }
+      },
+      "required": [],
+      "title": "deco-sites/abracadabra/components/footer/FooterBanner.tsx@Props"
+    },
     "ZGVjby1zaXRlcy9zdGQvcGFja3MvdnRleC90eXBlcy50cw==@SKU": {
       "type": "object",
       "properties": {
@@ -6883,6 +6937,59 @@
         "items"
       ],
       "title": "deco-sites/abracadabra/components/ui/ShippingSimulation.tsx@Props"
+    },
+    "ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL2Zvb3Rlci9TdGFtcHMudHN4@Stamp": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "title": "Title"
+        },
+        "src": {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvY29tcG9uZW50cy90eXBlcy50cw==@Image",
+          "title": "Src"
+        },
+        "alt": {
+          "type": "string",
+          "title": "Alt"
+        },
+        "width": {
+          "type": "number",
+          "title": "Width"
+        },
+        "height": {
+          "type": "number",
+          "title": "Height"
+        }
+      },
+      "required": [
+        "title",
+        "src",
+        "alt",
+        "width",
+        "height"
+      ],
+      "title": "Stamp"
+    },
+    "ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL2Zvb3Rlci9TdGFtcHMudHN4@Stamp[]": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL2Zvb3Rlci9TdGFtcHMudHN4@Stamp"
+      },
+      "title": "Stamp[]"
+    },
+    "ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL2Zvb3Rlci9TdGFtcHMudHN4@Props": {
+      "type": "object",
+      "properties": {
+        "stamps": {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL2Zvb3Rlci9TdGFtcHMudHN4@Stamp[]",
+          "title": "Stamps"
+        }
+      },
+      "required": [
+        "stamps"
+      ],
+      "title": "deco-sites/abracadabra/components/footer/Stamps.tsx@Props"
     },
     "ZGVjby1jeC9saXZlL2hhbmRsZXJzL2RldlBhZ2UudHM=@DevConfig": {
       "type": "object",
@@ -7193,11 +7300,6 @@
         "sections"
       ],
       "title": "deco-cx/live/sections/UseSlot.tsx@Props"
-    },
-    "ZGVjby1zaXRlcy9zdGQvY29tcG9uZW50cy90eXBlcy50cw==@Image": {
-      "type": "string",
-      "format": "image-uri",
-      "title": "Image"
     },
     "ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL3VpL0Jhbm5lckdyaWQudHN4@Banner": {
       "type": "object",
@@ -7555,6 +7657,57 @@
       "required": [],
       "title": "deco-sites/abracadabra/components/ui/BannerCarousel.tsx@Props"
     },
+    "ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL2hvbWUvY2F0ZWdvcmllcy50c3g=@CategoryIcons": {
+      "type": "object",
+      "properties": {
+        "src": {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvY29tcG9uZW50cy90eXBlcy50cw==@Image",
+          "title": "Src"
+        },
+        "alt": {
+          "type": "string",
+          "title": "Alt"
+        },
+        "href": {
+          "type": "string",
+          "title": "Href"
+        },
+        "width": {
+          "type": "number",
+          "title": "Width"
+        },
+        "height": {
+          "type": "number",
+          "title": "Height"
+        }
+      },
+      "required": [
+        "src",
+        "alt",
+        "href",
+        "width",
+        "height"
+      ],
+      "title": "CategoryIcons"
+    },
+    "ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL2hvbWUvY2F0ZWdvcmllcy50c3g=@CategoryIcons[]": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL2hvbWUvY2F0ZWdvcmllcy50c3g=@CategoryIcons"
+      },
+      "title": "CategoryIcons[]"
+    },
+    "ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL2hvbWUvY2F0ZWdvcmllcy50c3g=@Props": {
+      "type": "object",
+      "properties": {
+        "categories": {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL2hvbWUvY2F0ZWdvcmllcy50c3g=@CategoryIcons[]",
+          "title": "Categories"
+        }
+      },
+      "required": [],
+      "title": "deco-sites/abracadabra/components/home/categories.tsx@Props"
+    },
     "ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9zZWN0aW9ucy9EZXNpZ25TeXN0ZW0udHN4@Colors": {
       "type": "object",
       "properties": {
@@ -7768,7 +7921,7 @@
       "required": [],
       "title": "OptionalColors"
     },
-    "ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9zZWN0aW9ucy9EZXNpZ25TeXN0ZW0udHN4@08f0ecd285a78527bc2aeef52837ac79&Colors": {
+    "ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9zZWN0aW9ucy9EZXNpZ25TeXN0ZW0udHN4@Colors&a5ce80c79f905bd12908a860da98e643": {
       "allOf": [
         {
           "$ref": "#/definitions/ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9zZWN0aW9ucy9EZXNpZ25TeXN0ZW0udHN4@Colors"
@@ -7784,7 +7937,7 @@
           "required": []
         }
       ],
-      "title": "08f0ecd285a78527bc2aeef52837ac79&Colors"
+      "title": "Colors&a5ce80c79f905bd12908a860da98e643"
     },
     "ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9zZWN0aW9ucy9EZXNpZ25TeXN0ZW0udHN4@Miscellaneous": {
       "type": "object",
@@ -7887,7 +8040,7 @@
       "type": "object",
       "properties": {
         "colors": {
-          "$ref": "#/definitions/ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9zZWN0aW9ucy9EZXNpZ25TeXN0ZW0udHN4@08f0ecd285a78527bc2aeef52837ac79&Colors",
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9zZWN0aW9ucy9EZXNpZ25TeXN0ZW0udHN4@Colors&a5ce80c79f905bd12908a860da98e643",
           "title": "Colors"
         },
         "miscellaneous": {
@@ -8360,6 +8513,14 @@
         "sections": {
           "$ref": "#/definitions/ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL2Zvb3Rlci9Gb290ZXIudHN4@Section[]",
           "title": "Sections"
+        },
+        "banner": {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL2Zvb3Rlci9Gb290ZXJCYW5uZXIudHN4@FooterBanner[]",
+          "title": "Banner"
+        },
+        "stamp": {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL2Zvb3Rlci9TdGFtcHMudHN4@Stamp[]",
+          "title": "Stamp"
         }
       },
       "required": [],
@@ -11042,6 +11203,27 @@
         }
       }
     },
+    "Li9pc2xhbmRzL0Zvb3RlckJhbm5lci50c3g=": {
+      "title": "./islands/FooterBanner.tsx",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL2Zvb3Rlci9Gb290ZXJCYW5uZXIudHN4@Props"
+        }
+      ],
+      "required": [
+        "__resolveType"
+      ],
+      "properties": {
+        "__resolveType": {
+          "type": "string",
+          "enum": [
+            "./islands/FooterBanner.tsx"
+          ],
+          "default": "./islands/FooterBanner.tsx"
+        }
+      }
+    },
     "Li9pc2xhbmRzL0hlYWRlckJ1dHRvbi50c3g=": {
       "title": "./islands/HeaderButton.tsx",
       "type": "object",
@@ -11188,6 +11370,27 @@
             "./islands/SliderJS.tsx"
           ],
           "default": "./islands/SliderJS.tsx"
+        }
+      }
+    },
+    "Li9pc2xhbmRzL1N0YW1wcy50c3g=": {
+      "title": "./islands/Stamps.tsx",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL2Zvb3Rlci9TdGFtcHMudHN4@Props"
+        }
+      ],
+      "required": [
+        "__resolveType"
+      ],
+      "properties": {
+        "__resolveType": {
+          "type": "string",
+          "enum": [
+            "./islands/Stamps.tsx"
+          ],
+          "default": "./islands/Stamps.tsx"
         }
       }
     },
@@ -11502,6 +11705,27 @@
             "deco-sites/abracadabra/sections/Carousel.tsx"
           ],
           "default": "deco-sites/abracadabra/sections/Carousel.tsx"
+        }
+      }
+    },
+    "ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9zZWN0aW9ucy9DYXRlZ29yaWVzSWNvbnMudHN4": {
+      "title": "deco-sites/abracadabra/sections/CategoriesIcons.tsx",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL2hvbWUvY2F0ZWdvcmllcy50c3g=@Props"
+        }
+      ],
+      "required": [
+        "__resolveType"
+      ],
+      "properties": {
+        "__resolveType": {
+          "type": "string",
+          "enum": [
+            "deco-sites/abracadabra/sections/CategoriesIcons.tsx"
+          ],
+          "default": "deco-sites/abracadabra/sections/CategoriesIcons.tsx"
         }
       }
     },
@@ -12824,6 +13048,9 @@
           "$ref": "#/definitions/Li9pc2xhbmRzL0ZpbHRlcnMudHN4"
         },
         {
+          "$ref": "#/definitions/Li9pc2xhbmRzL0Zvb3RlckJhbm5lci50c3g="
+        },
+        {
           "$ref": "#/definitions/Li9pc2xhbmRzL0hlYWRlckJ1dHRvbi50c3g="
         },
         {
@@ -12849,6 +13076,9 @@
         },
         {
           "$ref": "#/definitions/Li9pc2xhbmRzL1NsaWRlckpTLnRzeA=="
+        },
+        {
+          "$ref": "#/definitions/Li9pc2xhbmRzL1N0YW1wcy50c3g="
         },
         {
           "$ref": "#/definitions/Li9pc2xhbmRzL1dpc2hsaXN0QnV0dG9uLnRzeA=="
@@ -12918,6 +13148,9 @@
         },
         {
           "$ref": "#/definitions/ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9zZWN0aW9ucy9DYXJvdXNlbC50c3g="
+        },
+        {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9zZWN0aW9ucy9DYXRlZ29yaWVzSWNvbnMudHN4"
         },
         {
           "$ref": "#/definitions/ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9zZWN0aW9ucy9Db29raWVDb25zZW50LnRzeA=="

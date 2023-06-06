@@ -125,7 +125,7 @@ function Buttons() {
   return (
     <>
       <div class="flex items-center justify-center z-10 col-start-1 row-start-2">
-        <Slider.PrevButton class="btn btn-circle glass">
+        <Slider.PrevButton class="btn btn-circle border-gray-light bg-transparent">
           <Icon
             class="text-base-100"
             size={20}
@@ -135,7 +135,7 @@ function Buttons() {
         </Slider.PrevButton>
       </div>
       <div class="flex items-center justify-center z-10 col-start-3 row-start-2">
-        <Slider.NextButton class="btn btn-circle glass">
+        <Slider.NextButton class="btn btn-circle border-gray-light bg-transparent">
           <Icon
             class="text-base-100"
             size={20}

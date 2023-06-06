@@ -1,7 +1,10 @@
 import Icon, { AvailableIcons } from "$store/components/ui/Icon.tsx";
 import Newsletter from "$store/islands/Newsletter.tsx";
+import Banner from "$store/islands/FooterBanner.tsx";
+import Stamps from "$store/islands/Stamps.tsx";
 import type { ComponentChildren } from "preact";
-
+import type { FooterBanner } from "./FooterBanner.tsx";
+import type { Stamp } from "./Stamps.tsx";
 export type IconItem = { icon: AvailableIcons };
 export type StringItem = {
   label: string;
@@ -21,7 +24,7 @@ const isIcon = (item: Item): item is IconItem =>
 
 function SectionItem({ item }: { item: Item }) {
   return (
-    <span class="text-primary-content">
+    <span class="text-gray-base">
       {isIcon(item)
         ? (
           <div class="border-base-100 border border-solid py-1.5 px-2.5">
@@ -53,24 +56,29 @@ function FooterContainer(
 
 export interface Props {
   sections?: Section[];
+  banner?: FooterBanner[];
+  stamp?: Stamp[];
 }
 
-function Footer({ sections = [] }: Props) {
+function Footer({ sections = [], banner = [], stamp = [] }: Props) {
   return (
-    <footer class="w-full bg-primary flex flex-col divide-y divide-primary-content">
-      <div>
-        <div class="container w-full flex flex-col divide-y divide-primary-content">
-          <FooterContainer>
-            <Newsletter />
-          </FooterContainer>
+    <footer class="w-full flex flex-col divide-y divide-primary-content">
+      <div class="hidden sm:flex justify-center">
+        <FooterContainer>
+          <Banner banner={banner} />
+        </FooterContainer>
+      </div>
 
+      <div class="w-full bg-gray-light">
+        <div class="container w-full sm:w-[1180px] flex flex-col divide-y divide-primary-content">
+          
           <FooterContainer>
             {/* Desktop view */}
-            <ul class="hidden sm:flex flex-row gap-20">
+            <ul class="hidden sm:flex flex-row justify-between gap-20">
               {sections.map((section) => (
                 <li>
                   <div>
-                    <span class="font-medium text-xl text-primary-content">
+                    <span class="font-medium text-xl text-red-base">
                       {section.label}
                     </span>
 
@@ -88,7 +96,14 @@ function Footer({ sections = [] }: Props) {
                   </div>
                 </li>
               ))}
+              <li>
+                <Newsletter />
+              </li>
             </ul>
+
+            <div class="hidden sm:flex mt-[30px]">
+              <Stamps stamps={stamp} />
+            </div>
 
             {/* Mobile view */}
             <ul class="flex flex-col sm:hidden sm:flex-row gap-4">
@@ -120,7 +135,7 @@ function Footer({ sections = [] }: Props) {
         </div>
       </div>
 
-      <div>
+      {/* <div>
         <div class="container w-full">
           <FooterContainer class="flex justify-between w-full">
             <span class="flex items-center gap-1 text-primary-content">
@@ -169,7 +184,7 @@ function Footer({ sections = [] }: Props) {
             </ul>
           </FooterContainer>
         </div>
-      </div>
+      </div> */}
     </footer>
   );
 }

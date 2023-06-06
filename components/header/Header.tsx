@@ -64,7 +64,7 @@ function Header(
     <>
       <header style={{ height: headerHeight }}>
         <div class="bg-base-100 fixed w-full z-50">
-          <div class="w-[1180px] ml-auto mr-auto">
+          <div class="w-screen ml-auto mr-auto">
             <Topbar topbarLeft={topbarLeft} topbarRight={topbarRight} />
             <Navbar items={navItems} searchbar={searchbar} />
           </div>

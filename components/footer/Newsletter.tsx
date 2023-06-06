@@ -25,28 +25,22 @@ function Newsletter() {
   };
 
   return (
-    <div class="flex flex-col sm:flex-row items-center gap-6 sm:gap-20">
-      <div class="flex flex-col gap-2 max-w-[400px]">
-        <span class="font-medium text-2xl text-primary-content">
-          Cadastre-se
-        </span>
-        <span class="text-sm text-primary-content">
-          Fique por dentro das novidades e ganhe 15% de desconto na primeira
-          compra. Para mais informações clique aqui.
-        </span>
-      </div>
+    <div class="flex flex-col items-center gap-4 sm:gap-4">
+      <span class="font-medium text-xl text-red-base">
+        Cadastre-se e receba novidades exclusivas
+      </span>
       <form
-        class="w-full sm:w-[408px] form-control"
+        class="w-full form-control"
         onSubmit={handleSubmit}
       >
-        <div class="input-group">
+        <div class="input-group rounded-none">
           <input
             name="email"
-            class="flex-grow input input-primary"
+            class="flex-grow input rounded-none"
             placeholder="Seu e-mail"
           />
-          <button class="btn disabled:loading" disabled={loading}>
-            Cadastrar
+          <button class="btn bg-yellow-base border-0 text-white disabled:loading" disabled={loading}>
+            CADASTRAR
           </button>
         </div>
       </form>
