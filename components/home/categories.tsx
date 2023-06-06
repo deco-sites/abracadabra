@@ -16,19 +16,19 @@ export interface Props {
 function CategoryIcons({ categories = [] }: Props) {
   return (
     <div class="container flex column justify-center">
-        {categories.map(({ href, src, alt, width, height }, index) => (
-            <a href={href} class="card card-compact bg-base-100">
-                <figure>
-                  <Image
-                    class="max-w-full"
-                    src={src}
-                    alt={alt}
-                    width={width}
-                    height={height}
-                  />
-                </figure>
-            </a>
-        ))}
+      {categories.map(({ href, src, alt, width, height }, index) => (
+        <a href={href} class="card card-compact bg-base-100">
+          <figure>
+            <Image
+              class="max-w-full"
+              src={src}
+              alt={alt}
+              width={width}
+              height={height}
+            />
+          </figure>
+        </a>
+      ))}
     </div>
   );
 }

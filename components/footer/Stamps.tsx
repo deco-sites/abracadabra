@@ -1,12 +1,17 @@
-import Image from "deco-sites/std/components/Image.tsx";
+import { Picture, Source } from "deco-sites/std/components/Picture.tsx";
 import type { Image as LiveImage } from "deco-sites/std/components/types.ts";
 
 export interface Stamp {
   title: string;
-  src: LiveImage;
+  /** @description imagem para visualização desktop */
+  desktop: LiveImage;
+  desktopWidth: number;
+  desktopHeight: number;
+  /** @description imagem para visualização mobile */
+  mobile: LiveImage;
+  mobileWidth: number;
+  mobileHeight: number;
   alt: string;
-  width: number;
-  height: number;
 }
 
 export interface Props {
@@ -16,18 +21,40 @@ export interface Props {
 function Stamps({ stamps }: Props) {
   if (stamps) {
     return (
-      <div class="flex flex-row gap-20">
-        {stamps?.map(({ title, src, alt, width, height}) => (
+      <div class="flex flex-row items-start gap-20">
+        {stamps?.map((
+          {
+            title,
+            desktop,
+            desktopWidth,
+            desktopHeight,
+            mobile,
+            mobileWidth,
+            mobileHeight,
+            alt,
+          },
+        ) => (
           <div class="flex flex-col">
             <span>{title}</span>
-            <figure class="mt-[15px]">
-              <Image
-                src={src}
-                alt={alt}
-                width={width}
-                height={height}
+            <Picture>
+              <Source
+                media="(max-width: 767px)"
+                src={mobile}
+                width={mobileWidth}
+                height={mobileHeight}
               />
-            </figure>
+              <Source
+                media="(min-width: 768px)"
+                src={desktop}
+                width={desktopWidth}
+                height={desktopHeight}
+              />
+              <img
+                class="object-cover"
+                src={desktop}
+                alt={alt}
+              />
+            </Picture>
           </div>
         ))}
       </div>

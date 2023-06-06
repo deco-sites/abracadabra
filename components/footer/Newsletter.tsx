@@ -39,7 +39,10 @@ function Newsletter() {
             class="flex-grow input rounded-none"
             placeholder="Seu e-mail"
           />
-          <button class="btn bg-yellow-base border-0 text-white disabled:loading" disabled={loading}>
+          <button
+            class="btn bg-yellow-base border-0 text-white disabled:loading"
+            disabled={loading}
+          >
             CADASTRAR
           </button>
         </div>

@@ -71,7 +71,6 @@ function Footer({ sections = [], banner = [], stamp = [] }: Props) {
 
       <div class="w-full bg-gray-light">
         <div class="container w-full sm:w-[1180px] flex flex-col divide-y divide-primary-content">
-          
           <FooterContainer>
             {/* Desktop view */}
             <ul class="hidden sm:flex flex-row justify-between gap-20">
@@ -135,7 +134,8 @@ function Footer({ sections = [], banner = [], stamp = [] }: Props) {
         </div>
       </div>
 
-      {/* <div>
+      {
+        /* <div>
         <div class="container w-full">
           <FooterContainer class="flex justify-between w-full">
             <span class="flex items-center gap-1 text-primary-content">
@@ -184,7 +184,8 @@ function Footer({ sections = [], banner = [], stamp = [] }: Props) {
             </ul>
           </FooterContainer>
         </div>
-      </div> */}
+      </div> */
+      }
     </footer>
   );
 }

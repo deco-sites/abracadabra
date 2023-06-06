@@ -1,11 +1,16 @@
-import Image from "deco-sites/std/components/Image.tsx";
+import { Picture, Source } from "deco-sites/std/components/Picture.tsx";
 import type { Image as LiveImage } from "deco-sites/std/components/types.ts";
 
 export interface FooterBanner {
-  src: LiveImage;
+  /** @description imagem para visualização desktop */
+  desktop: LiveImage;
+  desktopWidth: number;
+  desktopHeight: number;
+  /** @description imagem para visualização mobile */
+  mobile: LiveImage;
+  mobileWidth: number;
+  mobileHeight: number;
   alt: string;
-  width: number;
-  height: number;
 }
 
 export interface Props {
@@ -14,19 +19,37 @@ export interface Props {
 
 function Banner({ banner = [] }: Props) {
   if (banner) {
-    const { src, alt, width, height } = banner[0];
+    const {
+      desktop,
+      desktopWidth,
+      desktopHeight,
+      mobile,
+      mobileWidth,
+      mobileHeight,
+      alt,
+    } = banner[0];
 
     return (
       <div className="container flex row w-100">
-        <figure key={src}>
-          <Image
-            className="max-w-full"
-            src={src}
-            alt={alt}
-            width={width}
-            height={height}
+        <Picture>
+          <Source
+            media="(max-width: 767px)"
+            src={mobile}
+            width={mobileWidth}
+            height={mobileHeight}
           />
-        </figure>
+          <Source
+            media="(min-width: 768px)"
+            src={desktop}
+            width={desktopWidth}
+            height={desktopHeight}
+          />
+          <img
+            class="object-cover w-full"
+            src={desktop}
+            alt={alt}
+          />
+        </Picture>
       </div>
     );
   } else {
@@ -34,4 +57,4 @@ function Banner({ banner = [] }: Props) {
   }
 }
 
-export default Banner
+export default Banner;

@@ -19,7 +19,7 @@ export interface Props {
   topbarRight: TopbarRightProp[];
 }
 
-function Topbar({ topbarLeft, topbarRight }: Props,) {
+function Topbar({ topbarLeft, topbarRight }: Props) {
   if (topbarLeft && topbarRight) {
     return (
       <div class="w-30 hidden sm:flex bg-gray-lighter">

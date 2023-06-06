@@ -96,6 +96,7 @@
               "deco-sites/abracadabra/sections/Header.tsx",
               "deco-sites/abracadabra/sections/Highlights.tsx",
               "deco-sites/abracadabra/sections/LinkTree.tsx",
+              "deco-sites/abracadabra/sections/LowerBanners.tsx",
               "deco-sites/abracadabra/sections/ProductDetails.tsx",
               "deco-sites/abracadabra/sections/ProductShelf.tsx",
               "deco-sites/abracadabra/sections/SearchResult.tsx",
@@ -6856,28 +6857,45 @@
     "ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL2Zvb3Rlci9Gb290ZXJCYW5uZXIudHN4@FooterBanner": {
       "type": "object",
       "properties": {
-        "src": {
+        "desktop": {
           "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvY29tcG9uZW50cy90eXBlcy50cw==@Image",
-          "title": "Src"
+          "description": "imagem para visualização desktop",
+          "title": "Desktop"
+        },
+        "desktopWidth": {
+          "type": "number",
+          "title": "Desktop Width"
+        },
+        "desktopHeight": {
+          "type": "number",
+          "title": "Desktop Height"
+        },
+        "mobile": {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvY29tcG9uZW50cy90eXBlcy50cw==@Image",
+          "description": "imagem para visualização mobile",
+          "title": "Mobile"
+        },
+        "mobileWidth": {
+          "type": "number",
+          "title": "Mobile Width"
+        },
+        "mobileHeight": {
+          "type": "number",
+          "title": "Mobile Height"
         },
         "alt": {
           "type": "string",
           "title": "Alt"
-        },
-        "width": {
-          "type": "number",
-          "title": "Width"
-        },
-        "height": {
-          "type": "number",
-          "title": "Height"
         }
       },
       "required": [
-        "src",
-        "alt",
-        "width",
-        "height"
+        "desktop",
+        "desktopWidth",
+        "desktopHeight",
+        "mobile",
+        "mobileWidth",
+        "mobileHeight",
+        "alt"
       ],
       "title": "FooterBanner"
     },
@@ -6945,29 +6963,46 @@
           "type": "string",
           "title": "Title"
         },
-        "src": {
+        "desktop": {
           "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvY29tcG9uZW50cy90eXBlcy50cw==@Image",
-          "title": "Src"
+          "description": "imagem para visualização desktop",
+          "title": "Desktop"
+        },
+        "desktopWidth": {
+          "type": "number",
+          "title": "Desktop Width"
+        },
+        "desktopHeight": {
+          "type": "number",
+          "title": "Desktop Height"
+        },
+        "mobile": {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvY29tcG9uZW50cy90eXBlcy50cw==@Image",
+          "description": "imagem para visualização mobile",
+          "title": "Mobile"
+        },
+        "mobileWidth": {
+          "type": "number",
+          "title": "Mobile Width"
+        },
+        "mobileHeight": {
+          "type": "number",
+          "title": "Mobile Height"
         },
         "alt": {
           "type": "string",
           "title": "Alt"
-        },
-        "width": {
-          "type": "number",
-          "title": "Width"
-        },
-        "height": {
-          "type": "number",
-          "title": "Height"
         }
       },
       "required": [
         "title",
-        "src",
-        "alt",
-        "width",
-        "height"
+        "desktop",
+        "desktopWidth",
+        "desktopHeight",
+        "mobile",
+        "mobileWidth",
+        "mobileHeight",
+        "alt"
       ],
       "title": "Stamp"
     },
@@ -8901,6 +8936,145 @@
       },
       "required": [],
       "title": "deco-sites/abracadabra/components/ui/LinkTree.tsx@Props"
+    },
+    "ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL2hvbWUvYmFubmVycy50c3g=@Banners3ColunasProps": {
+      "type": "object",
+      "properties": {
+        "src": {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvY29tcG9uZW50cy90eXBlcy50cw==@Image",
+          "title": "Src"
+        },
+        "alt": {
+          "type": "string",
+          "title": "Alt"
+        },
+        "href": {
+          "type": "string",
+          "title": "Href"
+        },
+        "width": {
+          "type": "number",
+          "title": "Width"
+        },
+        "height": {
+          "type": "number",
+          "title": "Height"
+        }
+      },
+      "required": [
+        "src",
+        "alt",
+        "href",
+        "width",
+        "height"
+      ],
+      "title": "Banners3ColunasProps"
+    },
+    "ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL2hvbWUvYmFubmVycy50c3g=@Banners3ColunasProps[]": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL2hvbWUvYmFubmVycy50c3g=@Banners3ColunasProps"
+      },
+      "title": "Banners3ColunasProps[]"
+    },
+    "ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL2hvbWUvYmFubmVycy50c3g=@Banners2ColunasProps": {
+      "type": "object",
+      "properties": {
+        "src": {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvY29tcG9uZW50cy90eXBlcy50cw==@Image",
+          "title": "Src"
+        },
+        "alt": {
+          "type": "string",
+          "title": "Alt"
+        },
+        "href": {
+          "type": "string",
+          "title": "Href"
+        },
+        "width": {
+          "type": "number",
+          "title": "Width"
+        },
+        "height": {
+          "type": "number",
+          "title": "Height"
+        }
+      },
+      "required": [
+        "src",
+        "alt",
+        "href",
+        "width",
+        "height"
+      ],
+      "title": "Banners2ColunasProps"
+    },
+    "ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL2hvbWUvYmFubmVycy50c3g=@Banners2ColunasProps[]": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL2hvbWUvYmFubmVycy50c3g=@Banners2ColunasProps"
+      },
+      "title": "Banners2ColunasProps[]"
+    },
+    "ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL2hvbWUvYmFubmVycy50c3g=@Banner1ColunaProps": {
+      "type": "object",
+      "properties": {
+        "src": {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvY29tcG9uZW50cy90eXBlcy50cw==@Image",
+          "title": "Src"
+        },
+        "alt": {
+          "type": "string",
+          "title": "Alt"
+        },
+        "href": {
+          "type": "string",
+          "title": "Href"
+        },
+        "width": {
+          "type": "number",
+          "title": "Width"
+        },
+        "height": {
+          "type": "number",
+          "title": "Height"
+        }
+      },
+      "required": [
+        "src",
+        "alt",
+        "href",
+        "width",
+        "height"
+      ],
+      "title": "Banner1ColunaProps"
+    },
+    "ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL2hvbWUvYmFubmVycy50c3g=@Banner1ColunaProps[]": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL2hvbWUvYmFubmVycy50c3g=@Banner1ColunaProps"
+      },
+      "title": "Banner1ColunaProps[]"
+    },
+    "ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL2hvbWUvYmFubmVycy50c3g=@Props": {
+      "type": "object",
+      "properties": {
+        "banners3colunas": {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL2hvbWUvYmFubmVycy50c3g=@Banners3ColunasProps[]",
+          "title": "Banners3colunas"
+        },
+        "banners2colunas": {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL2hvbWUvYmFubmVycy50c3g=@Banners2ColunasProps[]",
+          "title": "Banners2colunas"
+        },
+        "banner1coluna": {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL2hvbWUvYmFubmVycy50c3g=@Banner1ColunaProps[]",
+          "title": "Banner1coluna"
+        }
+      },
+      "required": [],
+      "title": "deco-sites/abracadabra/components/home/banners.tsx@Props"
     },
     "ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL3Byb2R1Y3QvUHJvZHVjdERldGFpbHMudHN4@Props": {
       "type": "object",
@@ -11871,6 +12045,27 @@
         }
       }
     },
+    "ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9zZWN0aW9ucy9Mb3dlckJhbm5lcnMudHN4": {
+      "title": "deco-sites/abracadabra/sections/LowerBanners.tsx",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL2hvbWUvYmFubmVycy50c3g=@Props"
+        }
+      ],
+      "required": [
+        "__resolveType"
+      ],
+      "properties": {
+        "__resolveType": {
+          "type": "string",
+          "enum": [
+            "deco-sites/abracadabra/sections/LowerBanners.tsx"
+          ],
+          "default": "deco-sites/abracadabra/sections/LowerBanners.tsx"
+        }
+      }
+    },
     "ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9zZWN0aW9ucy9Qcm9kdWN0RGV0YWlscy50c3g=": {
       "title": "deco-sites/abracadabra/sections/ProductDetails.tsx",
       "type": "object",
@@ -13172,6 +13367,9 @@
         },
         {
           "$ref": "#/definitions/ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9zZWN0aW9ucy9MaW5rVHJlZS50c3g="
+        },
+        {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9zZWN0aW9ucy9Mb3dlckJhbm5lcnMudHN4"
         },
         {
           "$ref": "#/definitions/ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9zZWN0aW9ucy9Qcm9kdWN0RGV0YWlscy50c3g="
