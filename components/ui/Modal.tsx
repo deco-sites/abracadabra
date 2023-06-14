@@ -86,9 +86,11 @@ const Modal = ({
           }`}
         >
           <header class="flex px-4 py-6 justify-between items-center border-b border-base-200">
-            <h1>
-              <span class="font-medium text-2xl">{title}</span>
-            </h1>
+            <div class="flex gap-5 items-center">
+              <h1>
+                <span class="font-medium text-2xl">{title}</span>
+              </h1>
+            </div>
             <Button class="btn btn-ghost" onClick={onClose}>
               <Icon id="XMark" width={20} height={20} strokeWidth={2} />
             </Button>

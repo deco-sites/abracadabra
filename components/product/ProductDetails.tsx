@@ -221,6 +221,7 @@ function Details({
   const { product, breadcrumbList } = page;
   const id = `product-image-gallery:${useId()}`;
   const images = useStableImages(product);
+  const slicedImages = images.slice(0, 6)
 
   const { description } = product;
 
@@ -245,7 +246,7 @@ function Details({
           {/* Image Slider */}
           <div class="relative sm:col-start-2 sm:col-span-1 sm:row-start-1">
             <Slider class="carousel gap-6">
-              {images.map((img, index) => (
+              {slicedImages.map((img, index) => (
                 <Slider.Item
                   index={index}
                   class="carousel-item"
@@ -293,7 +294,7 @@ function Details({
 
           {/* Dots */}
           <ul class="flex gap-2 sm:justify-start overflow-auto px-4 sm:px-0 sm:flex-col sm:col-start-1 sm:col-span-1 sm:row-start-1">
-            {images.map((img, index) => (
+            {slicedImages.map((img, index) => (
               <li class="">
                 <Slider.Dot index={index}>
                   <Image
@@ -318,7 +319,7 @@ function Details({
 
         <div>
           {/* Description card */}
-          <div class="mt-4 sm:mt-6">
+          <div class="mt-4 sm:mt-6 sm:px-4">
             <h2 class={"border-b border-[#e5e5e5] mb-8 py-3 text-2xl"}>
               Sobre o produto
             </h2>
@@ -359,7 +360,7 @@ function Details({
     <div class="grid grid-cols-1 gap-4 sm:grid-cols-[50vw_25vw] sm:grid-rows-1 sm:justify-center">
       {/* Image slider */}
       <ul class="carousel carousel-center gap-6">
-        {[images[0], images[1] ?? images[0]].map((img, index) => (
+        {[slicedImages[0], slicedImages[1] ?? slicedImages[0]].map((img, index) => (
           <li class="carousel-item min-w-[100vw] sm:min-w-[24vw]">
             <Image
               sizes="(max-width: 640px) 100vw, 24vw"

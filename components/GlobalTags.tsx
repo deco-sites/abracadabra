@@ -5,6 +5,7 @@ function GlobalTags() {
     <Head>
       {/* Enable View Transitions API */}
       <meta name="view-transition" content="same-origin" />
+      <title>Abra Cadabra | Móveis Infantis, Banheiras, Brinquedos e Mais!</title>
 
       {/* Tailwind v3 CSS file */}
       <link href={asset("/styles.css")} rel="stylesheet" />
