@@ -8678,6 +8678,10 @@
           "type": "string",
           "title": "Href"
         },
+        "columns": {
+          "type": "number",
+          "title": "Columns"
+        },
         "children": {
           "type": "array",
           "items": {
@@ -8741,7 +8745,8 @@
       },
       "required": [
         "label",
-        "href"
+        "href",
+        "columns"
       ],
       "title": "NavItem"
     },

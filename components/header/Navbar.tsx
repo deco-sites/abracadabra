@@ -42,7 +42,7 @@ function Navbar({ items, searchbar }: {
       </div>
 
       {/* Desktop Version */}
-      <div class="hidden md:flex flex-col w-full pl-2 pr-6">
+      <div class="hidden md:flex flex-col w-[1180px] mx-auto pl-2 pr-6">
         <div class="container flex flex-row justify-between items-center">
           <div class="flex-none w-44 flex items-center justify-none">
             <Buttons variant="search" />

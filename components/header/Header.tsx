@@ -12,6 +12,7 @@ import { headerHeight, navbarHeight } from "./constants.ts";
 export interface NavItem {
   label: string;
   href: string;
+  columns: number;
   children?: Array<{
     label: string;
     href: string;
