@@ -221,7 +221,7 @@ function Details({
   const { product, breadcrumbList } = page;
   const id = `product-image-gallery:${useId()}`;
   const images = useStableImages(product);
-  const slicedImages = images.slice(0, 6)
+  const slicedImages = images.slice(0, 6);
 
   const { description } = product;
 
@@ -360,7 +360,10 @@ function Details({
     <div class="grid grid-cols-1 gap-4 sm:grid-cols-[50vw_25vw] sm:grid-rows-1 sm:justify-center">
       {/* Image slider */}
       <ul class="carousel carousel-center gap-6">
-        {[slicedImages[0], slicedImages[1] ?? slicedImages[0]].map((img, index) => (
+        {[slicedImages[0], slicedImages[1] ?? slicedImages[0]].map((
+          img,
+          index,
+        ) => (
           <li class="carousel-item min-w-[100vw] sm:min-w-[24vw]">
             <Image
               sizes="(max-width: 640px) 100vw, 24vw"
