@@ -40,10 +40,18 @@ function NavItem({ item }: { item: INavItem }) {
                 loading="lazy"
               />
             )}
-            <ul class="p-4 bg-white border-t border-yellow-base mt-[-1px]" style={{ columnCount: columns }}>
+            <ul
+              class="p-4 bg-white border-t border-yellow-base mt-[-1px]"
+              style={{ columnCount: columns }}
+            >
+              <li class="p-2 border border-gray-base text-gray-base hover:text-yellow-base">
+              </li>
               {children.map((node) => (
                 <li class="p-2 text-gray-base hover:text-yellow-base">
-                  <a class="hover:underline block min-w-[170px]" href={node.href}>
+                  <a
+                    class="hover:underline block min-w-[170px]"
+                    href={node.href}
+                  >
                     <span>{node.label}</span>
                   </a>
 
