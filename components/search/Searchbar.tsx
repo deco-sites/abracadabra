@@ -84,6 +84,8 @@ function Searchbar({
   const hasTerms = Boolean(suggestions.value?.searches?.length);
   const notFound = !hasProducts && !hasTerms;
 
+  console.log(suggestions.value?.products);
+
   useEffect(() => {
     if (!searchInputRef.current) {
       return;
