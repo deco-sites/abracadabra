@@ -109,7 +109,7 @@ function Searchbar({
             tabIndex={-1}
           >
             <Icon
-              fill="yellow"
+              class={`text-yellow-base`}
               id="Search"
               size={20}
               strokeWidth={0.01}

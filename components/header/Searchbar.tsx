@@ -81,13 +81,13 @@ function Searchbar({ searchbar }: Props) {
           </button>
         )}
         <Button
-          class="btn-ghost absolute right-0"
+          class="btn-ghost absolute right-0 bg-transparent hover:bg-transparent top-1/2 translate-y-[-50%]"
           aria-label="Search"
           htmlFor="searchbar"
           tabIndex={-1}
         >
           <Icon
-            fill="yellow"
+            class={`text-yellow-base`}
             id="Search"
             size={20}
             strokeWidth={0.01}
