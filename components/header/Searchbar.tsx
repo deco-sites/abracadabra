@@ -5,7 +5,6 @@ import Loading from "$store/components/ui/Loading.tsx";
 import Icon from "$store/components/ui/Icon.tsx";
 import Button from "$store/components/ui/Button.tsx";
 import { headerHeight } from "$store/components/header/constants.ts";
-import type { Props as SearchbarProps } from "$store/components/search/Searchbar.tsx";
 import { sendEvent } from "$store/sdk/analytics.tsx";
 import { useAutocomplete } from "deco-sites/std/packs/vtex/hooks/useAutocomplete.ts";
 
@@ -13,7 +12,37 @@ const LazySearchbar = lazy(() =>
   import("$store/components/search/Searchbar.tsx")
 );
 
-interface Props {
+// Editable props
+export interface EditableProps {
+  /**
+   * @title Placeholder
+   * @description Search bar default placeholder message
+   * @default O que você está procurando hoje?
+   */
+  placeholder?: string;
+  /**
+   * @title Page path
+   * @description When user clicks on the search button, navigate it to
+   * @default /s
+   */
+  action?: string;
+  /**
+   * @title Term name
+   * @description Querystring param used when navigating the user
+   * @default q
+   */
+  name?: string;
+  /**
+   * TODO: Receive querystring from parameter in the server-side
+   */
+  query?: string;
+}
+
+export type SearchbarProps = EditableProps & {
+  variant?: "desktop" | "mobile";
+};
+
+export interface Props {
   searchbar: SearchbarProps;
 }
 
@@ -26,12 +55,22 @@ function Searchbar({ searchbar }: Props) {
     variant = "mobile",
   } = searchbar;
   const { setSearch, suggestions, loading } = useAutocomplete();
+  const hasProducts = Boolean(suggestions.value?.products?.length);
+  const hasTerms = Boolean(suggestions.value?.searches?.length);
 
   const searchInputRef = useRef<HTMLInputElement>(null);
 
   const { displaySearchbar } = useUI();
   const open = displaySearchbar.value &&
     window?.matchMedia?.("(min-width: 768px)")?.matches;
+
+  console.log({ hasProducts, hasTerms });
+
+  useEffect(() => {
+    console.log({ loading: loading.value });
+  }, [loading.value]);
+
+  console.log({ suggestions, loading: loading.value });
 
   return (
     <>
@@ -55,6 +94,7 @@ function Searchbar({ searchbar }: Props) {
                 params: { search_term: value },
               });
             }
+            displaySearchbar.value = true;
 
             setSearch(value);
           }}
@@ -74,6 +114,7 @@ function Searchbar({ searchbar }: Props) {
               if (searchInputRef.current === null) return;
 
               searchInputRef.current.value = "";
+              displaySearchbar.value = false;
               setSearch("");
             }}
           >
@@ -102,7 +143,11 @@ function Searchbar({ searchbar }: Props) {
       >
         {open && (
           <Suspense fallback={<Loading />}>
-            <LazySearchbar {...searchbar} variant="desktop" />
+            <LazySearchbar
+              suggestions={suggestions}
+              loading={loading.value}
+              variant={variant}
+            />
           </Suspense>
         )}
       </div>

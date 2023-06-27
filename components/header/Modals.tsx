@@ -3,12 +3,12 @@ import { lazy, Suspense } from "preact/compat";
 import { useUI } from "$store/sdk/useUI.ts";
 
 import type { Props as MenuProps } from "$store/components/header/Menu.tsx";
-import type { Props as SearchbarProps } from "$store/components/search/Searchbar.tsx";
+import type { SearchbarProps } from "$store/components/header/Searchbar.tsx";
 import Loading from "$store/components/ui/Loading.tsx";
 
 const Menu = lazy(() => import("$store/components/header/Menu.tsx"));
 const Cart = lazy(() => import("$store/components/minicart/Cart.tsx"));
-const Searchbar = lazy(() => import("$store/components/search/Searchbar.tsx"));
+const Searchbar = lazy(() => import("$store/islands/HeaderSearchbar.tsx"));
 
 interface Props {
   menu: MenuProps;
@@ -17,6 +17,10 @@ interface Props {
 
 function Modals({ menu, searchbar }: Props) {
   const { displayCart, displayMenu, displaySearchbar } = useUI();
+
+  console.log("modals", searchbar);
+
+  // const suggestions = searchbar
 
   return (
     <>
@@ -44,9 +48,13 @@ function Modals({ menu, searchbar }: Props) {
           displaySearchbar.value = false;
         }}
       >
-        <Suspense fallback={<Loading />}>
-          <Searchbar {...searchbar} />
-        </Suspense>
+        <div class={`h-[40px]`}>
+          <Suspense fallback={<Loading />}>
+            <Searchbar
+              searchbar={searchbar!}
+            />
+          </Suspense>
+        </div>
       </Modal>
 
       <Modal
