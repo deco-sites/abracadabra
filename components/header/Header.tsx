@@ -62,8 +62,6 @@ function Header(
 ) {
   const searchbar = { ..._searchbar, products, suggestions };
 
-  console.log({ searchbar });
-
   return (
     <>
       <header class="z-50 relative">
