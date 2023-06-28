@@ -1,4 +1,6 @@
 import { lazy, Suspense, useEffect, useRef } from "preact/compat";
+import { useState } from "preact/hooks";
+import { asset } from "$fresh/runtime.ts";
 
 import { useUI } from "$store/sdk/useUI.ts";
 import Loading from "$store/components/ui/Loading.tsx";
@@ -6,7 +8,7 @@ import Icon from "$store/components/ui/Icon.tsx";
 import Button from "$store/components/ui/Button.tsx";
 import { headerHeight } from "$store/components/header/constants.ts";
 import { sendEvent } from "$store/sdk/analytics.tsx";
-import { useAutocomplete } from "deco-sites/std/packs/vtex/hooks/useAutocomplete.ts";
+import { useAutocomplete } from "$store/sdk/useAutocomplete.ts";
 
 const LazySearchbar = lazy(() =>
   import("$store/components/search/Searchbar.tsx")
@@ -58,10 +60,13 @@ function Searchbar({ searchbar }: Props) {
   const hasProducts = Boolean(suggestions.value?.products?.length);
   const hasTerms = Boolean(suggestions.value?.searches?.length);
 
+  const [focus, setFocus] = useState<boolean>(false);
+
   const searchInputRef = useRef<HTMLInputElement>(null);
 
   const { displaySearchbar } = useUI();
   const open = displaySearchbar.value &&
+    (searchInputRef.current && searchInputRef.current.value !== "") &&
     window?.matchMedia?.("(min-width: 768px)")?.matches;
 
   console.log({ hasProducts, hasTerms });
@@ -69,6 +74,10 @@ function Searchbar({ searchbar }: Props) {
   useEffect(() => {
     console.log({ loading: loading.value });
   }, [loading.value]);
+
+  useEffect(() => {
+    console.log({ focus });
+  }, [focus]);
 
   console.log({ suggestions, loading: loading.value });
 
@@ -98,30 +107,41 @@ function Searchbar({ searchbar }: Props) {
 
             setSearch(value);
           }}
+          onClick={() => {
+            setFocus(true);
+          }}
+          onBlur={() => {
+            setFocus(false);
+          }}
           placeholder={placeholder}
           role="combobox"
           aria-controls="search-suggestion"
           autocomplete="off"
         />
-        {open && (
-          <button
-            type="button"
-            aria-label="Clean search"
-            class="focus:outline-none"
-            tabIndex={-1}
-            onClick={(e) => {
-              e.stopPropagation();
-              if (searchInputRef.current === null) return;
+        {(open ||
+          (searchInputRef.current && searchInputRef.current.value !== "")) &&
+          (
+            <button
+              type="button"
+              aria-label="Clean search"
+              class="btn-ghost absolute right-8 bg-transparent hover:bg-transparent top-1/2 translate-y-[-50%]"
+              tabIndex={-1}
+              onClick={(e) => {
+                e.stopPropagation();
+                if (searchInputRef.current === null) return;
 
-              searchInputRef.current.value = "";
-              displaySearchbar.value = false;
-              setSearch("");
-            }}
-          >
-            <span class="text-sm">limpar</span>
-          </button>
-        )}
-        <Button
+                searchInputRef.current.value = "";
+                displaySearchbar.value = false;
+                setSearch("");
+              }}
+            >
+              <img
+                src={asset("/busca-autocomplete-close.png")}
+                class={`h-[20px] w-[20px]`}
+              />
+            </button>
+          )}
+        <button
           class="btn-ghost absolute right-0 bg-transparent hover:bg-transparent top-1/2 translate-y-[-50%]"
           aria-label="Search"
           htmlFor="searchbar"
@@ -133,7 +153,7 @@ function Searchbar({ searchbar }: Props) {
             size={20}
             strokeWidth={0.01}
           />
-        </Button>
+        </button>
       </form>
       <div
         class={`${

@@ -47,6 +47,7 @@
               "$live/loaders/state.ts",
               "$live/loaders/workflows/events.ts",
               "$live/loaders/workflows/get.ts",
+              "deco-sites/std/loaders/vnda/proxy.ts",
               "deco-sites/std/loaders/vtex/cart.ts",
               "deco-sites/std/loaders/vtex/intelligentSearch/productDetailsPage.ts",
               "deco-sites/std/loaders/vtex/intelligentSearch/productList.ts",
@@ -81,6 +82,7 @@
               "$live/handlers/router.ts",
               "$live/handlers/routesSelection.ts",
               "$live/handlers/workflowRunner.ts",
+              "deco-sites/std/handlers/vtex/sitemap.ts",
               "$live/pages/LivePage.tsx",
               "$live/sections/Conditional_Beta.tsx",
               "$live/sections/EmptySection.tsx",
@@ -108,7 +110,6 @@
               "deco-sites/std/sections/configButterCMS.global.tsx",
               "deco-sites/std/sections/configOCC.global.tsx",
               "deco-sites/std/sections/configShopify.global.tsx",
-              "deco-sites/std/sections/configVNDA.global.tsx",
               "deco-sites/std/sections/configVTEX.global.tsx",
               "deco-sites/std/sections/configYourViews.global.tsx",
               "deco-sites/std/sections/SEO.tsx",
@@ -127,6 +128,7 @@
               "$live/matchers/MatchUserAgent.ts",
               "$live/flags/audience.ts",
               "$live/flags/everyone.ts",
+              "$live/flags/flag.ts",
               "$live/actions/workflows/cancel.ts",
               "$live/actions/workflows/run.ts",
               "$live/actions/workflows/signal.ts",
@@ -3408,13 +3410,23 @@
       ],
       "title": "deco-sites/std/commerce/shopify/client.ts@ConfigShopify"
     },
-    "ZGVjby1zaXRlcy9zdGQvY29tbWVyY2Uvdm5kYS90eXBlcy50cw==@ConfigVNDA": {
+    "ZGVjby1zaXRlcy9zdGQvcGFja3Mvdm5kYS92bmRhQWNjb3VudC50cw==@Account": {
       "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/ZGVjby1jeC9saXZlL2Jsb2Nrcy9hY2NvdW50LnRz@Account"
+        }
+      ],
       "properties": {
         "domain": {
           "type": "string",
           "description": "Your VNDA domain name. For example, https://mystore.vnda.com.br",
           "title": "Domain"
+        },
+        "internalDomain": {
+          "type": "string",
+          "description": "e.g: deco.cdn.vnda.com.br",
+          "title": "Internal Domain"
         },
         "authToken": {
           "type": "string",
@@ -3435,11 +3447,12 @@
       },
       "required": [
         "domain",
+        "internalDomain",
         "authToken",
         "useSandbox",
         "defaultPriceCurrency"
       ],
-      "title": "deco-sites/std/commerce/vnda/types.ts@ConfigVNDA"
+      "title": "deco-sites/std/packs/vnda/vndaAccount.ts@Account"
     },
     "ZGVjby1zaXRlcy9zdGQvcGFja3MvdnRleC9hY2NvdW50cy92dGV4LnRz@Account": {
       "type": "object",
@@ -3485,12 +3498,12 @@
           ],
           "title": "Default Region Id"
         },
-        "defaultHideUnnavailableItems": {
+        "defaultHideUnavailableItems": {
           "type": [
             "boolean",
             "null"
           ],
-          "title": "Default Hide Unnavailable Items"
+          "title": "Default Hide Unavailable Items"
         }
       },
       "required": [
@@ -3848,6 +3861,159 @@
         "id"
       ],
       "title": "deco-cx/live/loaders/workflows/get.ts@Props"
+    },
+    "ZGVjby1jeC9saXZlL2Jsb2Nrcy9oYW5kbGVyLnRz@Handler": {
+      "$ref": "#/root/handlers",
+      "title": "Handler"
+    },
+    "ZGVjby1jeC9saXZlL2ZsYWdzL2F1ZGllbmNlLnRz@Route": {
+      "type": "object",
+      "properties": {
+        "pathTemplate": {
+          "type": "string",
+          "title": "Path Template"
+        },
+        "isHref": {
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "description": "if true so the path will be checked agaisnt the coming from request instead of using urlpattern.",
+          "title": "Is Href"
+        },
+        "handler": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "$ref": "#/definitions/ZGVjby1jeC9saXZlL2Jsb2Nrcy9oYW5kbGVyLnRz@Handler",
+              "title": "Value"
+            }
+          },
+          "required": [
+            "value"
+          ],
+          "title": "Handler"
+        }
+      },
+      "required": [
+        "pathTemplate",
+        "handler"
+      ],
+      "title": "Site Route",
+      "titleBy": "pathTemplate"
+    },
+    "ZGVjby1jeC9saXZlL2ZsYWdzL2F1ZGllbmNlLnRz@Route[]": {
+      "anyOf": [
+        {
+          "$ref": "#/definitions/Resolvable"
+        },
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ZGVjby1jeC9saXZlL2ZsYWdzL2F1ZGllbmNlLnRz@Route"
+          },
+          "title": "deco-cx/live/flags/audience.ts@Route[]"
+        },
+        {
+          "title": "VNDA Proxy Routes",
+          "type": "object",
+          "allOf": [
+            {
+              "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvbG9hZGVycy92bmRhL3Byb3h5LnRz@Props"
+            }
+          ],
+          "required": [
+            "__resolveType"
+          ],
+          "properties": {
+            "__resolveType": {
+              "type": "string",
+              "enum": [
+                "deco-sites/std/loaders/vnda/proxy.ts"
+              ],
+              "default": "deco-sites/std/loaders/vnda/proxy.ts"
+            }
+          }
+        },
+        {
+          "title": "VTEX Proxy Routes",
+          "type": "object",
+          "required": [
+            "__resolveType"
+          ],
+          "properties": {
+            "__resolveType": {
+              "type": "string",
+              "enum": [
+                "deco-sites/std/loaders/vtex/proxy.ts"
+              ],
+              "default": "deco-sites/std/loaders/vtex/proxy.ts"
+            }
+          }
+        },
+        {
+          "title": "Audience",
+          "description": "Select routes based on the matched audience.",
+          "type": "object",
+          "allOf": [
+            {
+              "$ref": "#/definitions/ZGVjby1jeC9saXZlL2ZsYWdzL2F1ZGllbmNlLnRz@Audience"
+            }
+          ],
+          "required": [
+            "__resolveType"
+          ],
+          "properties": {
+            "__resolveType": {
+              "type": "string",
+              "enum": [
+                "$live/flags/audience.ts"
+              ],
+              "default": "$live/flags/audience.ts"
+            }
+          }
+        },
+        {
+          "title": "Audience Everyone",
+          "description": "Always match regardless of the current user",
+          "type": "object",
+          "allOf": [
+            {
+              "$ref": "#/definitions/ZGVjby1jeC9saXZlL2ZsYWdzL2V2ZXJ5b25lLnRz@EveryoneConfig"
+            }
+          ],
+          "required": [
+            "__resolveType"
+          ],
+          "properties": {
+            "__resolveType": {
+              "type": "string",
+              "enum": [
+                "$live/flags/everyone.ts"
+              ],
+              "default": "$live/flags/everyone.ts"
+            }
+          }
+        }
+      ]
+    },
+    "ZGVjby1zaXRlcy9zdGQvbG9hZGVycy92bmRhL3Byb3h5LnRz@Props": {
+      "type": "object",
+      "properties": {
+        "pagesToProxy": {
+          "type": "array",
+          "items": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "description": "ex: /p/fale-conosco",
+          "title": "Pages To Proxy"
+        }
+      },
+      "required": [],
+      "title": "deco-sites/std/loaders/vnda/proxy.ts@Props"
     },
     "ZGVjby1zaXRlcy9zdGQvcGFja3MvdnRleC90eXBlcy50cw==@Fields": {
       "type": "object",
@@ -6829,76 +6995,6 @@
       "required": [],
       "title": "deco-sites/std/packs/vtex/loaders/navbar.ts@Props"
     },
-    "ZGVjby1jeC9saXZlL2Jsb2Nrcy9oYW5kbGVyLnRz@Handler": {
-      "$ref": "#/root/handlers",
-      "title": "Handler"
-    },
-    "ZGVjby1jeC9saXZlL2ZsYWdzL2F1ZGllbmNlLnRz@Route": {
-      "type": "object",
-      "properties": {
-        "pathTemplate": {
-          "type": "string",
-          "title": "Path Template"
-        },
-        "isHref": {
-          "type": [
-            "boolean",
-            "null"
-          ],
-          "description": "if true so the path will be checked agaisnt the coming from request instead of using urlpattern.",
-          "title": "Is Href"
-        },
-        "handler": {
-          "type": "object",
-          "properties": {
-            "value": {
-              "$ref": "#/definitions/ZGVjby1jeC9saXZlL2Jsb2Nrcy9oYW5kbGVyLnRz@Handler",
-              "title": "Value"
-            }
-          },
-          "required": [
-            "value"
-          ],
-          "title": "Handler"
-        }
-      },
-      "required": [
-        "pathTemplate",
-        "handler"
-      ],
-      "title": "Site Route",
-      "titleBy": "pathTemplate"
-    },
-    "ZGVjby1jeC9saXZlL2ZsYWdzL2F1ZGllbmNlLnRz@Route[]": {
-      "anyOf": [
-        {
-          "$ref": "#/definitions/Resolvable"
-        },
-        {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/ZGVjby1jeC9saXZlL2ZsYWdzL2F1ZGllbmNlLnRz@Route"
-          },
-          "title": "deco-cx/live/flags/audience.ts@Route[]"
-        },
-        {
-          "title": "VTEX Proxy Routes",
-          "type": "object",
-          "required": [
-            "__resolveType"
-          ],
-          "properties": {
-            "__resolveType": {
-              "type": "string",
-              "enum": [
-                "deco-sites/std/loaders/vtex/proxy.ts"
-              ],
-              "default": "deco-sites/std/loaders/vtex/proxy.ts"
-            }
-          }
-        }
-      ]
-    },
     "ZGVjby1zaXRlcy9zdGQvcGFja3MvdnRleC9sb2FkZXJzL3VzZXIudHM=@User": {
       "type": "object",
       "properties": {
@@ -7390,32 +7486,18 @@
       ],
       "title": "deco-cx/live/handlers/router.ts@RouterConfig"
     },
-    "ZGVjby1jeC9saXZlL2Jsb2Nrcy9mbGFnLnRz@15b1ddc7b4bb6e032bd22948a3dc02c4|9cc5443ad72a10e9797a691a19b4ce81|Flag": {
-      "anyOf": [
-        {
-          "$ref": "#/definitions/ZGVjby1jeC9saXZlL2Jsb2Nrcy9mbGFnLnRz@Flag"
-        },
-        {
-          "$ref": "#/definitions/JGxpdmUvZmxhZ3MvYXVkaWVuY2UudHM="
-        },
-        {
-          "$ref": "#/definitions/JGxpdmUvZmxhZ3MvZXZlcnlvbmUudHM="
-        }
-      ],
-      "title": "Audiences"
-    },
-    "ZGVjby1jeC9saXZlL2Jsb2Nrcy9mbGFnLnRz@15b1ddc7b4bb6e032bd22948a3dc02c4|9cc5443ad72a10e9797a691a19b4ce81|Flag[]": {
+    "ZGVjby1jeC9saXZlL2ZsYWdzL2F1ZGllbmNlLnRz@Route[][]": {
       "type": "array",
       "items": {
-        "$ref": "#/definitions/ZGVjby1jeC9saXZlL2Jsb2Nrcy9mbGFnLnRz@15b1ddc7b4bb6e032bd22948a3dc02c4|9cc5443ad72a10e9797a691a19b4ce81|Flag"
+        "$ref": "#/definitions/ZGVjby1jeC9saXZlL2ZsYWdzL2F1ZGllbmNlLnRz@Route[]"
       },
-      "title": "15b1ddc7b4bb6e032bd22948a3dc02c4|9cc5443ad72a10e9797a691a19b4ce81|Flag[]"
+      "title": "Route[][]"
     },
     "ZGVjby1jeC9saXZlL2hhbmRsZXJzL3JvdXRlc1NlbGVjdGlvbi50cw==@SelectionConfig": {
       "type": "object",
       "properties": {
         "audiences": {
-          "$ref": "#/definitions/ZGVjby1jeC9saXZlL2Jsb2Nrcy9mbGFnLnRz@15b1ddc7b4bb6e032bd22948a3dc02c4|9cc5443ad72a10e9797a691a19b4ce81|Flag[]",
+          "$ref": "#/definitions/ZGVjby1jeC9saXZlL2ZsYWdzL2F1ZGllbmNlLnRz@Route[][]",
           "title": "Audiences"
         }
       },
@@ -8297,7 +8379,7 @@
       "required": [],
       "title": "OptionalColors"
     },
-    "ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9zZWN0aW9ucy9EZXNpZ25TeXN0ZW0udHN4@32dcc708003db82bebccf084d9a3efee&Colors": {
+    "ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9zZWN0aW9ucy9EZXNpZ25TeXN0ZW0udHN4@4681f221ed84a1f23d309999b0de19c3&Colors": {
       "allOf": [
         {
           "$ref": "#/definitions/ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9zZWN0aW9ucy9EZXNpZ25TeXN0ZW0udHN4@Colors"
@@ -8313,7 +8395,7 @@
           "required": []
         }
       ],
-      "title": "32dcc708003db82bebccf084d9a3efee&Colors"
+      "title": "4681f221ed84a1f23d309999b0de19c3&Colors"
     },
     "ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9zZWN0aW9ucy9EZXNpZ25TeXN0ZW0udHN4@Miscellaneous": {
       "type": "object",
@@ -8416,7 +8498,7 @@
       "type": "object",
       "properties": {
         "colors": {
-          "$ref": "#/definitions/ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9zZWN0aW9ucy9EZXNpZ25TeXN0ZW0udHN4@32dcc708003db82bebccf084d9a3efee&Colors",
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9zZWN0aW9ucy9EZXNpZ25TeXN0ZW0udHN4@4681f221ed84a1f23d309999b0de19c3&Colors",
           "title": "Colors"
         },
         "miscellaneous": {
@@ -9898,6 +9980,20 @@
         "page": {
           "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvY29tbWVyY2UvdHlwZXMudHM=@ProductDetailsPage|null",
           "title": "Page"
+        },
+        "structuredData": {
+          "type": "object",
+          "properties": {
+            "useDataFromSEO": {
+              "type": [
+                "boolean",
+                "null"
+              ],
+              "title": "Use Data From S E O"
+            }
+          },
+          "required": [],
+          "title": "Structured Data"
         }
       },
       "required": [
@@ -10157,31 +10253,6 @@
       "required": [],
       "title": "deco-cx/live/matchers/MatchUserAgent.ts@Props"
     },
-    "ZGVjby1jeC9saXZlL2ZsYWdzL2F1ZGllbmNlLnRz@Override": {
-      "type": "object",
-      "properties": {
-        "use": {
-          "type": "string",
-          "title": "Use"
-        },
-        "insteadOf": {
-          "type": "string",
-          "title": "Instead Of"
-        }
-      },
-      "required": [
-        "use",
-        "insteadOf"
-      ],
-      "title": "Override"
-    },
-    "ZGVjby1jeC9saXZlL2ZsYWdzL2F1ZGllbmNlLnRz@Override[]": {
-      "type": "array",
-      "items": {
-        "$ref": "#/definitions/ZGVjby1jeC9saXZlL2ZsYWdzL2F1ZGllbmNlLnRz@Override"
-      },
-      "title": "Override[]"
-    },
     "ZGVjby1jeC9saXZlL2ZsYWdzL2F1ZGllbmNlLnRz@Audience": {
       "type": "object",
       "properties": {
@@ -10199,10 +10270,6 @@
         "routes": {
           "$ref": "#/definitions/ZGVjby1jeC9saXZlL2ZsYWdzL2F1ZGllbmNlLnRz@Route[]",
           "title": "Routes"
-        },
-        "overrides": {
-          "$ref": "#/definitions/ZGVjby1jeC9saXZlL2ZsYWdzL2F1ZGllbmNlLnRz@Override[]",
-          "title": "Overrides"
         }
       },
       "required": [
@@ -10218,14 +10285,36 @@
         "routes": {
           "$ref": "#/definitions/ZGVjby1jeC9saXZlL2ZsYWdzL2F1ZGllbmNlLnRz@Route[]",
           "title": "Routes"
-        },
-        "overrides": {
-          "$ref": "#/definitions/ZGVjby1jeC9saXZlL2ZsYWdzL2F1ZGllbmNlLnRz@Override[]",
-          "title": "Overrides"
         }
       },
       "required": [],
       "title": "deco-cx/live/flags/everyone.ts@EveryoneConfig"
+    },
+    "ZGVjby1jeC9saXZlL2Jsb2Nrcy9mbGFnLnRz@FlagObj": {
+      "type": "object",
+      "properties": {
+        "matcher": {
+          "$ref": "#/definitions/ZGVjby1jeC9saXZlL2Jsb2Nrcy9tYXRjaGVyLnRz@Matcher",
+          "title": "Matcher"
+        },
+        "name": {
+          "type": "string",
+          "title": "Name"
+        },
+        "true": {
+          "title": "True"
+        },
+        "false": {
+          "title": "False"
+        }
+      },
+      "required": [
+        "matcher",
+        "name",
+        "true",
+        "false"
+      ],
+      "title": "deco-cx/live/blocks/flag.ts@FlagObj"
     },
     "ZGVjby1jeC9saXZlL2FjdGlvbnMvd29ya2Zsb3dzL2NhbmNlbC50cw==@Props": {
       "type": "object",
@@ -10247,7 +10336,7 @@
       ],
       "title": "deco-cx/live/actions/workflows/cancel.ts@Props"
     },
-    "ZGVjby1jeC9kdXJhYmxlL2NvbnRleHQudHM=@984c340e2b85bf44b5129917db123a21&Metadata": {
+    "ZGVjby1jeC9kdXJhYmxlL2NvbnRleHQudHM=@Metadata&d53c654012b1a9c30560229e428269fa": {
       "allOf": [
         {
           "type": "object",
@@ -10265,9 +10354,9 @@
           "$ref": "#/definitions/ZGVjby1jeC9kdXJhYmxlL2NvbnRleHQudHM=@Metadata"
         }
       ],
-      "title": "984c340e2b85bf44b5129917db123a21&Metadata"
+      "title": "Metadata&d53c654012b1a9c30560229e428269fa"
     },
-    "ZGVjby1jeC9kdXJhYmxlL2hhbmRsZXIudHM=@RunRequest+Arg+984c340e2b85bf44b5129917db123a21&Metadata": {
+    "ZGVjby1jeC9kdXJhYmxlL2hhbmRsZXIudHM=@RunRequest+Arg+Metadata&d53c654012b1a9c30560229e428269fa": {
       "type": "object",
       "properties": {
         "results": {
@@ -10278,7 +10367,7 @@
           "title": "Execution Id"
         },
         "metadata": {
-          "$ref": "#/definitions/ZGVjby1jeC9kdXJhYmxlL2NvbnRleHQudHM=@984c340e2b85bf44b5129917db123a21&Metadata",
+          "$ref": "#/definitions/ZGVjby1jeC9kdXJhYmxlL2NvbnRleHQudHM=@Metadata&d53c654012b1a9c30560229e428269fa",
           "title": "Metadata"
         }
       },
@@ -10287,7 +10376,7 @@
         "executionId",
         "metadata"
       ],
-      "title": "deco-cx/durable/handler.ts@RunRequest+Arg+984c340e2b85bf44b5129917db123a21&Metadata"
+      "title": "deco-cx/durable/handler.ts@RunRequest+Arg+Metadata&d53c654012b1a9c30560229e428269fa"
     },
     "ZGVjby1jeC9saXZlL2FjdGlvbnMvd29ya2Zsb3dzL3NpZ25hbC50cw==@Props": {
       "type": "object",
@@ -11429,7 +11518,7 @@
       "type": "object",
       "allOf": [
         {
-          "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvY29tbWVyY2Uvdm5kYS90eXBlcy50cw==@ConfigVNDA"
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvcGFja3Mvdm5kYS92bmRhQWNjb3VudC50cw==@Account"
         }
       ],
       "required": [
@@ -11550,6 +11639,27 @@
             "$live/loaders/workflows/get.ts"
           ],
           "default": "$live/loaders/workflows/get.ts"
+        }
+      }
+    },
+    "ZGVjby1zaXRlcy9zdGQvbG9hZGVycy92bmRhL3Byb3h5LnRz": {
+      "title": "VNDA Proxy Routes",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvbG9hZGVycy92bmRhL3Byb3h5LnRz@Props"
+        }
+      ],
+      "required": [
+        "__resolveType"
+      ],
+      "properties": {
+        "__resolveType": {
+          "type": "string",
+          "enum": [
+            "deco-sites/std/loaders/vnda/proxy.ts"
+          ],
+          "default": "deco-sites/std/loaders/vnda/proxy.ts"
         }
       }
     },
@@ -12214,6 +12324,22 @@
         }
       }
     },
+    "ZGVjby1zaXRlcy9zdGQvaGFuZGxlcnMvdnRleC9zaXRlbWFwLnRz": {
+      "title": "Sitemap Proxy",
+      "type": "object",
+      "required": [
+        "__resolveType"
+      ],
+      "properties": {
+        "__resolveType": {
+          "type": "string",
+          "enum": [
+            "deco-sites/std/handlers/vtex/sitemap.ts"
+          ],
+          "default": "deco-sites/std/handlers/vtex/sitemap.ts"
+        }
+      }
+    },
     "JGxpdmUvcGFnZXMvTGl2ZVBhZ2UudHN4": {
       "title": "$live/pages/LivePage.tsx",
       "type": "object",
@@ -12771,27 +12897,6 @@
         }
       }
     },
-    "ZGVjby1zaXRlcy9zdGQvc2VjdGlvbnMvY29uZmlnVk5EQS5nbG9iYWwudHN4": {
-      "title": "deco-sites/std/sections/configVNDA.global.tsx",
-      "type": "object",
-      "allOf": [
-        {
-          "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvY29tbWVyY2Uvdm5kYS90eXBlcy50cw==@ConfigVNDA"
-        }
-      ],
-      "required": [
-        "__resolveType"
-      ],
-      "properties": {
-        "__resolveType": {
-          "type": "string",
-          "enum": [
-            "deco-sites/std/sections/configVNDA.global.tsx"
-          ],
-          "default": "deco-sites/std/sections/configVNDA.global.tsx"
-        }
-      }
-    },
     "ZGVjby1zaXRlcy9zdGQvc2VjdGlvbnMvY29uZmlnVlRFWC5nbG9iYWwudHN4": {
       "title": "deco-sites/std/sections/configVTEX.global.tsx",
       "type": "object",
@@ -12935,8 +13040,8 @@
       }
     },
     "JGxpdmUvbWF0Y2hlcnMvTWF0Y2hDcm9uLnRz": {
-      "title": "Con Matcher",
-      "description": "Use cron at minute precision to calculate if it is active",
+      "title": "Cron Matcher",
+      "description": "Use cron, at minute precision, to declare date and hour ranges",
       "type": "object",
       "allOf": [
         {
@@ -13169,6 +13274,27 @@
         }
       }
     },
+    "JGxpdmUvZmxhZ3MvZmxhZy50cw==": {
+      "title": "Flag",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/ZGVjby1jeC9saXZlL2Jsb2Nrcy9mbGFnLnRz@FlagObj"
+        }
+      ],
+      "required": [
+        "__resolveType"
+      ],
+      "properties": {
+        "__resolveType": {
+          "type": "string",
+          "enum": [
+            "$live/flags/flag.ts"
+          ],
+          "default": "$live/flags/flag.ts"
+        }
+      }
+    },
     "JGxpdmUvYWN0aW9ucy93b3JrZmxvd3MvY2FuY2VsLnRz": {
       "title": "$live/actions/workflows/cancel.ts",
       "description": "Cancels the workflow execution, you can, optionally, add a reason of the cancellation.",
@@ -13197,7 +13323,7 @@
       "type": "object",
       "allOf": [
         {
-          "$ref": "#/definitions/ZGVjby1jeC9kdXJhYmxlL2hhbmRsZXIudHM=@RunRequest+Arg+984c340e2b85bf44b5129917db123a21&Metadata"
+          "$ref": "#/definitions/ZGVjby1jeC9kdXJhYmxlL2hhbmRsZXIudHM=@RunRequest+Arg+Metadata&d53c654012b1a9c30560229e428269fa"
         }
       ],
       "required": [
@@ -13724,6 +13850,9 @@
           "$ref": "#/definitions/JGxpdmUvbG9hZGVycy93b3JrZmxvd3MvZ2V0LnRz"
         },
         {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvbG9hZGVycy92bmRhL3Byb3h5LnRz"
+        },
+        {
           "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvbG9hZGVycy92dGV4L2NhcnQudHM="
         },
         {
@@ -13844,6 +13973,9 @@
         },
         {
           "$ref": "#/definitions/JGxpdmUvaGFuZGxlcnMvd29ya2Zsb3dSdW5uZXIudHM="
+        },
+        {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvaGFuZGxlcnMvdnRleC9zaXRlbWFwLnRz"
         }
       ]
     },
@@ -13943,9 +14075,6 @@
           "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvc2VjdGlvbnMvY29uZmlnU2hvcGlmeS5nbG9iYWwudHN4"
         },
         {
-          "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvc2VjdGlvbnMvY29uZmlnVk5EQS5nbG9iYWwudHN4"
-        },
-        {
           "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvc2VjdGlvbnMvY29uZmlnVlRFWC5nbG9iYWwudHN4"
         },
         {
@@ -14014,6 +14143,9 @@
         },
         {
           "$ref": "#/definitions/JGxpdmUvZmxhZ3MvZXZlcnlvbmUudHM="
+        },
+        {
+          "$ref": "#/definitions/JGxpdmUvZmxhZ3MvZmxhZy50cw=="
         }
       ]
     },
