@@ -8,6 +8,7 @@ import type { TopbarLeftProp, TopbarRightProp } from "./Topbar.tsx";
 import Topbar from "./Topbar.tsx";
 import Navbar from "./Navbar.tsx";
 import { headerHeight, navbarHeight } from "./constants.ts";
+import { FunctionalComponent, h } from "preact";
 
 export interface NavItem {
   label: string;

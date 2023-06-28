@@ -5,8 +5,12 @@ import { asset } from "$fresh/runtime.ts";
 import { navbarHeight } from "./constants.ts";
 import type { INavItem } from "./NavItem.tsx";
 import type { Props as SearchbarProps } from "$store/components/search/Searchbar.tsx";
+import Login from "./Login.tsx";
 
-function Navbar({ items, searchbar }: {
+function Navbar({
+  items,
+  searchbar,
+}: {
   items: INavItem[];
   searchbar: SearchbarProps;
 }) {
@@ -62,8 +66,10 @@ function Navbar({ items, searchbar }: {
               />
             </a>
           </div>
-          <div class="flex-none w-44 flex items-center justify-end gap-2">
-            <a
+          <div class="flex-none w-54 flex items-center justify-start gap-2">
+            {
+              <Login />
+              /* <a
               class="btn btn-square btn-ghost bg-transparent hover:bg-transparent"
               href="/login"
               aria-label="Log in"
@@ -74,7 +80,8 @@ function Navbar({ items, searchbar }: {
                 width={20}
                 height={23}
               />
-            </a>
+            </a> */
+            }
             <Buttons variant="cart" />
           </div>
         </div>
