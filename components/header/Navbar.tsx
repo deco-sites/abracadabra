@@ -68,7 +68,7 @@ function Navbar({
           </div>
           <div class="flex-none w-54 flex items-center justify-start gap-2">
             {
-              <Login />
+              <Login name="" />
               /* <a
               class="btn btn-square btn-ghost bg-transparent hover:bg-transparent"
               href="/login"

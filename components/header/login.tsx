@@ -1,9 +1,12 @@
 import { FunctionalComponent, h } from "preact";
 import { asset } from "$fresh/runtime.ts";
 
-interface LoginProps {}
+interface LoginProps {
+  name: string;
+}
 
 const Login: FunctionalComponent<LoginProps> = (props) => {
+  const { name } = props;
   return (
     <div class="group relative mr-16 group-hover:opacity-100 group-hover:visible">
       <a
