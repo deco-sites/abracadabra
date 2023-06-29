@@ -63,21 +63,33 @@ function Searchbar({ searchbar }: Props) {
   const [focus, setFocus] = useState<boolean>(false);
 
   const searchInputRef = useRef<HTMLInputElement>(null);
+  const modal = useRef<HTMLDivElement>(null);
 
+  const isDesktop = window?.matchMedia?.("(min-width: 768px)")?.matches;
+
+  const searchTerm = searchInputRef.current ? searchInputRef.current.value : "";
   const { displaySearchbar } = useUI();
-  const open = displaySearchbar.value &&
-    (searchInputRef.current && searchInputRef.current.value !== "") &&
-    window?.matchMedia?.("(min-width: 768px)")?.matches;
-
-  console.log({ hasProducts, hasTerms });
-
-  useEffect(() => {
-    console.log({ loading: loading.value });
-  }, [loading.value]);
+  const open = (displaySearchbar.value && focus &&
+    (searchTerm !== "") && !loading.value &&
+    isDesktop) ||
+    !isDesktop;
 
   useEffect(() => {
-    console.log({ focus });
-  }, [focus]);
+    function handleClickOutside(event: MouseEvent) {
+      if (
+        modal.current && !modal.current.contains(event.target as HTMLElement) &&
+        (searchInputRef.current !== event.target as HTMLInputElement)
+      ) {
+        setFocus(false);
+      }
+    }
+    // Bind the event listener
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      // Unbind the event listener on clean up
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [modal]);
 
   console.log({ suggestions, loading: loading.value });
 
@@ -110,16 +122,14 @@ function Searchbar({ searchbar }: Props) {
           onClick={() => {
             setFocus(true);
           }}
-          onBlur={() => {
-            setFocus(false);
-          }}
           placeholder={placeholder}
           role="combobox"
           aria-controls="search-suggestion"
           autocomplete="off"
         />
-        {(open ||
-          (searchInputRef.current && searchInputRef.current.value !== "")) &&
+        {(
+          searchInputRef.current && searchInputRef.current.value !== ""
+        ) &&
           (
             <button
               type="button"
@@ -132,7 +142,7 @@ function Searchbar({ searchbar }: Props) {
 
                 searchInputRef.current.value = "";
                 displaySearchbar.value = false;
-                setSearch("");
+                setSearch("busca vazia");
               }}
             >
               <img
@@ -150,20 +160,24 @@ function Searchbar({ searchbar }: Props) {
           <Icon
             class={`text-yellow-base`}
             id="Search"
-            size={20}
+            height={23}
+            width={21}
             strokeWidth={0.01}
           />
         </button>
       </form>
       <div
+        ref={modal}
+        id="search-result"
         class={`${
           open ? "block border-y border-base-200 shadow" : "hidden"
         } absolute left-0 top-0 w-screen z-50 bg-base-100`}
-        style={{ marginTop: headerHeight }}
+        style={{ marginTop: "147px" }}
       >
         {open && (
           <Suspense fallback={<Loading />}>
             <LazySearchbar
+              link={`${action}?${name}=${searchTerm}`}
               suggestions={suggestions}
               loading={loading.value}
               variant={variant}

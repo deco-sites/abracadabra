@@ -45,12 +45,14 @@ function CloseButton() {
 }
 
 export interface Props {
+  link: string;
   suggestions: Signal<Suggestion | null>;
   loading: boolean;
   variant?: "desktop" | "mobile";
 }
 
 function Searchbar({
+  link,
   suggestions,
   loading,
   variant = "desktop",
@@ -63,7 +65,7 @@ function Searchbar({
 
   return (
     <div class="flex flex-col p-4 md:py-6 md:px-20">
-      <div class="flex flex-col gap-6 divide-y divide-base-200 mt-6 empty:mt-0 md:flex-row md:divide-y-0">
+      <div class="flex flex-col gap-6 divide-y divide-base-200 md:divide-y-0">
         {notFound
           ? (
             <div class="py-16 md:py-6! flex flex-col gap-4 w-full">
@@ -110,6 +112,14 @@ function Searchbar({
                   </div>
                 </>
                 <SliderJS rootId={id} />
+              </div>
+              <div>
+                <a
+                  href={link}
+                  class="btn"
+                >
+                  VER TODOS OS RESULTADOS DA BUSCA
+                </a>
               </div>
             </>
           )}
