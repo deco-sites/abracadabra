@@ -7,6 +7,7 @@ interface LoginProps {
 
 const Login: FunctionalComponent<LoginProps> = (props) => {
   const { name } = props;
+  console.log(name);
   return (
     <div class="group relative mr-16 group-hover:opacity-100 group-hover:visible">
       <a
