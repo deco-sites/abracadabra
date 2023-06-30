@@ -10,7 +10,7 @@ import { useOffer } from "$store/sdk/useOffer.ts";
 import { formatPrice } from "$store/sdk/format.ts";
 import { useVariantPossibilities } from "$store/sdk/useVariantPossiblities.ts";
 import { mapProductToAnalyticsItem } from "deco-sites/std/commerce/utils/productToAnalyticsItem.ts";
-import { sendEventOnClick } from "$store/sdk/analytics.tsx";
+import { SendEventOnClick } from "$store/sdk/analytics.tsx";
 import type { Product } from "deco-sites/std/commerce/types.ts";
 import { ClusterProps } from "../search/SearchResult.tsx";
 import Clusters, { ClusterBadge } from "./Clusters.tsx";
@@ -54,6 +54,8 @@ function ProductCard(
     additionalProperty,
   } = product;
 
+  const id = `product-card-${productID}`;
+
   const { listPrice, price, seller, installments, availability } = useOffer(
     offers,
   );
@@ -95,11 +97,26 @@ function ProductCard(
 
   return (
     <div
+      id={id}
       class="card card-compact card-bordered justify-between p-2 pb-3 border-black-opacity80 rounded-[3px] group w-full h-full"
       data-deco="view-product"
-      id={`product-card-${productID}`}
-      {...sendEventOnClick(clickEvent)}
     >
+      <SendEventOnClick
+        id={id}
+        event={{
+          name: "select_item" as const,
+          params: {
+            item_list_name: itemListName,
+            items: [
+              mapProductToAnalyticsItem({
+                product,
+                price,
+                listPrice,
+              }),
+            ],
+          },
+        }}
+      />
       <div class="mb-4">
         <figure
           class="relative mb-[6px] sm:mb-3"

@@ -1,14 +1,12 @@
 import Modals from "$store/islands/HeaderModals.tsx";
 import type { Image } from "deco-sites/std/components/types.ts";
-import type { EditableProps as SearchbarProps } from "$store/components/search/Searchbar.tsx";
+import type { SearchbarProps } from "$store/components/header/Searchbar.tsx";
 import type { LoaderReturnType } from "$live/types.ts";
 import type { Product, Suggestion } from "deco-sites/std/commerce/types.ts";
 import type { TopbarLeftProp, TopbarRightProp } from "./Topbar.tsx";
 
 import Topbar from "./Topbar.tsx";
 import Navbar from "./Navbar.tsx";
-import { headerHeight, navbarHeight } from "./constants.ts";
-import { FunctionalComponent, h } from "preact";
 
 export interface NavItem {
   label: string;
@@ -62,27 +60,13 @@ function Header(
   }: Props,
 ) {
   const searchbar = { ..._searchbar, products, suggestions };
+
   return (
     <>
-      <header style={{ height: headerHeight }} class="hidden sm:flex">
-        <div class="bg-base-100 fixed w-full z-50">
-          <div class="w-screen ml-auto mr-auto">
-            <Topbar topbarLeft={topbarLeft} topbarRight={topbarRight} />
-            <Navbar items={navItems} searchbar={searchbar} />
-          </div>
-        </div>
-
-        <Modals
-          menu={{ items: navItems }}
-          searchbar={searchbar}
-        />
-      </header>
-      <header style={{ height: navbarHeight }} class="sm:hidden">
-        <div class="bg-base-100 fixed w-full z-50">
-          <div class="w-screen ml-auto mr-auto">
-            <Topbar topbarLeft={topbarLeft} topbarRight={topbarRight} />
-            <Navbar items={navItems} searchbar={searchbar} />
-          </div>
+      <header class="z-50 relative">
+        <div class="bg-transparent hover:bg-role-neutral-light-1 hover:border-b-role-neutral-light-3 w-full z-50">
+          <Topbar topbarLeft={topbarLeft} topbarRight={topbarRight} />
+          <Navbar items={navItems} searchbar={searchbar} />
         </div>
 
         <Modals

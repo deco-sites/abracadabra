@@ -69,12 +69,11 @@ const Modal = ({
     <dialog
       {...props}
       ref={ref}
-      class={`bg-transparent p-0 m-0 max-w-full w-full max-h-full h-full backdrop-opacity-50 ${
+      class={`bg-transparent p-0 m-0 max-w-full w-full max-h-full h-full z-20 backdrop-opacity-50 backdrop:z-10 ${
         dialogStyles[mode]
       } ${props.class ?? ""}`}
       onClick={(e) =>
         (e.target as HTMLDialogElement).tagName === "SECTION" && onClose?.()}
-      // @ts-expect-error - This is a bug in types.
       onClose={onClose}
     >
       <section

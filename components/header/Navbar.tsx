@@ -4,8 +4,8 @@ import NavItem from "./NavItem.tsx";
 import { asset } from "$fresh/runtime.ts";
 import { navbarHeight } from "./constants.ts";
 import type { INavItem } from "./NavItem.tsx";
-import type { Props as SearchbarProps } from "$store/components/search/Searchbar.tsx";
 import Login from "./Login.tsx";
+import type { SearchbarProps } from "$store/components/header/Searchbar.tsx";
 
 function Navbar({
   items,
@@ -49,7 +49,6 @@ function Navbar({
       <div class="hidden md:flex flex-col w-[1180px] mx-auto pl-2 pr-6">
         <div class="container flex flex-row justify-between items-center">
           <div class="flex-none w-44 flex items-center justify-none">
-            <Buttons variant="search" />
             <Searchbar searchbar={searchbar} />
           </div>
           <div class="flex-auto flex justify-center">
