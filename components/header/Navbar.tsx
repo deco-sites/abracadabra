@@ -4,7 +4,7 @@ import NavItem from "./NavItem.tsx";
 import { asset } from "$fresh/runtime.ts";
 import { navbarHeight } from "./constants.ts";
 import type { INavItem } from "./NavItem.tsx";
-import Login from "../home/Login.tsx";
+import Login from "./Login.tsx";
 import type { SearchbarProps } from "$store/components/header/Searchbar.tsx";
 
 function Navbar({
