@@ -4,8 +4,9 @@ import NavItem from "./NavItem.tsx";
 import { asset } from "$fresh/runtime.ts";
 import { navbarHeight } from "./constants.ts";
 import type { INavItem } from "./NavItem.tsx";
-import Login from "./Login.tsx";
+import Login from "./LoginElement.tsx";
 import type { SearchbarProps } from "$store/components/header/Searchbar.tsx";
+import { useUI } from "$store/sdk/useUI.ts";
 
 function Navbar({
   items,
@@ -14,15 +15,24 @@ function Navbar({
   items: INavItem[];
   searchbar: SearchbarProps;
 }) {
+  const { route, isMobile } = useUI();
+
+  console.log("Navbar", { route, isMobile });
+
+  const isHome = route.value && route.value.pathname === "/";
+
   return (
     <>
       {/* Mobile Version */}
       <div
         style={{ height: navbarHeight }}
-        class="md:hidden flex flex-row justify-between items-center border-b border-base-200 w-full pl-2 pr-6 gap-2"
+        class={`md:hidden flex flex-row ${
+          isHome ? "flex-wrap" : ""
+        } justify-between items-center border-b border-base-200 w-full pl-2 pr-6 gap-2`}
       >
         <div class="flex justify-start flex-[4_1_0%]">
           <Buttons variant="menu" />
+          {!isHome && <Buttons variant="search" />}
         </div>
 
         <a
@@ -40,9 +50,26 @@ function Navbar({
         </a>
 
         <div class="flex gap-1 justify-end flex-[3_1_0%]">
-          <Buttons variant="search" />
+          <a
+            class="btn btn-square btn-ghost bg-transparent hover:bg-transparent"
+            href="/login"
+            aria-label="Log in"
+          >
+            <img
+              class="object-cover"
+              src={asset("/icon-user.png")}
+              width={20}
+              height={23}
+            />
+          </a>
           <Buttons variant="cart" />
         </div>
+
+        {isHome && (
+          <div>
+            <Searchbar searchbar={searchbar} />
+          </div>
+        )}
       </div>
 
       {/* Desktop Version */}

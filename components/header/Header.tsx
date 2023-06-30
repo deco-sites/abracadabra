@@ -4,6 +4,8 @@ import type { SearchbarProps } from "$store/components/header/Searchbar.tsx";
 import type { LoaderReturnType } from "$live/types.ts";
 import type { Product, Suggestion } from "deco-sites/std/commerce/types.ts";
 import type { TopbarLeftProp, TopbarRightProp } from "./Topbar.tsx";
+import type { SectionProps } from "$live/mod.ts";
+import { useUI } from "$store/sdk/useUI.ts";
 
 import Topbar from "./Topbar.tsx";
 import Navbar from "./Navbar.tsx";
@@ -49,6 +51,42 @@ export interface Props {
   suggestions?: LoaderReturnType<Suggestion | null>;
 }
 
+export const loader = (props: Props, req: Request) => {
+  // console.log(Object.entries(req));
+
+  const toMatch = [
+    /Android/i,
+    /webOS/i,
+    /iPhone/i,
+    /iPad/i,
+    /iPod/i,
+    /BlackBerry/i,
+    /Windows Phone/i,
+  ];
+
+  const headers = new Headers(req.headers);
+
+  const isMobile = toMatch.some((toMatchItem) => {
+    return headers.get("user-agent")?.match(toMatchItem);
+  });
+
+  const url = req.url;
+  const host = headers.get("host")!;
+  const protocol = url.match(/^[^:]+(?=:\/\/)/);
+  const pathname = url.replace(`${protocol![0]}://${host}`, "");
+
+  return {
+    ...props,
+    request: {
+      isMobile,
+      protocol: protocol![0],
+      host,
+      url,
+      pathname,
+    },
+  };
+};
+
 function Header(
   {
     topbarLeft,
@@ -57,9 +95,17 @@ function Header(
     products,
     navItems = [],
     suggestions,
-  }: Props,
+    request,
+  }: SectionProps<typeof loader>,
 ) {
   const searchbar = { ..._searchbar, products, suggestions };
+
+  const { route, isMobile } = useUI();
+
+  const { isMobile: isMobileReq, ...routeReq } = request;
+
+  route.value = routeReq;
+  isMobile.value = isMobileReq;
 
   return (
     <>

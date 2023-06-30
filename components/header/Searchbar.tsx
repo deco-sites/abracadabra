@@ -57,22 +57,20 @@ function Searchbar({ searchbar }: Props) {
     variant = "mobile",
   } = searchbar;
   const { setSearch, suggestions, loading } = useAutocomplete();
-  const hasProducts = Boolean(suggestions.value?.products?.length);
-  const hasTerms = Boolean(suggestions.value?.searches?.length);
 
   const [focus, setFocus] = useState<boolean>(false);
 
   const searchInputRef = useRef<HTMLInputElement>(null);
   const modal = useRef<HTMLDivElement>(null);
 
-  const isDesktop = window?.matchMedia?.("(min-width: 768px)")?.matches;
+  const isMobileCss = !window?.matchMedia?.("(min-width: 768px)")?.matches;
 
   const searchTerm = searchInputRef.current ? searchInputRef.current.value : "";
-  const { displaySearchbar } = useUI();
+  const { displaySearchbar, route, isMobile } = useUI();
   const open = (displaySearchbar.value && focus &&
     (searchTerm !== "") && !loading.value &&
-    isDesktop) ||
-    !isDesktop;
+    !isMobileCss) ||
+    isMobileCss;
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -90,8 +88,6 @@ function Searchbar({ searchbar }: Props) {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [modal]);
-
-  console.log({ suggestions, loading: loading.value });
 
   return (
     <>

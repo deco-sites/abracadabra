@@ -1,11 +1,10 @@
-import { FunctionalComponent, h } from "preact";
 import { asset } from "$fresh/runtime.ts";
 
 interface LoginProps {
   name: string;
 }
 
-const Login: FunctionalComponent<LoginProps> = (props) => {
+const LoginElement = (props: LoginProps) => {
   const { name } = props;
   console.log(name);
   return (
@@ -61,4 +60,4 @@ const Login: FunctionalComponent<LoginProps> = (props) => {
   );
 };
 
-export default Login;
+export default LoginElement;
