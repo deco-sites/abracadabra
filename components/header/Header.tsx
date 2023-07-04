@@ -5,7 +5,6 @@ import type { LoaderReturnType } from "$live/types.ts";
 import type { Product, Suggestion } from "deco-sites/std/commerce/types.ts";
 import type { TopbarLeftProp, TopbarRightProp } from "./Topbar.tsx";
 import type { SectionProps } from "$live/mod.ts";
-import { useUI } from "$store/sdk/useUI.ts";
 
 import Topbar from "./Topbar.tsx";
 import Navbar from "./Navbar.tsx";
@@ -100,12 +99,7 @@ function Header(
 ) {
   const searchbar = { ..._searchbar, products, suggestions };
 
-  const { route, isMobile } = useUI();
-
-  const { isMobile: isMobileReq, ...routeReq } = request;
-
-  route.value = routeReq;
-  isMobile.value = isMobileReq;
+  console.log(request);
 
   return (
     <>

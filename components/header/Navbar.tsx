@@ -6,7 +6,6 @@ import { navbarHeight } from "./constants.ts";
 import type { INavItem } from "./NavItem.tsx";
 import Login from "./LoginElement.tsx";
 import type { SearchbarProps } from "$store/components/header/Searchbar.tsx";
-import { useUI } from "$store/sdk/useUI.ts";
 
 function Navbar({
   items,
@@ -15,11 +14,7 @@ function Navbar({
   items: INavItem[];
   searchbar: SearchbarProps;
 }) {
-  const { route, isMobile } = useUI();
-
-  console.log("Navbar", { route, isMobile });
-
-  const isHome = route.value && route.value.pathname === "/";
+  const isHome = false; // TODO: estudar como pegar a página atual
 
   return (
     <>

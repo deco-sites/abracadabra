@@ -66,7 +66,7 @@ function Searchbar({ searchbar }: Props) {
   const isMobileCss = !window?.matchMedia?.("(min-width: 768px)")?.matches;
 
   const searchTerm = searchInputRef.current ? searchInputRef.current.value : "";
-  const { displaySearchbar, route, isMobile } = useUI();
+  const { displaySearchbar } = useUI();
   const open = (displaySearchbar.value && focus &&
     (searchTerm !== "") && !loading.value &&
     !isMobileCss) ||
