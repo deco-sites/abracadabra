@@ -5,6 +5,7 @@ import type { LoaderReturnType } from "$live/types.ts";
 import type { Product, Suggestion } from "deco-sites/std/commerce/types.ts";
 import type { TopbarLeftProp, TopbarRightProp } from "./Topbar.tsx";
 
+import Warningbar from "./Warningbar.tsx";
 import Topbar from "./Topbar.tsx";
 import Navbar from "./Navbar.tsx";
 import { headerHeight, navbarHeight } from "./constants.ts";
@@ -66,6 +67,7 @@ function Header(
       <header style={{ height: headerHeight }} class="hidden sm:flex">
         <div class="bg-base-100 fixed w-full z-50">
           <div class="w-screen ml-auto mr-auto">
+            <Warningbar />
             <Topbar topbarLeft={topbarLeft} topbarRight={topbarRight} />
             <Navbar items={navItems} searchbar={searchbar} />
           </div>
