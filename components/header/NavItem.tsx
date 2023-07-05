@@ -44,7 +44,8 @@ function NavItem({ item }: { item: INavItem }) {
               class="p-4 bg-white border-t border-yellow-base mt-[-1px]"
               style={{ columnCount: columns }}
             >
-              <li class="p-2 border border-gray-base text-gray-base hover:text-yellow-base">
+              <li class="w-24 h-8 flex items-center justify-center p-2 border border-gray-base">
+                <a href={href} class="text-gray-base  hover:text-gray-darker">Ver Tudo</a>
               </li>
               {children.map((node) => (
                 <li class="p-2 text-gray-base hover:text-yellow-base">
