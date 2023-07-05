@@ -2,7 +2,6 @@
 // This file SHOULD be checked into source version control.
 // This file is automatically updated during development when running `dev.ts`.
 
-import config from "./deno.json" assert { type: "json" };
 import { DecoManifest } from "$live/types.ts";
 import * as $$$$0 from "./routes/styles.css.ts";
 import * as $$$$1 from "./routes/_app.tsx";
@@ -45,7 +44,8 @@ import * as $live_editorData from "$live/routes/live/editorData.ts";
 import * as $live_inspect from "$live/routes/live/inspect/[...block].ts";
 import * as $live_release from "$live/routes/live/release.ts";
 import * as $live_meta from "$live/routes/live/_meta.ts";
-import * as $live_previews from "$live/routes/live/previews/[...block].tsx";
+import * as $live_previews_block from "$live/routes/live/previews/[...block].tsx";
+import * as $live_previews_index from "$live/routes/live/previews/index.tsx";
 import * as $live_catchall from "$live/routes/[...catchall].tsx";
 import * as i2$$$0 from "$live/loaders/state.ts";
 import * as i2$$$1 from "$live/loaders/workflows/events.ts";
@@ -58,10 +58,13 @@ import * as i2$$$$$$4 from "$live/handlers/router.ts";
 import * as i2$$$$$$5 from "$live/handlers/routesSelection.ts";
 import * as i2$$$$$$6 from "$live/handlers/workflowRunner.ts";
 import * as i2$$$$$$$0 from "$live/pages/LivePage.tsx";
+import * as i1$$$$0 from "$live/sections/Conditional_Beta.tsx";
+import * as i1$$$$1 from "$live/sections/EmptySection.tsx";
 import * as i2$$$$0 from "$live/sections/PageInclude.tsx";
 import * as i2$$$$1 from "$live/sections/Slot.tsx";
 import * as i2$$$$2 from "$live/sections/UseSlot.tsx";
 import * as i2$$$$$$$$0 from "$live/matchers/MatchAlways.ts";
+import * as i1$$$$$1 from "$live/matchers/MatchCron.ts";
 import * as i2$$$$$$$$1 from "$live/matchers/MatchDate.ts";
 import * as i2$$$$$$$$2 from "$live/matchers/MatchDevice.ts";
 import * as i2$$$$$$$$3 from "$live/matchers/MatchEnvironment.ts";
@@ -72,6 +75,8 @@ import * as i2$$$$$$$$7 from "$live/matchers/MatchSite.ts";
 import * as i2$$$$$$$$8 from "$live/matchers/MatchUserAgent.ts";
 import * as i2$$$$$$$$$0 from "$live/flags/audience.ts";
 import * as i2$$$$$$$$$1 from "$live/flags/everyone.ts";
+import * as i1$$$$$$2 from "$live/flags/flag.ts";
+import * as i1$$$$$$3 from "$live/flags/multivariate.ts";
 import * as i2$$$$$0 from "$live/actions/workflows/cancel.ts";
 import * as i2$$$$$1 from "$live/actions/workflows/run.ts";
 import * as i2$$$$$2 from "$live/actions/workflows/signal.ts";
@@ -160,7 +165,8 @@ const manifest = {
     "./routes/live/inspect/[...block].ts": $live_inspect,
     "./routes/live/invoke/[...key].ts": $live_invoke_key,
     "./routes/live/invoke/index.ts": $live_invoke,
-    "./routes/live/previews/[...block].tsx": $live_previews,
+    "./routes/live/previews/[...block].tsx": $live_previews_block,
+    "./routes/live/previews/index.tsx": $live_previews_index,
     "./routes/live/release.ts": $live_release,
     "./routes/live/workbench.ts": $live_workbench,
     "./routes/styles.css.ts": $$$$0,
@@ -182,6 +188,8 @@ const manifest = {
     "./islands/WishlistButton.tsx": $$$$$2,
   },
   "sections": {
+    "$live/sections/Conditional_Beta.tsx": i1$$$$0,
+    "$live/sections/EmptySection.tsx": i1$$$$1,
     "$live/sections/PageInclude.tsx": i2$$$$0,
     "$live/sections/Slot.tsx": i2$$$$1,
     "$live/sections/UseSlot.tsx": i2$$$$2,
@@ -248,6 +256,7 @@ const manifest = {
   },
   "matchers": {
     "$live/matchers/MatchAlways.ts": i2$$$$$$$$0,
+    "$live/matchers/MatchCron.ts": i1$$$$$1,
     "$live/matchers/MatchDate.ts": i2$$$$$$$$1,
     "$live/matchers/MatchDevice.ts": i2$$$$$$$$2,
     "$live/matchers/MatchEnvironment.ts": i2$$$$$$$$3,
@@ -260,6 +269,8 @@ const manifest = {
   "flags": {
     "$live/flags/audience.ts": i2$$$$$$$$$0,
     "$live/flags/everyone.ts": i2$$$$$$$$$1,
+    "$live/flags/flag.ts": i1$$$$$$2,
+    "$live/flags/multivariate.ts": i1$$$$$$3,
   },
   "actions": {
     "$live/actions/workflows/cancel.ts": i2$$$$$0,
@@ -319,7 +330,6 @@ const manifest = {
     "deco-sites/std/accounts/vtex.ts": i2$$3,
     "deco-sites/std/accounts/yourViews.ts": i2$$4,
   },
-  "config": config,
   "baseUrl": import.meta.url,
 };
 
