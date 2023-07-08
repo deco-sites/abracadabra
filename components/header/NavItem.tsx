@@ -45,7 +45,9 @@ function NavItem({ item }: { item: INavItem }) {
               style={{ columnCount: columns }}
             >
               <li class="w-24 h-8 flex items-center justify-center p-2 border border-gray-base">
-                <a href={href} class="text-gray-base  hover:text-gray-darker">Ver Tudo</a>
+                <a href={href} class="text-gray-base  hover:text-gray-darker">
+                  Ver Tudo
+                </a>
               </li>
               {children.map((node) => (
                 <li class="p-2 text-gray-base hover:text-yellow-base">
