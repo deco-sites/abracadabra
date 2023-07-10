@@ -16,6 +16,9 @@ if (IS_BROWSER && typeof window.HTMLDialogElement === "undefined") {
 export type Props = JSX.IntrinsicElements["dialog"] & {
   title?: string;
   mode?: "sidebar-right" | "sidebar-left" | "center";
+  isSidebar?: boolean;
+  hasBorder?: boolean;
+  hasPadding?: boolean;
   onClose?: () => Promise<void> | void;
   loading?: "lazy" | "eager";
 };
@@ -45,6 +48,9 @@ const Modal = ({
   onClose,
   children,
   loading,
+  isSidebar,
+  hasBorder,
+  hasPadding,
   ...props
 }: Props) => {
   const lazy = useSignal(false);
@@ -85,12 +91,19 @@ const Modal = ({
             containerStyles[mode]
           }`}
         >
-          <header class="flex px-4 py-6 justify-between items-center border-b border-base-200">
-            <div class="flex gap-5 items-center">
-              <h1>
-                <span class="font-medium text-2xl">{title}</span>
-              </h1>
-            </div>
+          <header class={`${hasBorder && 'border-b border-base-200'} ${hasPadding ? 'py-6' : 'pt-2'} flex px-4 justify-between items-center`}>
+            {isSidebar ? (
+              <div class="flex items-center justify-center gap-2">
+                <Icon id="User" width={24} height={24} class="text-yellow-base" strokeWidth={2} />
+                <span class="font-light">{title}</span>
+              </div>
+            ) : (
+              <div class="flex gap-5 items-center">
+                <h1>
+                  <span class="font-medium text-2xl">{title}</span>
+                </h1>
+              </div>
+            )}
             <Button class="btn btn-ghost" onClick={onClose}>
               <Icon id="XMark" width={20} height={20} strokeWidth={2} />
             </Button>

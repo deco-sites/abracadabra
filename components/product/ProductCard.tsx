@@ -5,12 +5,13 @@ import AddToCartButton from "$store/islands/AddToCartButton.tsx";
 import OutOfStock from "$store/islands/OutOfStock.tsx";
 import Installments from "./Installments.tsx";
 import Discount from "./Discount.tsx";
+import DiscountPercentage from "./DiscountPercentage.tsx";
 
 import { useOffer } from "$store/sdk/useOffer.ts";
 import { formatPrice } from "$store/sdk/format.ts";
 import { useVariantPossibilities } from "$store/sdk/useVariantPossiblities.ts";
 import { mapProductToAnalyticsItem } from "deco-sites/std/commerce/utils/productToAnalyticsItem.ts";
-import { sendEventOnClick } from "$store/sdk/analytics.tsx";
+import { SendEventOnClick } from "$store/sdk/analytics.tsx";
 import type { Product } from "deco-sites/std/commerce/types.ts";
 import { ClusterProps } from "../search/SearchResult.tsx";
 import Clusters, { ClusterBadge } from "./Clusters.tsx";
@@ -54,6 +55,8 @@ function ProductCard(
     additionalProperty,
   } = product;
 
+  const id = `product-card-${productID}`;
+
   const { listPrice, price, seller, installments, availability } = useOffer(
     offers,
   );
@@ -95,11 +98,26 @@ function ProductCard(
 
   return (
     <div
+      id={id}
       class="card card-compact card-bordered justify-between p-2 pb-3 border-black-opacity80 rounded-[3px] group w-full h-full"
       data-deco="view-product"
-      id={`product-card-${productID}`}
-      {...sendEventOnClick(clickEvent)}
     >
+      <SendEventOnClick
+        id={id}
+        event={{
+          name: "select_item" as const,
+          params: {
+            item_list_name: itemListName,
+            items: [
+              mapProductToAnalyticsItem({
+                product,
+                price,
+                listPrice,
+              }),
+            ],
+          },
+        }}
+      />
       <div class="mb-4">
         <figure
           class="relative mb-[6px] sm:mb-3"
@@ -154,6 +172,10 @@ function ProductCard(
               loading="lazy"
               decoding="async"
             />
+            <DiscountPercentage
+              listPrice={listPrice ?? 0}
+              price={price ?? 0}
+            />
           </a>
 
           {/* SKU Selector */}
@@ -185,28 +207,28 @@ function ProductCard(
         <h2 class="text-sm">{name}</h2>
       </div>
       <div>
-        <div class="">
+        <div class="flex items-end justify-between">
           {/* Prices */}
-          <div class="gap-2">
+          <div>
             {Math.floor((listPrice ?? 0) - (price ?? 0)) > 0 && (
               <div class="flex flex-col-reverse sm:flex-row gap-2 items-start sm:items-center">
-                <span class="line-through text-gray-base text-sm leading-[22px]">
+                <span class="line-through text-gray-base font-bold text-sm leading-[22px]">
                   {formatPrice(listPrice, offers!.priceCurrency!)}
                 </span>
-                <Discount
-                  listPrice={listPrice ?? 0}
-                  price={price ?? 0}
-                  currencySimbol={offers!.priceCurrency!}
-                />
               </div>
             )}
-            <span class="text-black font-extrabold text-[17px] leading-[22px]">
+            <span class="text-gray-base font-bold text-sm leading-[22px]">
               {formatPrice(price, offers!.priceCurrency!)}
             </span>
+            <span class="flex pt-2">
+              <Installments installments={installments} />
+            </span>
           </div>
-          <span class={"flex"}>
-            <Installments installments={installments} />
-          </span>
+          <Discount
+            listPrice={listPrice ?? 0}
+            price={price ?? 0}
+            currencySimbol={offers!.priceCurrency!}
+          />
         </div>
         <div>
           {availability === "https://schema.org/InStock"

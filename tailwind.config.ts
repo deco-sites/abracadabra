@@ -14,8 +14,14 @@ export default {
         opacity80: "rgba(0, 0, 0, 0.08)",
       },
       white: "#ffffff",
+      'dark-gray': "#afafaf",
+      gainsboro: "#E5E5E5",
+      cyan: {
+        dark: "#049091",
+      },
       red: {
         base: "#bb0e4b",
+        medium: "#C72144"
       },
       yellow: {
         base: "#ffbf00",

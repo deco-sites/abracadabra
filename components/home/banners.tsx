@@ -36,7 +36,7 @@ function LowerBanners(
 ) {
   return (
     <div class="container w-full sm:w-[1180px] flex-row">
-      <div class="container grid grid-cols-1 sm:grid-cols-3 gap-4 py-6">
+      <div class="container grid grid-cols-1 sm:grid-cols-3 gap-4 py-6 px-2 md:px-0">
         {banners3colunas.map(({ href, src, alt, width, height }, index) => (
           <a href={href} class="flex justify-center">
             <figure>

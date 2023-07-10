@@ -15,17 +15,12 @@ declare global {
 }
 
 function SearchButton() {
-  const { displaySearchbar } = useUI();
-
   return (
     <Button
       class="btn-square btn-ghost bg-transparent hover:bg-transparent"
       aria-label="search icon button"
-      onClick={() => {
-        displaySearchbar.value = !displaySearchbar.peek();
-      }}
     >
-      <Icon id="Search" width={20} height={20} strokeWidth={0.1} />
+      <Icon id="Search" width={25} height={25} strokeWidth={0.1} />
     </Button>
   );
 }
@@ -41,7 +36,7 @@ function MenuButton() {
         displayMenu.value = true;
       }}
     >
-      <Icon id="Bars3" width={20} height={20} strokeWidth={0.01} />
+      <Icon id="Bars3" width={28} height={28} strokeWidth={0.01} />
     </Button>
   );
 }
@@ -88,8 +83,8 @@ function CartButton() {
         <img
           class="object-cover"
           src={asset("/icon-minicart.png")}
-          width={28}
-          height={31}
+          width={23}
+          height={23}
         />
       </div>
     </Button>

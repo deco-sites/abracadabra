@@ -14,7 +14,7 @@ interface Props extends UseAddToCartProps {
 
 function AddToCartButton(
   {
-    text = "Adicionar à Sacola",
+    text = "COMPRAR",
     skuId,
     sellerId,
     discount,

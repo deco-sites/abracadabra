@@ -63,12 +63,15 @@
               "./islands/AddToCartButton.tsx",
               "./islands/Filters.tsx",
               "./islands/FooterBanner.tsx",
+              "./islands/Header.tsx",
               "./islands/HeaderButton.tsx",
               "./islands/HeaderModals.tsx",
               "./islands/HeaderSearchbar.tsx",
+              "./islands/Menu.tsx",
               "./islands/Newsletter.tsx",
               "./islands/OutOfStock.tsx",
               "./islands/ProductImageZoom.tsx",
+              "./islands/ScrollableNavbar.tsx",
               "./islands/SearchControls.tsx",
               "./islands/ShippingSimulation.tsx",
               "./islands/SliderJS.tsx",
@@ -97,6 +100,7 @@
               "deco-sites/abracadabra/sections/Highlights.tsx",
               "deco-sites/abracadabra/sections/LinkTree.tsx",
               "deco-sites/abracadabra/sections/LowerBanners.tsx",
+              "deco-sites/abracadabra/sections/Partnerships.tsx",
               "deco-sites/abracadabra/sections/ProductDetails.tsx",
               "deco-sites/abracadabra/sections/ProductShelf.tsx",
               "deco-sites/abracadabra/sections/SearchResult.tsx",
@@ -6917,6 +6921,500 @@
       "required": [],
       "title": "deco-sites/abracadabra/components/footer/FooterBanner.tsx@Props"
     },
+    "ZGVjby1zaXRlcy9zdGQvY29tcG9uZW50cy90eXBlcy50cw==@HTML": {
+      "type": "string",
+      "format": "html",
+      "title": "HTML"
+    },
+    "ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL2hlYWRlci9DYW1wYWlnblRpbWVyLnRzeA==@Props": {
+      "type": "object",
+      "properties": {
+        "image": {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvY29tcG9uZW50cy90eXBlcy50cw==@Image",
+          "title": "Image"
+        },
+        "expiresAt": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "Expires at date",
+          "format": "datetime"
+        },
+        "labels": {
+          "type": "object",
+          "properties": {
+            "expired": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "title": "Expired"
+            },
+            "days": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "title": "Days"
+            },
+            "hours": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "title": "Hours"
+            },
+            "minutes": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "title": "Minutes"
+            },
+            "seconds": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "title": "Seconds"
+            }
+          },
+          "required": [],
+          "title": "Labels"
+        },
+        "text": {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvY29tcG9uZW50cy90eXBlcy50cw==@HTML",
+          "title": "Text",
+          "default": "Time left for a campaign to end wth a link"
+        }
+      },
+      "required": [],
+      "title": "Props"
+    },
+    "ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL2hlYWRlci9Ub3BiYXIudHN4@TopbarLeftProp": {
+      "type": "object",
+      "properties": {
+        "src": {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvY29tcG9uZW50cy90eXBlcy50cw==@Image",
+          "title": "Src"
+        },
+        "imgAlt": {
+          "type": "string",
+          "title": "Img Alt"
+        },
+        "imgWidth": {
+          "type": "number",
+          "title": "Img Width"
+        },
+        "imgHeight": {
+          "type": "number",
+          "title": "Img Height"
+        },
+        "text": {
+          "type": "string",
+          "title": "Text"
+        }
+      },
+      "required": [
+        "src",
+        "imgAlt",
+        "imgWidth",
+        "imgHeight",
+        "text"
+      ],
+      "title": "TopbarLeftProp"
+    },
+    "ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL2hlYWRlci9Ub3BiYXIudHN4@TopbarLeftProp[]": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL2hlYWRlci9Ub3BiYXIudHN4@TopbarLeftProp"
+      },
+      "title": "TopbarLeftProp[]"
+    },
+    "ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL2hlYWRlci9Ub3BiYXIudHN4@TopbarRightProp": {
+      "type": "object",
+      "properties": {
+        "text": {
+          "type": "string",
+          "title": "Text"
+        },
+        "href": {
+          "type": "string",
+          "title": "Href"
+        }
+      },
+      "required": [
+        "text",
+        "href"
+      ],
+      "title": "TopbarRightProp"
+    },
+    "ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL2hlYWRlci9Ub3BiYXIudHN4@TopbarRightProp[]": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL2hlYWRlci9Ub3BiYXIudHN4@TopbarRightProp"
+      },
+      "title": "TopbarRightProp[]"
+    },
+    "ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL2hlYWRlci9TZWFyY2hiYXIudHN4@EditableProps": {
+      "type": "object",
+      "properties": {
+        "placeholder": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "Placeholder",
+          "description": "Search bar default placeholder message",
+          "default": "O que você está procurando hoje?"
+        },
+        "action": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "Page path",
+          "description": "When user clicks on the search button, navigate it to",
+          "default": "/s"
+        },
+        "name": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "Term name",
+          "description": "Querystring param used when navigating the user",
+          "default": "q"
+        },
+        "query": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "Query"
+        }
+      },
+      "required": [],
+      "title": "EditableProps"
+    },
+    "ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL2hlYWRlci9TZWFyY2hiYXIudHN4@2f3e1f40df63be5627dc2ae9f2ac630b&EditableProps": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL2hlYWRlci9TZWFyY2hiYXIudHN4@EditableProps"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "variant": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "const": "desktop"
+                },
+                {
+                  "type": "string",
+                  "const": "mobile"
+                }
+              ],
+              "type": "string",
+              "title": "Variant"
+            }
+          },
+          "required": []
+        }
+      ],
+      "title": "2f3e1f40df63be5627dc2ae9f2ac630b&EditableProps"
+    },
+    "ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9pc2xhbmRzL0hlYWRlci50c3g=@NavItem": {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string",
+          "title": "Label"
+        },
+        "href": {
+          "type": "string",
+          "title": "Href"
+        },
+        "columns": {
+          "type": "number",
+          "title": "Columns"
+        },
+        "children": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "label": {
+                "type": "string",
+                "title": "Label"
+              },
+              "href": {
+                "type": "string",
+                "title": "Href"
+              },
+              "children": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "label": {
+                      "type": "string",
+                      "title": "Label"
+                    },
+                    "href": {
+                      "type": "string",
+                      "title": "Href"
+                    }
+                  },
+                  "required": [
+                    "label",
+                    "href"
+                  ]
+                },
+                "title": "Children"
+              }
+            },
+            "required": [
+              "label",
+              "href"
+            ]
+          },
+          "title": "Children"
+        },
+        "image": {
+          "type": "object",
+          "properties": {
+            "src": {
+              "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvY29tcG9uZW50cy90eXBlcy50cw==@Image",
+              "title": "Src"
+            },
+            "alt": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "title": "Alt"
+            }
+          },
+          "required": [],
+          "title": "Image"
+        }
+      },
+      "required": [
+        "label",
+        "href",
+        "columns"
+      ],
+      "title": "NavItem"
+    },
+    "ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9pc2xhbmRzL0hlYWRlci50c3g=@NavItem[]": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9pc2xhbmRzL0hlYWRlci50c3g=@NavItem"
+      },
+      "title": "NavItem[]"
+    },
+    "ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9pc2xhbmRzL0hlYWRlci50c3g=@Props": {
+      "type": "object",
+      "properties": {
+        "campaignTimer": {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL2hlYWRlci9DYW1wYWlnblRpbWVyLnRzeA==@Props",
+          "title": "Campaign Timer"
+        },
+        "adBarLabel": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "Adbar Label",
+          "description": "label that appears in the ad highlighted in red"
+        },
+        "topbarLeft": {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL2hlYWRlci9Ub3BiYXIudHN4@TopbarLeftProp[]",
+          "title": "Topbar Left"
+        },
+        "topbarRight": {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL2hlYWRlci9Ub3BiYXIudHN4@TopbarRightProp[]",
+          "title": "Topbar Right"
+        },
+        "searchbar": {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL2hlYWRlci9TZWFyY2hiYXIudHN4@2f3e1f40df63be5627dc2ae9f2ac630b&EditableProps",
+          "title": "Search Bar"
+        },
+        "navItems": {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9pc2xhbmRzL0hlYWRlci50c3g=@NavItem[]",
+          "title": "Navigation items",
+          "description": "Navigation items used both on mobile and desktop menus"
+        },
+        "products": {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvY29tbWVyY2UvdHlwZXMudHM=@Product[]|null",
+          "title": "Product suggestions",
+          "description": "Product suggestions displayed on search"
+        },
+        "suggestions": {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvY29tbWVyY2UvdHlwZXMudHM=@Suggestion|null",
+          "title": "Enable Top Search terms"
+        }
+      },
+      "required": [
+        "topbarLeft",
+        "topbarRight"
+      ],
+      "title": "deco-sites/abracadabra/islands/Header.tsx@Props"
+    },
+    "ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL2hlYWRlci9TZWFyY2hiYXIudHN4@Props": {
+      "type": "object",
+      "properties": {
+        "searchbar": {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL2hlYWRlci9TZWFyY2hiYXIudHN4@2f3e1f40df63be5627dc2ae9f2ac630b&EditableProps",
+          "title": "Searchbar"
+        }
+      },
+      "required": [
+        "searchbar"
+      ],
+      "title": "deco-sites/abracadabra/components/header/Searchbar.tsx@Props"
+    },
+    "ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9pc2xhbmRzL01lbnUudHN4@NavSubItem": {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string",
+          "title": "Label"
+        },
+        "href": {
+          "type": "string",
+          "title": "Href"
+        },
+        "children": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9pc2xhbmRzL01lbnUudHN4@NavSubItem"
+          },
+          "title": "Children"
+        }
+      },
+      "required": [
+        "label",
+        "href"
+      ],
+      "title": "NavSubItem"
+    },
+    "ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9pc2xhbmRzL01lbnUudHN4@NavSubItem[]": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9pc2xhbmRzL01lbnUudHN4@NavSubItem"
+      },
+      "title": "NavSubItem[]"
+    },
+    "ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9pc2xhbmRzL01lbnUudHN4@Props": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9pc2xhbmRzL01lbnUudHN4@NavSubItem[]",
+          "title": "Items"
+        }
+      },
+      "required": [
+        "items"
+      ],
+      "title": "deco-sites/abracadabra/islands/Menu.tsx@Props"
+    },
+    "ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL2hlYWRlci9OYXZJdGVtLnRzeA==@INavItem": {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string",
+          "title": "Label"
+        },
+        "href": {
+          "type": "string",
+          "title": "Href"
+        },
+        "columns": {
+          "type": "number",
+          "title": "Columns"
+        },
+        "children": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "label": {
+                "type": "string",
+                "title": "Label"
+              },
+              "href": {
+                "type": "string",
+                "title": "Href"
+              },
+              "children": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "label": {
+                      "type": "string",
+                      "title": "Label"
+                    },
+                    "href": {
+                      "type": "string",
+                      "title": "Href"
+                    }
+                  },
+                  "required": [
+                    "label",
+                    "href"
+                  ]
+                },
+                "title": "Children"
+              }
+            },
+            "required": [
+              "label",
+              "href"
+            ]
+          },
+          "title": "Children"
+        },
+        "image": {
+          "type": "object",
+          "properties": {
+            "src": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "title": "Src"
+            },
+            "alt": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "title": "Alt"
+            }
+          },
+          "required": [],
+          "title": "Image"
+        }
+      },
+      "required": [
+        "label",
+        "href",
+        "columns"
+      ],
+      "title": "INavItem"
+    },
+    "ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL2hlYWRlci9OYXZJdGVtLnRzeA==@INavItem[]": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL2hlYWRlci9OYXZJdGVtLnRzeA==@INavItem"
+      },
+      "title": "INavItem[]"
+    },
     "ZGVjby1zaXRlcy9zdGQvcGFja3MvdnRleC90eXBlcy50cw==@SKU": {
       "type": "object",
       "properties": {
@@ -7956,7 +8454,7 @@
       "required": [],
       "title": "OptionalColors"
     },
-    "ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9zZWN0aW9ucy9EZXNpZ25TeXN0ZW0udHN4@Colors&a5ce80c79f905bd12908a860da98e643": {
+    "ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9zZWN0aW9ucy9EZXNpZ25TeXN0ZW0udHN4@0ee895bf123d9324e725317c947ec149&Colors": {
       "allOf": [
         {
           "$ref": "#/definitions/ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9zZWN0aW9ucy9EZXNpZ25TeXN0ZW0udHN4@Colors"
@@ -7972,7 +8470,7 @@
           "required": []
         }
       ],
-      "title": "Colors&a5ce80c79f905bd12908a860da98e643"
+      "title": "0ee895bf123d9324e725317c947ec149&Colors"
     },
     "ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9zZWN0aW9ucy9EZXNpZ25TeXN0ZW0udHN4@Miscellaneous": {
       "type": "object",
@@ -8075,7 +8573,7 @@
       "type": "object",
       "properties": {
         "colors": {
-          "$ref": "#/definitions/ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9zZWN0aW9ucy9EZXNpZ25TeXN0ZW0udHN4@Colors&a5ce80c79f905bd12908a860da98e643",
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9zZWN0aW9ucy9EZXNpZ25TeXN0ZW0udHN4@0ee895bf123d9324e725317c947ec149&Colors",
           "title": "Colors"
         },
         "miscellaneous": {
@@ -8542,12 +9040,77 @@
       },
       "title": "Section[]"
     },
+    "ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL2Zvb3Rlci9Gb290ZXIudHN4@Contact": {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string",
+          "title": "Label"
+        },
+        "children": {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL2Zvb3Rlci9Gb290ZXIudHN4@IconItem|StringItem[]",
+          "title": "Children"
+        }
+      },
+      "required": [
+        "label",
+        "children"
+      ],
+      "title": "Contact"
+    },
+    "ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL2Zvb3Rlci9Gb290ZXIudHN4@Contact[]": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL2Zvb3Rlci9Gb290ZXIudHN4@Contact"
+      },
+      "title": "Contact[]"
+    },
+    "ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL2Zvb3Rlci9Tb2NpYWxNZWRpYXMudHN4@SocialMediaProps": {
+      "type": "object",
+      "properties": {
+        "icon": {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvY29tcG9uZW50cy90eXBlcy50cw==@Image",
+          "title": "Icon"
+        },
+        "alt": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "Alt"
+        },
+        "href": {
+          "type": "string",
+          "title": "Href"
+        }
+      },
+      "required": [
+        "icon",
+        "href"
+      ],
+      "title": "SocialMediaProps"
+    },
+    "ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL2Zvb3Rlci9Tb2NpYWxNZWRpYXMudHN4@SocialMediaProps[]": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL2Zvb3Rlci9Tb2NpYWxNZWRpYXMudHN4@SocialMediaProps"
+      },
+      "title": "SocialMediaProps[]"
+    },
     "ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL2Zvb3Rlci9Gb290ZXIudHN4@Props": {
       "type": "object",
       "properties": {
         "sections": {
           "$ref": "#/definitions/ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL2Zvb3Rlci9Gb290ZXIudHN4@Section[]",
           "title": "Sections"
+        },
+        "contacts": {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL2Zvb3Rlci9Gb290ZXIudHN4@Contact[]",
+          "title": "Contacts"
+        },
+        "socialMedias": {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL2Zvb3Rlci9Tb2NpYWxNZWRpYXMudHN4@SocialMediaProps[]",
+          "title": "Social Medias"
         },
         "banner": {
           "$ref": "#/definitions/ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL2Zvb3Rlci9Gb290ZXJCYW5uZXIudHN4@FooterBanner[]",
@@ -8560,238 +9123,6 @@
       },
       "required": [],
       "title": "deco-sites/abracadabra/components/footer/Footer.tsx@Props"
-    },
-    "ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL2hlYWRlci9Ub3BiYXIudHN4@TopbarLeftProp": {
-      "type": "object",
-      "properties": {
-        "src": {
-          "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvY29tcG9uZW50cy90eXBlcy50cw==@Image",
-          "title": "Src"
-        },
-        "imgAlt": {
-          "type": "string",
-          "title": "Img Alt"
-        },
-        "imgWidth": {
-          "type": "number",
-          "title": "Img Width"
-        },
-        "imgHeight": {
-          "type": "number",
-          "title": "Img Height"
-        },
-        "text": {
-          "type": "string",
-          "title": "Text"
-        }
-      },
-      "required": [
-        "src",
-        "imgAlt",
-        "imgWidth",
-        "imgHeight",
-        "text"
-      ],
-      "title": "TopbarLeftProp"
-    },
-    "ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL2hlYWRlci9Ub3BiYXIudHN4@TopbarLeftProp[]": {
-      "type": "array",
-      "items": {
-        "$ref": "#/definitions/ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL2hlYWRlci9Ub3BiYXIudHN4@TopbarLeftProp"
-      },
-      "title": "TopbarLeftProp[]"
-    },
-    "ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL2hlYWRlci9Ub3BiYXIudHN4@TopbarRightProp": {
-      "type": "object",
-      "properties": {
-        "text": {
-          "type": "string",
-          "title": "Text"
-        },
-        "href": {
-          "type": "string",
-          "title": "Href"
-        }
-      },
-      "required": [
-        "text",
-        "href"
-      ],
-      "title": "TopbarRightProp"
-    },
-    "ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL2hlYWRlci9Ub3BiYXIudHN4@TopbarRightProp[]": {
-      "type": "array",
-      "items": {
-        "$ref": "#/definitions/ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL2hlYWRlci9Ub3BiYXIudHN4@TopbarRightProp"
-      },
-      "title": "TopbarRightProp[]"
-    },
-    "ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL3NlYXJjaC9TZWFyY2hiYXIudHN4@EditableProps": {
-      "type": "object",
-      "properties": {
-        "placeholder": {
-          "type": [
-            "string",
-            "null"
-          ],
-          "title": "Placeholder",
-          "description": "Search bar default placeholder message",
-          "default": "O que você está procurando hoje?"
-        },
-        "action": {
-          "type": [
-            "string",
-            "null"
-          ],
-          "title": "Page path",
-          "description": "When user clicks on the search button, navigate it to",
-          "default": "/s"
-        },
-        "name": {
-          "type": [
-            "string",
-            "null"
-          ],
-          "title": "Term name",
-          "description": "Querystring param used when navigating the user",
-          "default": "q"
-        },
-        "query": {
-          "type": [
-            "string",
-            "null"
-          ],
-          "title": "Query"
-        }
-      },
-      "required": [],
-      "title": "EditableProps"
-    },
-    "ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL2hlYWRlci9IZWFkZXIudHN4@NavItem": {
-      "type": "object",
-      "properties": {
-        "label": {
-          "type": "string",
-          "title": "Label"
-        },
-        "href": {
-          "type": "string",
-          "title": "Href"
-        },
-        "columns": {
-          "type": "number",
-          "title": "Columns"
-        },
-        "children": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "properties": {
-              "label": {
-                "type": "string",
-                "title": "Label"
-              },
-              "href": {
-                "type": "string",
-                "title": "Href"
-              },
-              "children": {
-                "type": "array",
-                "items": {
-                  "type": "object",
-                  "properties": {
-                    "label": {
-                      "type": "string",
-                      "title": "Label"
-                    },
-                    "href": {
-                      "type": "string",
-                      "title": "Href"
-                    }
-                  },
-                  "required": [
-                    "label",
-                    "href"
-                  ]
-                },
-                "title": "Children"
-              }
-            },
-            "required": [
-              "label",
-              "href"
-            ]
-          },
-          "title": "Children"
-        },
-        "image": {
-          "type": "object",
-          "properties": {
-            "src": {
-              "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvY29tcG9uZW50cy90eXBlcy50cw==@Image",
-              "title": "Src"
-            },
-            "alt": {
-              "type": [
-                "string",
-                "null"
-              ],
-              "title": "Alt"
-            }
-          },
-          "required": [],
-          "title": "Image"
-        }
-      },
-      "required": [
-        "label",
-        "href",
-        "columns"
-      ],
-      "title": "NavItem"
-    },
-    "ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL2hlYWRlci9IZWFkZXIudHN4@NavItem[]": {
-      "type": "array",
-      "items": {
-        "$ref": "#/definitions/ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL2hlYWRlci9IZWFkZXIudHN4@NavItem"
-      },
-      "title": "NavItem[]"
-    },
-    "ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL2hlYWRlci9IZWFkZXIudHN4@Props": {
-      "type": "object",
-      "properties": {
-        "topbarLeft": {
-          "$ref": "#/definitions/ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL2hlYWRlci9Ub3BiYXIudHN4@TopbarLeftProp[]",
-          "title": "Topbar Left"
-        },
-        "topbarRight": {
-          "$ref": "#/definitions/ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL2hlYWRlci9Ub3BiYXIudHN4@TopbarRightProp[]",
-          "title": "Topbar Right"
-        },
-        "searchbar": {
-          "$ref": "#/definitions/ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL3NlYXJjaC9TZWFyY2hiYXIudHN4@EditableProps",
-          "title": "Search Bar"
-        },
-        "navItems": {
-          "$ref": "#/definitions/ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL2hlYWRlci9IZWFkZXIudHN4@NavItem[]",
-          "title": "Navigation items",
-          "description": "Navigation items used both on mobile and desktop menus"
-        },
-        "products": {
-          "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvY29tbWVyY2UvdHlwZXMudHM=@Product[]|null",
-          "title": "Product suggestions",
-          "description": "Product suggestions displayed on search"
-        },
-        "suggestions": {
-          "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvY29tbWVyY2UvdHlwZXMudHM=@Suggestion|null",
-          "title": "Enable Top Search terms"
-        }
-      },
-      "required": [
-        "topbarLeft",
-        "topbarRight"
-      ],
-      "title": "deco-sites/abracadabra/components/header/Header.tsx@Props"
     },
     "ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL3VpL0hpZ2hsaWdodHMudHN4@Highlight": {
       "type": "object",
@@ -9080,6 +9411,17 @@
       },
       "required": [],
       "title": "deco-sites/abracadabra/components/home/banners.tsx@Props"
+    },
+    "ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL3VpL1BhcnRuZXJzaGlwcy50c3g=@Props": {
+      "type": "object",
+      "properties": {
+        "text": {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvY29tcG9uZW50cy90eXBlcy50cw==@HTML",
+          "title": "Text"
+        }
+      },
+      "required": [],
+      "title": "deco-sites/abracadabra/components/ui/Partnerships.tsx@Props"
     },
     "ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL3Byb2R1Y3QvUHJvZHVjdERldGFpbHMudHN4@Props": {
       "type": "object",
@@ -11402,6 +11744,27 @@
         }
       }
     },
+    "Li9pc2xhbmRzL0hlYWRlci50c3g=": {
+      "title": "./islands/Header.tsx",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9pc2xhbmRzL0hlYWRlci50c3g=@Props"
+        }
+      ],
+      "required": [
+        "__resolveType"
+      ],
+      "properties": {
+        "__resolveType": {
+          "type": "string",
+          "enum": [
+            "./islands/Header.tsx"
+          ],
+          "default": "./islands/Header.tsx"
+        }
+      }
+    },
     "Li9pc2xhbmRzL0hlYWRlckJ1dHRvbi50c3g=": {
       "title": "./islands/HeaderButton.tsx",
       "type": "object",
@@ -11437,6 +11800,11 @@
     "Li9pc2xhbmRzL0hlYWRlclNlYXJjaGJhci50c3g=": {
       "title": "./islands/HeaderSearchbar.tsx",
       "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL2hlYWRlci9TZWFyY2hiYXIudHN4@Props"
+        }
+      ],
       "required": [
         "__resolveType"
       ],
@@ -11447,6 +11815,27 @@
             "./islands/HeaderSearchbar.tsx"
           ],
           "default": "./islands/HeaderSearchbar.tsx"
+        }
+      }
+    },
+    "Li9pc2xhbmRzL01lbnUudHN4": {
+      "title": "./islands/Menu.tsx",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9pc2xhbmRzL01lbnUudHN4@Props"
+        }
+      ],
+      "required": [
+        "__resolveType"
+      ],
+      "properties": {
+        "__resolveType": {
+          "type": "string",
+          "enum": [
+            "./islands/Menu.tsx"
+          ],
+          "default": "./islands/Menu.tsx"
         }
       }
     },
@@ -11495,6 +11884,22 @@
             "./islands/ProductImageZoom.tsx"
           ],
           "default": "./islands/ProductImageZoom.tsx"
+        }
+      }
+    },
+    "Li9pc2xhbmRzL1Njcm9sbGFibGVOYXZiYXIudHN4": {
+      "title": "./islands/ScrollableNavbar.tsx",
+      "type": "object",
+      "required": [
+        "__resolveType"
+      ],
+      "properties": {
+        "__resolveType": {
+          "type": "string",
+          "enum": [
+            "./islands/ScrollableNavbar.tsx"
+          ],
+          "default": "./islands/ScrollableNavbar.tsx"
         }
       }
     },
@@ -11991,7 +12396,7 @@
       "type": "object",
       "allOf": [
         {
-          "$ref": "#/definitions/ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL2hlYWRlci9IZWFkZXIudHN4@Props"
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9pc2xhbmRzL0hlYWRlci50c3g=@Props"
         }
       ],
       "required": [
@@ -12067,6 +12472,27 @@
             "deco-sites/abracadabra/sections/LowerBanners.tsx"
           ],
           "default": "deco-sites/abracadabra/sections/LowerBanners.tsx"
+        }
+      }
+    },
+    "ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9zZWN0aW9ucy9QYXJ0bmVyc2hpcHMudHN4": {
+      "title": "deco-sites/abracadabra/sections/Partnerships.tsx",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL3VpL1BhcnRuZXJzaGlwcy50c3g=@Props"
+        }
+      ],
+      "required": [
+        "__resolveType"
+      ],
+      "properties": {
+        "__resolveType": {
+          "type": "string",
+          "enum": [
+            "deco-sites/abracadabra/sections/Partnerships.tsx"
+          ],
+          "default": "deco-sites/abracadabra/sections/Partnerships.tsx"
         }
       }
     },
@@ -13250,6 +13676,9 @@
           "$ref": "#/definitions/Li9pc2xhbmRzL0Zvb3RlckJhbm5lci50c3g="
         },
         {
+          "$ref": "#/definitions/Li9pc2xhbmRzL0hlYWRlci50c3g="
+        },
+        {
           "$ref": "#/definitions/Li9pc2xhbmRzL0hlYWRlckJ1dHRvbi50c3g="
         },
         {
@@ -13259,6 +13688,9 @@
           "$ref": "#/definitions/Li9pc2xhbmRzL0hlYWRlclNlYXJjaGJhci50c3g="
         },
         {
+          "$ref": "#/definitions/Li9pc2xhbmRzL01lbnUudHN4"
+        },
+        {
           "$ref": "#/definitions/Li9pc2xhbmRzL05ld3NsZXR0ZXIudHN4"
         },
         {
@@ -13266,6 +13698,9 @@
         },
         {
           "$ref": "#/definitions/Li9pc2xhbmRzL1Byb2R1Y3RJbWFnZVpvb20udHN4"
+        },
+        {
+          "$ref": "#/definitions/Li9pc2xhbmRzL1Njcm9sbGFibGVOYXZiYXIudHN4"
         },
         {
           "$ref": "#/definitions/Li9pc2xhbmRzL1NlYXJjaENvbnRyb2xzLnRzeA=="
@@ -13374,6 +13809,9 @@
         },
         {
           "$ref": "#/definitions/ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9zZWN0aW9ucy9Mb3dlckJhbm5lcnMudHN4"
+        },
+        {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9zZWN0aW9ucy9QYXJ0bmVyc2hpcHMudHN4"
         },
         {
           "$ref": "#/definitions/ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9zZWN0aW9ucy9Qcm9kdWN0RGV0YWlscy50c3g="

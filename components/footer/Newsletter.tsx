@@ -25,9 +25,12 @@ function Newsletter() {
   };
 
   return (
-    <div class="flex flex-col items-center gap-4 sm:gap-4">
-      <span class="font-medium text-xl text-red-base">
-        Cadastre-se e receba novidades exclusivas
+    <div class="flex flex-col items-center md:items-start gap-4 sm:gap-2">
+      <span class="hidden md:flex font-bold text-lg text-red-medium">
+        Receba novidades exclusivas
+      </span>
+      <span class="flex md:hidden font-bold text-center text-red-medium">
+        Se inscreva para receber novidades e promoções
       </span>
       <form
         class="w-full form-control"

@@ -21,7 +21,7 @@ export interface Props {
 function Stamps({ stamps }: Props) {
   if (stamps) {
     return (
-      <div class="flex flex-row items-start gap-20">
+      <div class="flex flex-col lg:flex-row items-center lg:items-start gap-12 md:gap-20">
         {stamps?.map((
           {
             title,
@@ -34,7 +34,7 @@ function Stamps({ stamps }: Props) {
             alt,
           },
         ) => (
-          <div class="flex flex-col">
+          <div class="flex flex-col items-center lg:items-start">
             <span>{title}</span>
             <Picture>
               <Source
@@ -59,9 +59,9 @@ function Stamps({ stamps }: Props) {
         ))}
       </div>
     );
-  } else {
-    return null;
   }
+
+  return null;
 }
 
 export default Stamps;

@@ -16,12 +16,12 @@ export interface INavItem {
   image?: { src?: string; alt?: string };
 }
 
-function NavItem({ item }: { item: INavItem }) {
+function NavItem({ item, isScrollableNavbar }: { item: INavItem, isScrollableNavbar?: boolean }) {
   const { href, label, children, image, columns } = item;
 
   return (
-    <li class="group flex items-center relative text-[13px] hover:text-yellow-base">
-      <a href={href} class="px-3 py-3 uppercase">
+    <li class="group flex items-center relative text-[13px] hover:text-yellow-base transition-colors duration-400">
+      <a href={href} class={`${isScrollableNavbar ? `text-xs` : 'px-3 py-3 uppercase'} ${item.label === 'Espaço Casa' && 'text-red-base font-bold' || item.label === 'OFF' && 'font-bold'}`}>
         {label}
       </a>
 

@@ -42,6 +42,21 @@
   .scrollbar-none::-webkit-scrollbar {
     display: none;
   }
+  
+  .scrollbar::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  
+  .scrollbar::-webkit-scrollbar-track {
+    border-radius: 100vh;
+    background: #f7f4ed;
+  }
+  
+  .scrollbar::-webkit-scrollbar-thumb {
+    background: #ffce00;
+    border-radius: 100vh;
+  }
 
   @keyframes slide-left-frame {
     0% {
@@ -73,6 +88,32 @@
     }
   }
 
+  @keyframes slide-dropdown-frame {
+    0% {
+      transform: translate3d(0, -30px, 0);
+    }
+    to {
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+  @keyframes slide-dropdown-frame-reverse {
+    0% {
+      transform: translate3d(0, 0, 0);
+    }
+    to {
+      transform: translate3d(0, -30px, 0);
+    }
+  }
+
+  .animate-dropdown-reverse {
+    animation: slide-dropdown-frame-reverse .3s forwards;
+  }
+  
+  .animate-dropdown {
+    animation: slide-dropdown-frame .3s forwards;
+  }
+
   .animate-slide-left {
     animation: slide-left-frame 0.4s ease normal;
   }
@@ -98,4 +139,31 @@
   to {
     --dot-progress: 100%
   }
+}
+
+.arrow-down::after {
+  content: '';
+    display: inline-block;
+    width: 20px;
+    height: 15px;
+    position: absolute;
+    right: -22px;
+    top: 30%;
+    background-image: url("data:image/svg+xml;charset=utf-8,<svg class='w-4 h-4' xmlns='http://www.w3.org/2000/svg' version='1.1' viewBox='0 0 64 80' x='0px' y='0px'><title>down-arrow</title><path fill='#6d6e71' d='M5.243 14.938c-0.941 0-1.896 0.366-2.61 1.080-1.429 1.429-1.429 3.792 0 5.221l26.741 26.741c0.69 0.69 1.664 1.080 2.61 1.080 0.937 0 1.871-0.341 2.61-1.080l26.704-26.706c1.496-1.408 1.515-3.827 0.086-5.256s-3.792-1.429-5.221 0c-0 0-0.001 0.001-0.001 0.001v0l-24.131 24.178-24.179-24.179c-0.715-0.715-1.67-1.080-2.61-1.080z'/></svg>");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    transform: rotate(-180deg);
+}
+
+.before-absolute::before {
+  content: "";
+  width: 0;
+  height: 0;
+  border-color: transparent transparent #9b999b;
+  border-style: solid;
+  border-width: 0 5px 6px;
+  position: absolute;
+  top: -7px;
+  right: 5%;
 }

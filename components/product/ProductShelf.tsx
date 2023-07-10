@@ -28,17 +28,17 @@ function ProductShelf({
   return (
     <div
       id={id}
-      class="container grid grid-cols-[48px_1fr_48px] grid-rows-[48px_1fr_48px_1fr] py-10 px-0 sm:px-5"
+      class="container w-full sm:w-[1180px] flex-row grid grid-cols-[48px_1fr_48px] grid-rows-[48px_1fr_48px_1fr] px-5 sm:px-0"
     >
-      <h2 class="text-center row-start-1 col-span-full">
+      <h2 class="text-center lg:text-start row-start-1 col-span-full">
         <span class="font-medium text-2xl">{title}</span>
       </h2>
 
-      <Slider class="carousel carousel-center sm:carousel-end gap-6 col-span-full row-start-2 row-end-5">
+      <Slider class="flex overflow-x-scroll snap-mandatory scroll-smooth sm:snap-end scrollbar gap-6 col-span-full row-start-2 row-end-5">
         {products?.map((product, index) => (
           <Slider.Item
             index={index}
-            class="carousel-item w-[270px] sm:w-[292px] first:ml-6 sm:first:ml-0 last:mr-6 sm:last:mr-0"
+            class="carousel-item w-[270px] sm:w-[292px] mb-4"
           >
             <ProductCard product={product} itemListName={title} />
           </Slider.Item>

@@ -30,7 +30,7 @@ function Banner({ banner = [] }: Props) {
     } = banner[0];
 
     return (
-      <div className="container flex row w-100">
+      <div className="md:container">
         <Picture>
           <Source
             media="(max-width: 767px)"

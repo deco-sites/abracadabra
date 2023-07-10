@@ -4,48 +4,70 @@ import NavItem from "./NavItem.tsx";
 import { asset } from "$fresh/runtime.ts";
 import { navbarHeight } from "./constants.ts";
 import type { INavItem } from "./NavItem.tsx";
-import type { Props as SearchbarProps } from "$store/components/search/Searchbar.tsx";
+import Login from "./LoginElement.tsx";
+import type { SearchbarProps } from "$store/components/header/Searchbar.tsx";
 
-function Navbar({ items, searchbar }: {
+function Navbar({
+  items,
+  searchbar,
+}: {
   items: INavItem[];
   searchbar: SearchbarProps;
 }) {
+  const isHome = self.location?.pathname === "/";
+
   return (
     <>
       {/* Mobile Version */}
       <div
-        style={{ height: navbarHeight }}
-        class="md:hidden flex flex-row justify-between items-center border-b border-base-200 w-full pl-2 pr-6 gap-2"
+        class="md:hidden flex flex-col justify-between items-center border-b border-base-200 shadow-md w-full h-full px-2 gap-2 py-2 md:py-0"
       >
-        <div class="flex justify-start flex-[4_1_0%]">
-          <Buttons variant="menu" />
+        <div class="grid grid-cols-3 w-full">
+          <div class="flex justify-start">
+            <Buttons variant="menu" />
+          </div>
+
+          <a
+            href="/"
+            class="flex justify-center"
+            style={{ minHeight: navbarHeight }}
+            aria-label="Store logo"
+          >
+            <img
+              class="object-cover"
+              src={asset("/logo_cadabra_site.png")}
+              width={42}
+              height={42}
+            />
+          </a>
+
+          <div class="flex justify-end">
+            <a
+              class="btn btn-square btn-ghost bg-transparent hover:bg-transparent"
+              href="/login"
+              aria-label="Log in"
+            >
+              <img
+                class="object-cover"
+                src={asset("/icon-user.png")}
+                width={23}
+                height={23}
+              />
+            </a>
+            <Buttons variant="cart" />
+          </div>
         </div>
-
-        <a
-          href="/"
-          class="flex  justify-center flex-[5_1_0%]"
-          style={{ minHeight: navbarHeight }}
-          aria-label="Store logo"
-        >
-          <img
-            class="object-cover"
-            src={asset("/logo_cadabra_site.png")}
-            width={40}
-            height={40}
-          />
-        </a>
-
-        <div class="flex gap-1 justify-end flex-[3_1_0%]">
-          <Buttons variant="search" />
-          <Buttons variant="cart" />
+        <div class="w-full px-2">
+          {isHome && (
+            <Searchbar searchbar={searchbar} />
+          )}
         </div>
       </div>
 
       {/* Desktop Version */}
-      <div class="hidden md:flex flex-col w-[1180px] mx-auto pl-2 pr-6">
-        <div class="container flex flex-row justify-between items-center">
-          <div class="flex-none w-44 flex items-center justify-none">
-            <Buttons variant="search" />
+      <div class="hidden md:flex flex-col max-w-[1180px] mx-auto pl-2 pr-6">
+        <div class="lg:container flex flex-row justify-between items-center">
+          <div class="md:w-72 lg:w-auto">
             <Searchbar searchbar={searchbar} />
           </div>
           <div class="flex-auto flex justify-center">
@@ -62,8 +84,10 @@ function Navbar({ items, searchbar }: {
               />
             </a>
           </div>
-          <div class="flex-none w-44 flex items-center justify-end gap-2">
-            <a
+          <div class="flex-none w-54 flex items-center justify-start gap-2">
+            {
+              <Login name="" />
+              /* <a
               class="btn btn-square btn-ghost bg-transparent hover:bg-transparent"
               href="/login"
               aria-label="Log in"
@@ -74,11 +98,12 @@ function Navbar({ items, searchbar }: {
                 width={20}
                 height={23}
               />
-            </a>
+            </a> */
+            }
             <Buttons variant="cart" />
           </div>
         </div>
-        <div class="container flex-auto flex justify-center">
+        <div class="flex-auto flex-wrap flex items-center justify-center w-full max-w-[1180px]">
           {items.map((item) => <NavItem item={item} />)}
         </div>
       </div>
