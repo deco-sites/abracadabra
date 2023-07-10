@@ -102,10 +102,10 @@ function ProductInfo({ page }: { page: ProductDetailsPage }) {
             price={price ?? 0}
             currencySimbol={offers!.priceCurrency!}
           />
-          </div>
-          <span class="flex">
-            <Installments installments={installments} />
-          </span>
+        </div>
+        <span class="flex">
+          <Installments installments={installments} />
+        </span>
       </div>
       {/* Sku Selector */}
       <div class="mt-4 sm:mt-6">

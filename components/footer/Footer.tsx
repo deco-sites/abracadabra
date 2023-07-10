@@ -75,15 +75,19 @@ function Footer(
   { sections = [], contacts = [], socialMedias = [], banner = [], stamp = [] }:
     Props,
 ) {
-  const isHome = self.location?.pathname === "/";
+  const isHome = true;
 
   return (
     <footer class="w-full flex flex-col items-center divide-y divide-primary-content">
-      <div class={`${isHome ? 'hidden sm:flex' : 'hidden'} justify-center max-w-[1180px]`}>
-        <FooterContainer>
-          <Banner banner={banner} />
-        </FooterContainer>
-      </div>
+      {isHome && (
+        <div
+          class="hidden sm:flex justify-center max-w-[1180px]"
+        >
+          <FooterContainer>
+            <Banner banner={banner} />
+          </FooterContainer>
+        </div>
+      )}
 
       <div class="w-full bg-gray-light">
         <div class="container w-full flex flex-col divide-y divide-primary-content">

@@ -20,7 +20,7 @@ function Navbar({
     <>
       {/* Mobile Version */}
       <div class="md:hidden flex flex-col justify-between items-center border-b border-base-200 shadow-md w-full h-full px-2 gap-2 py-2 md:py-0">
-        <div class="grid grid-cols-3 w-full">
+        <div class="grid grid-cols-3 w-full h-full">
           <div class="flex justify-start">
             <Buttons variant="menu" />
           </div>
@@ -55,9 +55,11 @@ function Navbar({
             <Buttons variant="cart" />
           </div>
         </div>
-        <div class="w-full px-2">
-          {isHome && <Searchbar searchbar={searchbar} />}
-        </div>
+        {isHome && (
+          <div class="w-full px-2">
+            <Searchbar searchbar={searchbar} />
+          </div>
+        )}
       </div>
 
       {/* Desktop Version */}
