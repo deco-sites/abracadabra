@@ -4,7 +4,10 @@ import type { SearchbarProps } from "$store/components/header/Searchbar.tsx";
 import type { Props as CampaignTimerProps } from "$store/components/header/CampaignTimer.tsx";
 import type { LoaderReturnType } from "$live/types.ts";
 import type { Product, Suggestion } from "deco-sites/std/commerce/types.ts";
-import type { TopbarLeftProp, TopbarRightProp } from "$store/components/header/Topbar.tsx";
+import type {
+  TopbarLeftProp,
+  TopbarRightProp,
+} from "$store/components/header/Topbar.tsx";
 
 import { useEffect } from "preact/compat";
 import { useState } from "preact/hooks";
@@ -43,7 +46,7 @@ export interface Props {
 
   topbarLeft: TopbarLeftProp[];
   topbarRight: TopbarRightProp[];
-  
+
   /** @title Search Bar */
   searchbar?: SearchbarProps;
   /**
@@ -83,43 +86,43 @@ function Header(
   useEffect(() => {
     const handleScroll = () => {
       if (self.scrollY > 0) {
-        setIsScrolled(true)
+        setIsScrolled(true);
       } else {
-        setIsScrolled(false)
+        setIsScrolled(false);
       }
-    }
+    };
 
-    self.addEventListener('scroll', handleScroll)
+    self.addEventListener("scroll", handleScroll);
 
     return () => {
-      self.removeEventListener('scroll', handleScroll)
-    }
-  }, [])
+      self.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   return (
     <>
       <header class="z-50 relative">
         <div class="bg-transparent hover:bg-role-neutral-light-1 hover:border-b-role-neutral-light-3 w-full z-50">
-          {!isScrolled ? (
-            <>
-              {campaignTimer && (
-                <CampaignTimer {...campaignTimer} />
-              )}
-              <AdBar label={adBarLabel} />
-              <Topbar topbarLeft={topbarLeft} topbarRight={topbarRight} />
-              <Navbar items={navItems} searchbar={searchbar} />
-            </>
-          ) : (
-            <div class="fixed w-full bg-base-100">
-              <div class="flex md:hidden">
-                <Navbar items={navItems} searchbar={searchbar} />            
-              </div>
+          {!isScrolled
+            ? (
+              <>
+                {campaignTimer && <CampaignTimer {...campaignTimer} />}
+                <AdBar label={adBarLabel} />
+                <Topbar topbarLeft={topbarLeft} topbarRight={topbarRight} />
+                <Navbar items={navItems} searchbar={searchbar} />
+              </>
+            )
+            : (
+              <div class="fixed w-full bg-base-100">
+                <div class="flex md:hidden">
+                  <Navbar items={navItems} searchbar={searchbar} />
+                </div>
 
-              <div class="hidden md:flex">
-                <ScrollableNavbar items={navItems} searchbar={searchbar} />
+                <div class="hidden md:flex">
+                  <ScrollableNavbar items={navItems} searchbar={searchbar} />
+                </div>
               </div>
-            </div>
-          )}
+            )}
         </div>
 
         <Modals

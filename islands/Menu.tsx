@@ -1,4 +1,4 @@
-import { useState } from 'preact/hooks';
+import { useState } from "preact/hooks";
 
 export interface NavSubItem {
   label: string;
@@ -10,7 +10,12 @@ export interface Props {
   items: NavSubItem[];
 }
 
-function MenuItem({ item, onItemClick }: { item: NavSubItem, onItemClick: (subitem: NavSubItem) => void }) {
+function MenuItem(
+  { item, onItemClick }: {
+    item: NavSubItem;
+    onItemClick: (subitem: NavSubItem) => void;
+  },
+) {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleItemClick = () => {
@@ -23,14 +28,19 @@ function MenuItem({ item, onItemClick }: { item: NavSubItem, onItemClick: (subit
   };
 
   return (
-    <div class={`relative ${isOpen && 'w-full'}`}>
+    <div class={`relative ${isOpen && "w-full"}`}>
       <div
         class="py-2 px-4 cursor-pointer flex justify-between"
         onClick={handleItemClick}
       >
         <a
           href={item.href}
-          class={`${item.label === 'Espaço Casa' && 'text-red-base font-bold' || item.label === 'OFF' && 'font-bold'}`}>{item.label}
+          class={`${
+            item.label === "Espaço Casa" && "text-red-base font-bold" ||
+            item.label === "OFF" && "font-bold"
+          }`}
+        >
+          {item.label}
         </a>
         {item.children && item.children.length > 0 && (
           <svg
@@ -54,7 +64,9 @@ function MenuItem({ item, onItemClick }: { item: NavSubItem, onItemClick: (subit
 }
 
 function Menu({ items }: Props) {
-  const [selectedSubitem, setSelectedSubitem] = useState<NavSubItem | null>(null);
+  const [selectedSubitem, setSelectedSubitem] = useState<NavSubItem | null>(
+    null,
+  );
   const [isTransitioning, setIsTransitioning] = useState(false);
 
   const handleItemClick = (subitem: NavSubItem) => {
@@ -76,11 +88,17 @@ function Menu({ items }: Props) {
   return (
     <>
       <div class="flex items-center justify-start px-4 pt-1 pb-5 gap-2">
-        <button title="Fazer Login" class="bg-yellow-base items-center justify-center py-2 px-3 flex uppercase text-white text-sm font-normal w-full">
+        <button
+          title="Fazer Login"
+          class="bg-yellow-base items-center justify-center py-2 px-3 flex uppercase text-white text-sm font-normal w-full"
+        >
           Faça o seu login
         </button>
 
-        <button title="Cadastrar-se" class="bg-yellow-base items-center justify-center py-2 px-3 flex uppercase text-white text-sm font-normal w-full">
+        <button
+          title="Cadastrar-se"
+          class="bg-yellow-base items-center justify-center py-2 px-3 flex uppercase text-white text-sm font-normal w-full"
+        >
           Cadastre-se
         </button>
       </div>
@@ -94,12 +112,19 @@ function Menu({ items }: Props) {
       </ul>
 
       {selectedSubitem && (
-        <div class={`fixed w-[500px] h-full bg-white transition-transform duration-300 ${isTransitioning ? 'transform translate-x-full' : 'transform translate-x-0'}`}>
+        <div
+          class={`fixed w-[500px] h-full bg-white transition-transform duration-300 ${
+            isTransitioning
+              ? "transform translate-x-full"
+              : "transform translate-x-0"
+          }`}
+        >
           <div class="flex flex-col h-full overflow-y-auto">
-            <button onClick={handleBackClick} class="flex items-center justify-start px-4 py-2 bg-white">
-              <div
-                class="flex text-sm hover:text-yellow-base transition-colors"
-              >
+            <button
+              onClick={handleBackClick}
+              class="flex items-center justify-start px-4 py-2 bg-white"
+            >
+              <div class="flex text-sm hover:text-yellow-base transition-colors">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -117,7 +142,9 @@ function Menu({ items }: Props) {
               </div>
               <a
                 class={`py-2 px-4 hover:text-yellow-base transition-colors ${
-                  !selectedSubitem.children ? 'text-black' : 'text-yellow-base font-bold'
+                  !selectedSubitem.children
+                    ? "text-black"
+                    : "text-yellow-base font-bold"
                 }`}
               >
                 {selectedSubitem.label}

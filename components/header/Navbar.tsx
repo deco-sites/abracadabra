@@ -19,9 +19,7 @@ function Navbar({
   return (
     <>
       {/* Mobile Version */}
-      <div
-        class="md:hidden flex flex-col justify-between items-center border-b border-base-200 shadow-md w-full h-full px-2 gap-2 py-2 md:py-0"
-      >
+      <div class="md:hidden flex flex-col justify-between items-center border-b border-base-200 shadow-md w-full h-full px-2 gap-2 py-2 md:py-0">
         <div class="grid grid-cols-3 w-full">
           <div class="flex justify-start">
             <Buttons variant="menu" />
@@ -58,9 +56,7 @@ function Navbar({
           </div>
         </div>
         <div class="w-full px-2">
-          {isHome && (
-            <Searchbar searchbar={searchbar} />
-          )}
+          {isHome && <Searchbar searchbar={searchbar} />}
         </div>
       </div>
 
@@ -104,7 +100,7 @@ function Navbar({
           </div>
         </div>
         <div class="flex-auto flex-wrap flex items-center justify-center w-full max-w-[1180px]">
-          {items.map((item) => <NavItem item={item} />)}
+          {items.map((item, index) => <NavItem item={item} index={index} />)}
         </div>
       </div>
     </>

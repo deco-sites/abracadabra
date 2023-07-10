@@ -35,7 +35,7 @@ const snippet = (expiresAt: string, rootId: string) => {
 
     const days = Math.floor(delta / (1000 * 60 * 60 * 24));
     const hours = Math.floor(
-      (delta % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+      (delta % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
     );
     const minutes = Math.floor((delta % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((delta % (1000 * 60)) / 1000);

@@ -16,19 +16,33 @@ export interface INavItem {
   image?: { src?: string; alt?: string };
 }
 
-function NavItem({ item, isScrollableNavbar }: { item: INavItem, isScrollableNavbar?: boolean }) {
+function NavItem(
+  { item, index, isScrollableNavbar }: {
+    item: INavItem;
+    index?: number;
+    isScrollableNavbar?: boolean;
+  },
+) {
   const { href, label, children, image, columns } = item;
 
   return (
     <li class="group flex items-center relative text-[13px] hover:text-yellow-base transition-colors duration-400">
-      <a href={href} class={`${isScrollableNavbar ? `text-xs` : 'px-3 py-3 uppercase'} ${item.label === 'Espaço Casa' && 'text-red-base font-bold' || item.label === 'OFF' && 'font-bold'}`}>
+      <a
+        href={href}
+        class={`${isScrollableNavbar ? `text-xs` : "px-3 py-3 uppercase"} ${
+          item.label === "Espaço Casa" && "text-red-base font-bold" ||
+          item.label === "OFF" && "font-bold"
+        }`}
+      >
         {label}
       </a>
 
       {children && children.length > 0 &&
         (
           <div
-            class="absolute hidden hover:flex group-hover:flex bg-base-100 z-50 justify-start items-stretch border-t border-yellow-base w-[360px] h-[300px]"
+            class={`${
+              index! > 5 && "-translate-x-1/2 flex-row-reverse"
+            } absolute hidden hover:flex group-hover:flex bg-base-100 z-50 justify-start items-stretch border-t border-yellow-base w-[360px] h-[300px]`}
             style={{ top: navbarHeight, left: "0px" }}
           >
             {image?.src && (
@@ -44,12 +58,13 @@ function NavItem({ item, isScrollableNavbar }: { item: INavItem, isScrollableNav
               class="p-4 bg-white border-t border-yellow-base mt-[-1px]"
               style={{ columnCount: columns }}
             >
-              <li class="p-2 border border-gray-base text-gray-base hover:text-yellow-base">
+              <li class="flex items-center justify-center p-2 border border-gray-base text-gray-base opacity-90 hover:opacity-100 transition-colors duration-100 max-w-[80px]">
+                <a href={href}>Ver tudo</a>
               </li>
               {children.map((node) => (
-                <li class="p-2 text-gray-base hover:text-yellow-base">
+                <li class="p-2 text-gray-base opacity-90 hover:opacity-100 transition-colors duration-100">
                   <a
-                    class="hover:underline block min-w-[170px]"
+                    class="block min-w-[170px]"
                     href={node.href}
                   >
                     <span>{node.label}</span>

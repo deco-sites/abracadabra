@@ -9,7 +9,7 @@ import Icon from "$store/components/ui/Icon.tsx";
 import Button from "$store/components/ui/Button.tsx";
 import Searchbar from "$store/islands/HeaderSearchbar.tsx";
 
-import { useState } from 'preact/hooks';
+import { useState } from "preact/hooks";
 
 export default function ScrollableNavbar({ items, searchbar }: {
   items: INavItem[];
@@ -40,23 +40,25 @@ export default function ScrollableNavbar({ items, searchbar }: {
 
         <>
           <div class="flex items-center justify-center">
-            {isOpenedSearchbar ? (
-              <Button
-                class="btn-square btn-ghost bg-transparent hover:bg-transparent"
-                aria-label="search icon button"
-                onClick={() => setIsOpenedSearchbar(false)}
-              >
-                <Icon id="XMark" width={25} height={25} strokeWidth={2} />
-              </Button>
-            ) : (
-              <Button
-                class="btn-square btn-ghost bg-transparent hover:bg-transparent"
-                aria-label="search icon button"
-                onClick={() => setIsOpenedSearchbar(true)}
-              >
-                <Icon id="Search" width={25} height={25} strokeWidth={0.1} />
-              </Button>
-            )}
+            {isOpenedSearchbar
+              ? (
+                <Button
+                  class="btn-square btn-ghost bg-transparent hover:bg-transparent"
+                  aria-label="search icon button"
+                  onClick={() => setIsOpenedSearchbar(false)}
+                >
+                  <Icon id="XMark" width={25} height={25} strokeWidth={2} />
+                </Button>
+              )
+              : (
+                <Button
+                  class="btn-square btn-ghost bg-transparent hover:bg-transparent"
+                  aria-label="search icon button"
+                  onClick={() => setIsOpenedSearchbar(true)}
+                >
+                  <Icon id="Search" width={25} height={25} strokeWidth={0.1} />
+                </Button>
+              )}
 
             {isOpenedSearchbar && (
               <div class="absolute md:translate-y-16 md:right-20 lg:translate-y-14 lg:right-1/4 max-w-xl bg-white transition-all transform duration-300 ease-in-out">
@@ -69,5 +71,5 @@ export default function ScrollableNavbar({ items, searchbar }: {
         </>
       </div>
     </header>
-  )
+  );
 }
