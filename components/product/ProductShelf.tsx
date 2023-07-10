@@ -28,7 +28,7 @@ function ProductShelf({
   return (
     <div
       id={id}
-      class="container w-full sm:w-[1180px] flex-row grid grid-cols-[48px_1fr_48px] grid-rows-[48px_1fr_48px_1fr] px-5 sm:px-0"
+      class="container w-full sm:w-[1180px] flex-row grid grid-cols-[48px_1fr_48px] grid-rows-[48px_1fr_48px_1fr] px-5 sm:px-0 mb-12"
     >
       <h2 class="text-center lg:text-start row-start-1 col-span-full">
         <span class="font-medium text-2xl">{title}</span>
