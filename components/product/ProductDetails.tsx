@@ -4,6 +4,8 @@ import ShippingSimulation from "$store/islands/ShippingSimulation.tsx";
 import Breadcrumb from "$store/components/ui/Breadcrumb.tsx";
 import Button from "$store/components/ui/Button.tsx";
 import Icon from "$store/components/ui/Icon.tsx";
+import Discount from "./Discount.tsx";
+import Installments from "./Installments.tsx";
 import Image from "deco-sites/std/components/Image.tsx";
 import Slider from "$store/components/ui/Slider.tsx";
 import SliderJS from "$store/components/ui/SliderJS.tsx";
@@ -81,18 +83,29 @@ function ProductInfo({ page }: { page: ProductDetailsPage }) {
         </div>
       </div>
       {/* Prices */}
-      <div class="mt-4">
-        <div class="flex flex-row gap-2 items-center">
-          <span class="line-through text-base-300 text-xs">
-            {formatPrice(listPrice, offers!.priceCurrency!)}
+      <div class="flex flex-col">
+        <div class="flex items-end justify-start gap-6 mt-4">
+          <div>
+            {Math.floor((listPrice ?? 0) - (price ?? 0)) > 0 && (
+              <div class="flex flex-col-reverse sm:flex-row gap-2 items-start sm:items-center">
+                <span class="line-through text-gray-base font-bold text-sm leading-[22px]">
+                  {formatPrice(listPrice, offers!.priceCurrency!)}
+                </span>
+              </div>
+            )}
+            <span class="text-gray-base font-bold text-sm leading-[22px]">
+              {formatPrice(price, offers!.priceCurrency!)}
+            </span>
+          </div>
+          <Discount
+            listPrice={listPrice ?? 0}
+            price={price ?? 0}
+            currencySimbol={offers!.priceCurrency!}
+          />
+          </div>
+          <span class="flex">
+            <Installments installments={installments} />
           </span>
-          <span class="font-medium text-xl text-secondary">
-            {formatPrice(price, offers!.priceCurrency!)}
-          </span>
-        </div>
-        <span class="text-sm text-base-300">
-          {installments}
-        </span>
       </div>
       {/* Sku Selector */}
       <div class="mt-4 sm:mt-6">
@@ -241,15 +254,15 @@ function Details({
         />
         <div
           id={id}
-          class="grid grid-cols-1 gap-4 sm:grid-cols-[max-content_1fr_316px] sm:grid-rows-1 sm:justify-center"
+          class="grid grid-cols-1 gap-4 lg:grid-cols-[max-content_1fr_316px] lg:grid-rows-1 lg:justify-center"
         >
           {/* Image Slider */}
-          <div class="relative sm:col-start-2 sm:col-span-1 sm:row-start-1">
+          <div class="relative lg:col-start-2 lg:col-span-1 lg:row-start-1">
             <Slider class="carousel gap-6">
               {slicedImages.map((img, index) => (
                 <Slider.Item
                   index={index}
-                  class="carousel-item"
+                  class="carousel-item w-full lg:w-auto"
                 >
                   <Image
                     class="w-full"
@@ -293,7 +306,7 @@ function Details({
           </div>
 
           {/* Dots */}
-          <ul class="flex gap-2 sm:justify-start overflow-auto px-4 sm:px-0 sm:flex-col sm:col-start-1 sm:col-span-1 sm:row-start-1">
+          <ul class="flex gap-2 lg:justify-start overflow-auto px-4 lg:px-0 lg:flex-col lg:col-start-1 lg:col-span-1 lg:row-start-1">
             {slicedImages.map((img, index) => (
               <li class="">
                 <Slider.Dot index={index}>
@@ -311,7 +324,7 @@ function Details({
           </ul>
 
           {/* Product Info */}
-          <div class="px-4 sm:pr-0 sm:pl-6 sm:col-start-3 sm:col-span-1 sm:row-start-1">
+          <div class="px-4 lg:pr-0 lg:pl-6 lg:col-start-3 lg:col-span-1 lg:row-start-1">
             <ProductInfo page={page} />
           </div>
         </div>
