@@ -13,7 +13,7 @@ import { mapProductToAnalyticsItem } from "deco-sites/std/commerce/utils/product
 import { sendEventOnClick } from "$store/sdk/analytics.tsx";
 import type { Product } from "deco-sites/std/commerce/types.ts";
 import { ClusterProps } from "../search/SearchResult.tsx";
-import Clusters, { ClusterBadge } from "./Clusters.tsx";
+import Clusters from "./Clusters.tsx";
 
 interface Props {
   product: Product;
@@ -57,6 +57,7 @@ function ProductCard(
   const { listPrice, price, seller, installments, availability } = useOffer(
     offers,
   );
+  console.log("cluster", cluster);
 
   // http://localhost:8000/bicama-sofa-paglia-carvalho-malva/p?skuId=2012788
   // http://localhost:8000/beliche-contemporanea-com-cama-de-embutir-branco/p?skuId=2006625

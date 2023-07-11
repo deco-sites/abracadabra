@@ -3,7 +3,6 @@ import AddToCartButton from "$store/islands/AddToCartButton.tsx";
 import ShippingSimulation from "$store/islands/ShippingSimulation.tsx";
 import Breadcrumb from "$store/components/ui/Breadcrumb.tsx";
 import Button from "$store/components/ui/Button.tsx";
-import Icon from "$store/components/ui/Icon.tsx";
 import Image from "deco-sites/std/components/Image.tsx";
 import Slider from "$store/components/ui/Slider.tsx";
 import SliderJS from "$store/components/ui/SliderJS.tsx";
@@ -16,8 +15,9 @@ import type { ProductDetailsPage } from "deco-sites/std/commerce/types.ts";
 import type { LoaderReturnType } from "$live/types.ts";
 
 import ProductSelector from "./ProductVariantSelector.tsx";
-import ProductImageZoom from "$store/islands/ProductImageZoom.tsx";
 import WishlistButton from "../wishlist/WishlistButton.tsx";
+import { ClusterProps } from "../search/SearchResult.tsx";
+import Clusters from "./Clusters.tsx";
 
 export type Variant = "front-back" | "slider" | "auto";
 
@@ -28,12 +28,12 @@ export interface Props {
    * @description Ask for the developer to remove this option since this is here to help development only and should not be used in production
    */
   variant?: Variant;
+  cluster?: ClusterProps[];
 }
 
 const WIDTH = 620;
 const HEIGHT = 620;
 const ASPECT_RATIO = `${WIDTH} / ${HEIGHT}`;
-
 /**
  * Rendered when a not found is returned by any of the loaders run on this page
  */
@@ -50,7 +50,9 @@ function NotFound() {
   );
 }
 
-function ProductInfo({ page }: { page: ProductDetailsPage }) {
+function ProductInfo(
+  { page, cluster }: { page: ProductDetailsPage; cluster?: ClusterProps[] },
+) {
   const {
     breadcrumbList,
     product,
@@ -62,10 +64,13 @@ function ProductInfo({ page }: { page: ProductDetailsPage }) {
     name,
     gtin,
     isVariantOf,
+    additionalProperty,
   } = product;
   const { price, listPrice, seller, installments, availability } = useOffer(
     offers,
   );
+
+  console.log("cluster", cluster);
 
   return (
     <>
@@ -78,6 +83,15 @@ function ProductInfo({ page }: { page: ProductDetailsPage }) {
           <span class="text-xs text-gray-base font-light">
             Cod. {isVariantOf?.model}
           </span>
+        </div>
+        <div
+          class={"flex flex-col lg:flex-row justify-between min-h-9 lg:min-h-6 mb-2"}
+        >
+          <Clusters
+            cluster={cluster}
+            additionalProperty={additionalProperty}
+            class="lg:w-[calc(50%-0.25rem)] gap-2 content-center justify-center min-h-4 lg:min-h-6 text-center"
+          />
         </div>
       </div>
       {/* Prices */}
@@ -217,7 +231,8 @@ const useStableImages = (product: ProductDetailsPage["product"]) => {
 function Details({
   page,
   variant,
-}: { page: ProductDetailsPage; variant: Variant }) {
+  cluster,
+}: { page: ProductDetailsPage; variant: Variant; cluster?: ClusterProps[] }) {
   const { product, breadcrumbList } = page;
   const id = `product-image-gallery:${useId()}`;
   const images = useStableImages(product);
@@ -312,7 +327,7 @@ function Details({
 
           {/* Product Info */}
           <div class="px-4 sm:pr-0 sm:pl-6 sm:col-start-3 sm:col-span-1 sm:row-start-1">
-            <ProductInfo page={page} />
+            <ProductInfo page={page} cluster={cluster} />
           </div>
         </div>
         <SliderJS rootId={id} actionType="mouseover"></SliderJS>
@@ -382,13 +397,13 @@ function Details({
 
       {/* Product Info */}
       <div class="px-4 sm:pr-0 sm:pl-6">
-        <ProductInfo page={page} />
+        <ProductInfo page={page} cluster={cluster} />
       </div>
     </div>
   );
 }
 
-function ProductDetails({ page, variant: maybeVar = "auto" }: Props) {
+function ProductDetails({ page, variant: maybeVar = "auto", cluster }: Props) {
   console.log(JSON.stringify(page?.product));
 
   /**
@@ -404,7 +419,9 @@ function ProductDetails({ page, variant: maybeVar = "auto" }: Props) {
 
   return (
     <div class="container max-w-[1180px] py-0 sm:py-10">
-      {page ? <Details page={page} variant={variant} /> : <NotFound />}
+      {page
+        ? <Details page={page} variant={variant} cluster={cluster} />
+        : <NotFound />}
     </div>
   );
 }
