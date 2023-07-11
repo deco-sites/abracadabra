@@ -34,7 +34,7 @@ function ProductShelf({
         <span class="font-medium text-2xl">{title}</span>
       </h2>
 
-      <Slider class="flex overflow-x-scroll snap-mandatory scroll-smooth sm:snap-end scrollbar gap-6 col-span-full row-start-2 row-end-5">
+      <Slider class="flex overflow-x-scroll snap-mandatory scroll-smooth sm:snap-end scrollbar gap-6 col-span-full row-start-2 row-end-5 mt-8">
         {products?.map((product, index) => (
           <Slider.Item
             index={index}

@@ -5,6 +5,7 @@ export type Props =
   & Omit<JSX.IntrinsicElements["button"], "loading">
   & {
     loading?: boolean;
+    isDefault?: boolean;
   };
 
 const Button = forwardRef<HTMLButtonElement, Props>(({
@@ -12,11 +13,14 @@ const Button = forwardRef<HTMLButtonElement, Props>(({
   class: _class = "",
   loading,
   disabled,
+  isDefault,
   ...props
 }, ref) => (
   <button
     {...props}
-    className={`btn no-animation ${_class} ${loading ? "loading" : ""}`}
+    className={`${!isDefault ? "btn no-animation" : ""} ${_class} ${
+      loading ? "loading" : ""
+    }`}
     disabled={disabled || loading}
     type={type}
     ref={ref}

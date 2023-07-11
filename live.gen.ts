@@ -7,22 +7,23 @@ import { DecoManifest } from "$live/types.ts";
 import * as $$$$0 from "./routes/styles.css.ts";
 import * as $$$$1 from "./routes/_app.tsx";
 import * as $$$$$0 from "./islands/AddToCartButton.tsx";
-import * as $$$$$1 from "./islands/Filters.tsx";
-import * as $$$$$2 from "./islands/FooterBanner.tsx";
-import * as $$$$$3 from "./islands/Header.tsx";
-import * as $$$$$4 from "./islands/HeaderButton.tsx";
-import * as $$$$$5 from "./islands/HeaderModals.tsx";
-import * as $$$$$6 from "./islands/HeaderSearchbar.tsx";
-import * as $$$$$7 from "./islands/Menu.tsx";
-import * as $$$$$8 from "./islands/Newsletter.tsx";
-import * as $$$$$9 from "./islands/OutOfStock.tsx";
-import * as $$$$$10 from "./islands/ProductImageZoom.tsx";
-import * as $$$$$11 from "./islands/ScrollableNavbar.tsx";
-import * as $$$$$12 from "./islands/SearchControls.tsx";
-import * as $$$$$13 from "./islands/ShippingSimulation.tsx";
-import * as $$$$$14 from "./islands/SliderJS.tsx";
-import * as $$$$$15 from "./islands/Stamps.tsx";
-import * as $$$$$16 from "./islands/WishlistButton.tsx";
+import * as $$$$$1 from "./islands/AddToCartWithQuantitySelector.tsx";
+import * as $$$$$2 from "./islands/Filters.tsx";
+import * as $$$$$3 from "./islands/FooterBanner.tsx";
+import * as $$$$$4 from "./islands/Header.tsx";
+import * as $$$$$5 from "./islands/HeaderButton.tsx";
+import * as $$$$$6 from "./islands/HeaderModals.tsx";
+import * as $$$$$7 from "./islands/HeaderSearchbar.tsx";
+import * as $$$$$8 from "./islands/Menu.tsx";
+import * as $$$$$9 from "./islands/Newsletter.tsx";
+import * as $$$$$10 from "./islands/OutOfStock.tsx";
+import * as $$$$$11 from "./islands/ProductImageZoom.tsx";
+import * as $$$$$12 from "./islands/ScrollableNavbar.tsx";
+import * as $$$$$13 from "./islands/SearchControls.tsx";
+import * as $$$$$14 from "./islands/ShippingSimulation.tsx";
+import * as $$$$$15 from "./islands/SliderJS.tsx";
+import * as $$$$$16 from "./islands/Stamps.tsx";
+import * as $$$$$17 from "./islands/WishlistButton.tsx";
 import * as $$$$$$$$0 from "./sections/BannerGrid.tsx";
 import * as $$$$$$$$1 from "./sections/BannerPLP.tsx";
 import * as $$$$$$$$2 from "./sections/Carousel.tsx";
@@ -171,22 +172,23 @@ const manifest = {
   },
   "islands": {
     "./islands/AddToCartButton.tsx": $$$$$0,
-    "./islands/Filters.tsx": $$$$$1,
-    "./islands/FooterBanner.tsx": $$$$$2,
-    "./islands/Header.tsx": $$$$$3,
-    "./islands/HeaderButton.tsx": $$$$$4,
-    "./islands/HeaderModals.tsx": $$$$$5,
-    "./islands/HeaderSearchbar.tsx": $$$$$6,
-    "./islands/Menu.tsx": $$$$$7,
-    "./islands/Newsletter.tsx": $$$$$8,
-    "./islands/OutOfStock.tsx": $$$$$9,
-    "./islands/ProductImageZoom.tsx": $$$$$10,
-    "./islands/ScrollableNavbar.tsx": $$$$$11,
-    "./islands/SearchControls.tsx": $$$$$12,
-    "./islands/ShippingSimulation.tsx": $$$$$13,
-    "./islands/SliderJS.tsx": $$$$$14,
-    "./islands/Stamps.tsx": $$$$$15,
-    "./islands/WishlistButton.tsx": $$$$$16,
+    "./islands/AddToCartWithQuantitySelector.tsx": $$$$$1,
+    "./islands/Filters.tsx": $$$$$2,
+    "./islands/FooterBanner.tsx": $$$$$3,
+    "./islands/Header.tsx": $$$$$4,
+    "./islands/HeaderButton.tsx": $$$$$5,
+    "./islands/HeaderModals.tsx": $$$$$6,
+    "./islands/HeaderSearchbar.tsx": $$$$$7,
+    "./islands/Menu.tsx": $$$$$8,
+    "./islands/Newsletter.tsx": $$$$$9,
+    "./islands/OutOfStock.tsx": $$$$$10,
+    "./islands/ProductImageZoom.tsx": $$$$$11,
+    "./islands/ScrollableNavbar.tsx": $$$$$12,
+    "./islands/SearchControls.tsx": $$$$$13,
+    "./islands/ShippingSimulation.tsx": $$$$$14,
+    "./islands/SliderJS.tsx": $$$$$15,
+    "./islands/Stamps.tsx": $$$$$16,
+    "./islands/WishlistButton.tsx": $$$$$17,
   },
   "sections": {
     "$live/sections/PageInclude.tsx": i2$$$$0,

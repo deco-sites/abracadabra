@@ -242,6 +242,7 @@ function ProductCard(
                     price={price ?? 0}
                     discount={price && listPrice ? listPrice - price : 0}
                     name={product.name ?? ""}
+                    quantity={1}
                     productGroupId={product.isVariantOf?.productGroupID ?? ""}
                   />
                 )}

@@ -21,6 +21,7 @@ function AddToCartButton(
     price,
     productGroupId,
     name,
+    quantity,
   }: Props,
 ) {
   const props = useAddToCart({
@@ -30,6 +31,7 @@ function AddToCartButton(
     price,
     productGroupId,
     name,
+    quantity,
   });
 
   return (

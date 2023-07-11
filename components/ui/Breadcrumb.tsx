@@ -2,13 +2,18 @@ import type { BreadcrumbList } from "deco-sites/std/commerce/types.ts";
 
 interface Props {
   itemListElement: BreadcrumbList["itemListElement"];
+  hasMarginTop?: boolean;
 }
 
-function Breadcrumb({ itemListElement = [] }: Props) {
-  const items = [{ name: "Home", item: "/" }, ...itemListElement];
+function Breadcrumb({ itemListElement = [], hasMarginTop = true }: Props) {
+  const items = [{ name: "Abra Cadabra", item: "/" }, ...itemListElement];
 
   return (
-    <div class="breadcrumbs my-[10px] sm:px-4">
+    <div
+      class={`hidden md:block breadcrumbs font-light text-sm text-start px-4 ${
+        hasMarginTop && "my-[10px]"
+      }`}
+    >
       <ul>
         {items
           .filter(({ name, item }) => name && item)

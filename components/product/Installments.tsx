@@ -15,8 +15,8 @@ const Installments = ({ installments }: Props) => {
   }
   return installmentsText
     ? (
-      <div class="text-xs leading-[22px]">
-        {installmentsText}
+      <div class="text-sm leading-[22px]">
+        em {installmentsText}
       </div>
     )
     : null;

@@ -24,24 +24,24 @@ input[type="number"] {
 `;
 
 function QuantitySelector({ onChange, quantity, disabled, loading }: Props) {
-  const decrement = () => onChange?.(Math.max(0, quantity - 1));
+  const decrement = () => onChange?.(Math.max(1, quantity - 1));
 
   const increment = () =>
     onChange?.(Math.min(quantity + 1, QUANTITY_MAX_VALUE));
 
   return (
-    <div class="form-control">
-      <div class="input-group">
+    <div class="flex h-8">
+      <div class="flex justify-between items-center border w-full min-w-[110px] border-silver text-silver px-3 py-1">
         <Button
-          class="btn-square btn-outline"
           onClick={decrement}
           disabled={disabled}
           loading={loading}
+          isDefault={true}
         >
           -
         </Button>
         <input
-          class="input border-base-content border-x-0 text-center"
+          class="text-center"
           type="number"
           inputMode="numeric"
           pattern="[0-9]*"
@@ -52,10 +52,10 @@ function QuantitySelector({ onChange, quantity, disabled, loading }: Props) {
           onBlur={(e) => onChange?.(e.currentTarget.valueAsNumber)}
         />
         <Button
-          class="btn-square btn-outline"
           onClick={increment}
           disabled={disabled}
           loading={loading}
+          isDefault={true}
         >
           +
         </Button>

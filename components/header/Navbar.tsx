@@ -19,7 +19,7 @@ function Navbar({
   return (
     <>
       {/* Mobile Version */}
-      <div class="md:hidden flex flex-col justify-between items-center border-b border-base-200 shadow-md w-full h-full px-2 gap-2 py-2 md:py-0">
+      <div class="md:hidden flex flex-col justify-between items-center border-b border-base-200 shadow-md w-full px-2 gap-2 py-3 md:py-0">
         <div class="grid grid-cols-3 w-full h-full">
           <div class="flex justify-start">
             <Buttons variant="menu" />

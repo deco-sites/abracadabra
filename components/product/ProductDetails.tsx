@@ -1,5 +1,5 @@
 import { useId } from "preact/hooks";
-import AddToCartButton from "$store/islands/AddToCartButton.tsx";
+import AddToCartButtonWithQuantitySelector from "$store/islands/AddToCartWithQuantitySelector.tsx";
 import ShippingSimulation from "$store/islands/ShippingSimulation.tsx";
 import Breadcrumb from "$store/components/ui/Breadcrumb.tsx";
 import Button from "$store/components/ui/Button.tsx";
@@ -17,6 +17,10 @@ import { mapProductToAnalyticsItem } from "deco-sites/std/commerce/utils/product
 import type { ProductDetailsPage } from "deco-sites/std/commerce/types.ts";
 import type { LoaderReturnType } from "$live/types.ts";
 
+import RatingContent from "$store/components/ui/RatingContent.tsx";
+import Rating from "$store/components/ui/Rating.tsx";
+import Review from "$store/components/ui/Review.tsx";
+import DiscountPercentage from "$store/components/product/DiscountPercentage.tsx";
 import ProductSelector from "./ProductVariantSelector.tsx";
 import ProductImageZoom from "$store/islands/ProductImageZoom.tsx";
 import WishlistButton from "../wishlist/WishlistButton.tsx";
@@ -64,6 +68,7 @@ function ProductInfo({ page }: { page: ProductDetailsPage }) {
     name,
     gtin,
     isVariantOf,
+    review,
   } = product;
   const { price, listPrice, seller, installments, availability } = useOffer(
     offers,
@@ -72,9 +77,11 @@ function ProductInfo({ page }: { page: ProductDetailsPage }) {
   return (
     <>
       {/* Code and name */}
-      <div class="mt-4 sm:mt-8">
+      <div class="flex flex-col items-center justify-center lg:items-start lg:justify-start gap-2">
         <h1>
-          <span class="font-medium text-[17px] leading-[21px]">{name}</span>
+          <span class="font-medium text-[17px] sm:text-xl leading-[21px]">
+            {name}
+          </span>
         </h1>
         <div>
           <span class="text-xs text-gray-base font-light">
@@ -82,26 +89,39 @@ function ProductInfo({ page }: { page: ProductDetailsPage }) {
           </span>
         </div>
       </div>
+      <div class="w-full flex flex-col sm:flex-row items-center justify-center gap-1 my-4">
+        <div class="py-1 uppercase w-full flex items-center font-bold bg-rosybrown text-white text-xs justify-center">
+          Exclusivo
+        </div>
+        <div class="py-1 uppercase w-full flex items-center font-bold bg-blue-base text-white text-xs justify-center">
+          Pronta entrega
+        </div>
+      </div>
+      <div class="flex justify-center lg:justify-start my-7">
+        <Rating review={review} />
+      </div>
       {/* Prices */}
-      <div class="flex flex-col">
-        <div class="flex items-end justify-start gap-6 mt-4">
+      <div class="mt-4 flex flex-col items-center justify-center lg:items-start lg:justify-start">
+        <div class="flex lg:items-end justify-start gap-6">
           <div>
             {Math.floor((listPrice ?? 0) - (price ?? 0)) > 0 && (
               <div class="flex flex-col-reverse sm:flex-row gap-2 items-start sm:items-center">
-                <span class="line-through text-gray-base font-bold text-sm leading-[22px]">
+                <span class="line-through text-gray-base font-bold leading-[22px]">
                   {formatPrice(listPrice, offers!.priceCurrency!)}
                 </span>
               </div>
             )}
-            <span class="text-gray-base font-bold text-sm leading-[22px]">
+            <span class="text-black font-bold leading-[22px]">
               {formatPrice(price, offers!.priceCurrency!)}
             </span>
           </div>
-          <Discount
-            listPrice={listPrice ?? 0}
-            price={price ?? 0}
-            currencySimbol={offers!.priceCurrency!}
-          />
+          <div class="hidden lg:block">
+            <Discount
+              listPrice={listPrice ?? 0}
+              price={price ?? 0}
+              currencySimbol={offers!.priceCurrency!}
+            />
+          </div>
         </div>
         <span class="flex">
           <Installments installments={installments} />
@@ -112,12 +132,12 @@ function ProductInfo({ page }: { page: ProductDetailsPage }) {
         <ProductSelector product={product} />
       </div>
       {/* Add to Cart and Favorites button */}
-      <div class="mt-4 sm:mt-10 flex flex-col gap-2">
+      <div class="mt-2 flex flex-col gap-2">
         {availability === "https://schema.org/InStock"
           ? (
             <>
               {seller && (
-                <AddToCartButton
+                <AddToCartButtonWithQuantitySelector
                   skuId={productID}
                   sellerId={seller}
                   price={price ?? 0}
@@ -126,11 +146,13 @@ function ProductInfo({ page }: { page: ProductDetailsPage }) {
                   productGroupId={product.isVariantOf?.productGroupID ?? ""}
                 />
               )}
-              <WishlistButton
+              {
+                /* <WishlistButton
                 variant="full"
                 productGroupID={isVariantOf?.productGroupID}
                 productID={productID}
-              />
+              /> */
+              }
             </>
           )
           : <OutOfStock productID={productID} />}
@@ -238,6 +260,10 @@ function Details({
 
   const { description } = product;
 
+  const { price, listPrice } = useOffer(
+    product.offers,
+  );
+
   /**
    * Product slider variant
    *
@@ -251,21 +277,27 @@ function Details({
         {/* Breadcrumb */}
         <Breadcrumb
           itemListElement={breadcrumbList?.itemListElement.slice(0, -1)}
+          hasMarginTop={false}
         />
+
         <div
           id={id}
-          class="grid grid-cols-1 gap-4 lg:grid-cols-[max-content_1fr_316px] lg:grid-rows-1 lg:justify-center"
+          class="grid grid-cols-1 gap-4 lg:grid-cols-[max-content_1fr_316px] lg:grid-rows-1 lg:justify-center px-2 md:px-6"
         >
           {/* Image Slider */}
           <div class="relative lg:col-start-2 lg:col-span-1 lg:row-start-1">
+            <DiscountPercentage
+              price={price ?? 0}
+              listPrice={listPrice ?? 0}
+            />
             <Slider class="carousel gap-6">
               {slicedImages.map((img, index) => (
                 <Slider.Item
                   index={index}
-                  class="carousel-item w-full lg:w-auto"
+                  class="carousel-item w-full group"
                 >
                   <Image
-                    class="w-full"
+                    class="w-full duration-100 transition-scale scale-100 lg:group-hover:scale-125 cursor-pointer"
                     sizes="(max-width: 640px) 100vw, 40vw"
                     style={{ aspectRatio: ASPECT_RATIO }}
                     src={img.url!}
@@ -279,30 +311,6 @@ function Details({
                 </Slider.Item>
               ))}
             </Slider>
-
-            {
-              /* <Slider.PrevButton
-              class="no-animation absolute left-2 top-1/2 btn btn-circle btn-outline"
-              disabled
-            >
-              <Icon size={20} id="ChevronLeft" strokeWidth={3} />
-            </Slider.PrevButton>
-
-            <Slider.NextButton
-              class="no-animation absolute right-2 top-1/2 btn btn-circle btn-outline"
-              disabled={images.length < 2}
-            >
-              <Icon size={20} id="ChevronRight" strokeWidth={3} />
-            </Slider.NextButton>
-
-            <div class="absolute top-2 right-2 bg-base-100 rounded-full">
-              <ProductImageZoom
-                images={images}
-                width={1280}
-                height={1280 * HEIGHT / WIDTH}
-              />
-            </div> */
-            }
           </div>
 
           {/* Dots */}
@@ -312,7 +320,7 @@ function Details({
                 <Slider.Dot index={index}>
                   <Image
                     style={{ aspectRatio: ASPECT_RATIO }}
-                    class="group-disabled:border-base-300"
+                    class="group-disabled:border-base-300 border border-silver"
                     width={78}
                     height={78}
                     src={img.url!}
@@ -330,9 +338,23 @@ function Details({
         </div>
         <SliderJS rootId={id} actionType="mouseover"></SliderJS>
 
-        <div>
+        <div class="w-full flex flex-col mt-24">
+          {/* Review Info */}
+          <div class="mt-4 sm:mt-6 px-4">
+            <h2 class={"border-b border-[#e5e5e5] mb-8 py-3 text-2xl"}>
+              Opinião de quem comprou
+            </h2>
+            <div class="flex flex-col md:flex-row items-start w-full gap-8 md:gap-36 mb-8">
+              <RatingContent />
+              <div class="flex flex-col items-start gap-4">
+                <Review starNumber={4} text="Excelente" />
+                <Review starNumber={4} text="Altíssima qualidade" />
+              </div>
+            </div>
+          </div>
+
           {/* Description card */}
-          <div class="mt-4 sm:mt-6 sm:px-4">
+          <div class="mt-4 sm:mt-6 px-4">
             <h2 class={"border-b border-[#e5e5e5] mb-8 py-3 text-2xl"}>
               Sobre o produto
             </h2>
@@ -345,10 +367,9 @@ function Details({
           </div>
 
           {/* Tecnical information */}
-          {
-            /* <div class="mt-4 sm:mt-6">
+          <div class="mt-4 sm:mt-6 px-4">
             <h2 class={"border-b border-[#e5e5e5] mb-8 py-3 text-2xl"}>
-              Informações Técnicas
+              Informações técnicas
             </h2>
             {description && (
               <div
@@ -356,8 +377,7 @@ function Details({
                 dangerouslySetInnerHTML={{ "__html": description }}
               />
             )}
-          </div> */
-          }
+          </div>
         </div>
       </>
     );
