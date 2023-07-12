@@ -80,9 +80,7 @@ function Footer(
   return (
     <footer class="w-full flex flex-col items-center divide-y divide-primary-content">
       {isHome && (
-        <div
-          class="hidden sm:flex justify-center max-w-[1180px]"
-        >
+        <div class="hidden sm:flex justify-center max-w-[1180px]">
           <FooterContainer>
             <Banner banner={banner} />
           </FooterContainer>
