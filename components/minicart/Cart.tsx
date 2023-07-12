@@ -6,6 +6,7 @@ import { sendEvent } from "$store/sdk/analytics.tsx";
 import { useUI } from "$store/sdk/useUI.ts";
 import CartItem from "./CartItem.tsx";
 import Coupon from "./Coupon.tsx";
+import ShippingSimulation from "$store/islands/ShippingSimulation.tsx";
 
 declare global {
   interface Window {
@@ -64,6 +65,16 @@ function Cart() {
       {/* Cart Footer */}
       <footer>
         {/* Subtotal */}
+        {total?.value && (
+          <div class="py-4 flex flex-col gap-4">
+            <div class="flex justify-between items-center px-4">
+              <span class="font-bold">Subtotal</span>
+              <span class="font-medium text-lg">
+                {formatPrice(total.value / 100, currencyCode!, locale)}
+              </span>
+            </div>
+          </div>
+        )}
         <div class="border-t border-base-200 py-4 flex flex-col gap-4">
           {discounts?.value && (
             <div class="flex justify-between items-center px-4">
@@ -74,26 +85,42 @@ function Cart() {
             </div>
           )}
           <Coupon />
+          <ShippingSimulation
+            items={[{
+              id: Number(cart.value.items),
+              quantity: Number(cart.value.value),
+              seller: '1'
+            }]}
+            type="Cart"
+          />
         </div>
-        {/* Total */}
+        {/* Total price */}
         {total?.value && (
           <div class="border-t border-base-200 pt-4 flex flex-col justify-end items-end gap-2 mx-4">
             <div class="flex justify-between items-center w-full">
-              <span>Total</span>
-              <span class="font-medium text-xl">
+              <span>Entrega</span>
+              <span class="font-medium text-lg">
+                76,95
+              </span>
+            </div>
+
+            <div class="flex justify-between items-center w-full">
+              <span class="font-bold">Total</span>
+              <span class="font-bold text-lg">
                 {formatPrice(total.value / 100, currencyCode!, locale)}
               </span>
             </div>
-            <span class="text-sm text-base-300">
-              Taxas e fretes serão calculados no checkout
-            </span>
+
+            <div class="flex justify-end w-full text-silver">
+              ou 2x de R$ 122,91
+            </div>
           </div>
         )}
-        <div class="p-4">
+        <div class="mt-12 p-4">
           <a class="inline-block w-full" href="/checkout">
             <Button
               data-deco="buy-button"
-              class="w-full"
+              class="w-full bg-blue-base hover:bg-blue-hover text-white text-sm border-transparent hover:border-transparent rounded-md mt-2"
               disabled={loading.value || cart.value.items.length === 0}
               onClick={() => {
                 sendEvent({

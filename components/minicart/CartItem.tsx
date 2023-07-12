@@ -40,23 +40,36 @@ function CartItem({ index }: Props) {
       <Image
         src={imageUrl}
         alt={skuName}
-        width={108}
-        height={150}
+        width={100}
+        height={100}
         class="object-cover object-center"
       />
       <div class="flex-grow">
-        <span>{name}</span>
-        <div class="flex items-center gap-2">
-          <span class="line-through text-base-300 text-sm">
-            {formatPrice(listPrice / 100, currencyCode!, locale)}
-          </span>
-          <span class="text-sm text-secondary">
-            {isGift
-              ? "Grátis"
-              : formatPrice(sellingPrice / 100, currencyCode!, locale)}
-          </span>
+        <div class="flex items-center justify-between w-full">
+          <span>{name}</span>
+          <Button
+            onClick={() => {
+              updateItems({ orderItems: [{ index, quantity: 0 }] });
+              if (!cart.value) return;
+              sendEvent({
+                name: "remove_from_cart",
+                params: {
+                  items: mapItemsToAnalyticsItems({
+                    items: [item],
+                    marketingData: cart.value.marketingData,
+                  }),
+                },
+              });
+            }}
+            disabled={loading.value || isGift}
+            loading={loading.value}
+            class="btn btn-ghost"
+          >
+            <Icon id="Trash" width={20} height={20} />
+          </Button>
         </div>
-        <div class="mt-6 max-w-min">
+
+        <div class="flex items-center justify-between mt-6 w-full pr-3">
           <QuantitySelector
             disabled={loading.value || isGift}
             quantity={quantity}
@@ -80,28 +93,14 @@ function CartItem({ index }: Props) {
               });
             }}
           />
+
+          <span class="text-sm font-bold">
+            {isGift
+              ? "Grátis"
+              : formatPrice(sellingPrice / 100, currencyCode!, locale)}
+          </span>
         </div>
       </div>
-      <Button
-        onClick={() => {
-          updateItems({ orderItems: [{ index, quantity: 0 }] });
-          if (!cart.value) return;
-          sendEvent({
-            name: "remove_from_cart",
-            params: {
-              items: mapItemsToAnalyticsItems({
-                items: [item],
-                marketingData: cart.value.marketingData,
-              }),
-            },
-          });
-        }}
-        disabled={loading.value || isGift}
-        loading={loading.value}
-        class="btn btn-ghost"
-      >
-        <Icon id="Trash" width={20} height={20} />
-      </Button>
     </div>
   );
 }

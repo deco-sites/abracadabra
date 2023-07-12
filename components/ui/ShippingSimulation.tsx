@@ -1,6 +1,7 @@
 import { Signal, useSignal } from "@preact/signals";
 import { useCallback } from "preact/hooks";
 import Button from "$store/components/ui/Button.tsx";
+import Icon from "$store/components/ui/Icon.tsx";
 import { formatPrice } from "$store/sdk/format.ts";
 import { useCart } from "deco-sites/std/packs/vtex/hooks/useCart.ts";
 import type {
@@ -11,6 +12,7 @@ import type {
 
 export interface Props {
   items: Array<SKU>;
+  type?: "Cart" | "Product Page"
 }
 
 const formatShippingEstimate = (estimate: string) => {
@@ -72,7 +74,7 @@ function ShippingContent({ simulation }: {
   );
 }
 
-function ShippingSimulation({ items }: Props) {
+function ShippingSimulation({ items, type = "Product Page" }: Props) {
   const postalCode = useSignal("");
   const loading = useSignal(false);
   const simulateResult = useSignal<SimulationOrderForm | null>(null);
@@ -94,6 +96,42 @@ function ShippingSimulation({ items }: Props) {
       loading.value = false;
     }
   }, []);
+
+  if (type === "Cart") {
+    return (
+      <div class="flex justify-between items-center px-4 w-full">
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            handleSimulation();
+          }}
+          class="flex items-center justify-center gap-2 w-full h-full"
+        >
+          <div class="flex items-center justify-center gap-3 w-full h-full border border-silver rounded p-2 font-caption">
+            <Icon id="ShoppingCart" width={20} height={20} fill="#ccc" strokeWidth={2} />
+            <input
+              as="input"
+              type="text"
+              class="flex-1 focus:outline-none"
+              placeholder="Seu cep aqui"
+              value={postalCode.value}
+              maxLength={8}
+              onChange={(e: { currentTarget: { value: string } }) => {
+                postalCode.value = e.currentTarget.value;
+              }}
+            />
+          </div>
+
+          <Button
+            type="submit"
+            loading={loading.value}
+          >
+            Calcular
+          </Button>
+        </form>
+      </div>
+    )
+  }
 
   return (
     <div class="flex flex-col gap-2">

@@ -2,16 +2,13 @@ import { useRef } from "preact/hooks";
 import { useSignal } from "@preact/signals";
 import { useCart } from "deco-sites/std/packs/vtex/hooks/useCart.ts";
 import Button from "$store/components/ui/Button.tsx";
+import Icon from "$store/components/ui/Icon.tsx";
 
 function Coupon() {
   const { cart, loading, addCouponsToCart } = useCart();
   const ref = useRef<HTMLInputElement>(null);
-  const displayInput = useSignal(false);
+  const displayInput = useSignal(true);
   const coupon = cart.value?.marketingData?.coupon;
-
-  const toggleInput = () => {
-    displayInput.value = !displayInput.value;
-  };
 
   const applyCouponToCart = (e: MouseEvent) => {
     e.preventDefault();
@@ -20,39 +17,32 @@ function Coupon() {
 
     if (typeof text === "string") {
       addCouponsToCart({ text });
-      toggleInput();
     }
   };
 
   return (
-    <div class="flex justify-between items-center px-4">
-      <span class="text-sm">Cupom de desconto</span>
-      {!displayInput.value && (
-        <Button
-          class="btn-ghost underline"
-          onClick={toggleInput}
-        >
-          {coupon || "Adicionar"}
-        </Button>
-      )}
+    <div class="flex justify-between items-center px-4 w-full">
       {displayInput.value && (
-        <form class="flex gap-2">
-          <input
-            id="coupon"
-            name="coupon"
-            ref={ref}
-            class="w-[140px] border rounded p-2 font-caption"
-            type="text"
-            value={coupon ?? ""}
-            placeholder={"Coupom"}
-          />
+        <form class="flex items-center justify-center gap-2 w-full h-full">
+          <div class="flex items-center justify-center gap-3 w-full h-full border border-silver rounded p-2 font-caption">
+            <Icon id="Discount" width={20} height={20} fill="#ccc" strokeWidth={2} />
+            <input
+              id="coupon"
+              name="coupon"
+              ref={ref}
+              class="flex-1 focus:outline-none"
+              type="text"
+              value={coupon ?? ""}
+              placeholder={"Adicionar cupom"}
+            />
+          </div>
           <Button
             type="submit"
             htmlFor="coupon"
             loading={loading.value}
             onClick={applyCouponToCart}
           >
-            Ok
+            Adicionar
           </Button>
         </form>
       )}

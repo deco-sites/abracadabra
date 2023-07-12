@@ -7448,6 +7448,20 @@
             "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvcGFja3MvdnRleC90eXBlcy50cw==@SKU"
           },
           "title": "Items"
+        },
+        "type": {
+          "anyOf": [
+            {
+              "type": "string",
+              "const": "Cart"
+            },
+            {
+              "type": "string",
+              "const": "Product Page"
+            }
+          ],
+          "type": "string",
+          "title": "Type"
         }
       },
       "required": [
