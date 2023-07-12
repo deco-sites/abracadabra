@@ -31,7 +31,7 @@ export default function Comment({ username, comment, images }: CommentProps) {
 
         <span class="font-bold text-sm text-gray-base">{username}</span>
       </div>
-      
+
       <div class="flex flex-1 flex-col gap-2 items-start justify-between w-full">
         <div class="flex items-center justify-between w-full">
           <Review starNumber={5} text="compra verificada" isGold />
@@ -67,7 +67,7 @@ export default function Comment({ username, comment, images }: CommentProps) {
         )}
 
         <Like />
-      </div>      
+      </div>
     </div>
-  )
+  );
 }

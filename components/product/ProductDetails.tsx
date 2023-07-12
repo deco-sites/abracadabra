@@ -384,11 +384,13 @@ function Details({
           </div>
 
           {/* Product Shelfs */}
-          {/* <ProductShelf
-            title="Relacionados"
-            products={null}
-            itemsPerPage={4}
-          /> */}
+          {/* <div class="mt-4 sm:mt-6 px-4 w-full flex">
+            <ProductShelf
+              title="Relacionados"
+              products={null}
+              itemsPerPage={4}
+            />
+          </div> */}
 
           {/* Rating */}
           <div class="mt-4 sm:mt-6 px-4">

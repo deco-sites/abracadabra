@@ -28,7 +28,7 @@ export default function Review({ starNumber, text, isGold }: Props) {
       </div>
 
       <div class="flex items-center justify-center text-sm gap-1">
-        <span class={`${isGold && 'text-gold'} pl-3 text-sm`}>{text}</span>
+        <span class={`${isGold && "text-gold"} pl-3 text-sm`}>{text}</span>
       </div>
     </div>
   );
