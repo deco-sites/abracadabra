@@ -89,7 +89,7 @@ function Cart() {
             items={[{
               id: Number(cart.value.items),
               quantity: Number(cart.value.value),
-              seller: '1'
+              seller: "1",
             }]}
             type="Cart"
           />
@@ -100,7 +100,7 @@ function Cart() {
             <div class="flex justify-between items-center w-full">
               <span>Entrega</span>
               <span class="font-medium text-lg">
-                76,95
+                R$ 76,95
               </span>
             </div>
 

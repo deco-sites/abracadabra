@@ -25,7 +25,13 @@ function Coupon() {
       {displayInput.value && (
         <form class="flex items-center justify-center gap-2 w-full h-full">
           <div class="flex items-center justify-center gap-3 w-full h-full border border-silver rounded p-2 font-caption">
-            <Icon id="Discount" width={20} height={20} fill="#ccc" strokeWidth={2} />
+            <Icon
+              id="Discount"
+              width={20}
+              height={20}
+              fill="#ccc"
+              strokeWidth={2}
+            />
             <input
               id="coupon"
               name="coupon"

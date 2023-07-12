@@ -12,7 +12,7 @@ import type {
 
 export interface Props {
   items: Array<SKU>;
-  type?: "Cart" | "Product Page"
+  type?: "Cart" | "Product Page";
 }
 
 const formatShippingEstimate = (estimate: string) => {
@@ -108,7 +108,13 @@ function ShippingSimulation({ items, type = "Product Page" }: Props) {
           class="flex items-center justify-center gap-2 w-full h-full"
         >
           <div class="flex items-center justify-center gap-3 w-full h-full border border-silver rounded p-2 font-caption">
-            <Icon id="ShoppingCart" width={20} height={20} fill="#ccc" strokeWidth={2} />
+            <Icon
+              id="ShoppingCart"
+              width={20}
+              height={20}
+              fill="#ccc"
+              strokeWidth={2}
+            />
             <input
               as="input"
               type="text"
@@ -130,7 +136,7 @@ function ShippingSimulation({ items, type = "Product Page" }: Props) {
           </Button>
         </form>
       </div>
-    )
+    );
   }
 
   return (
