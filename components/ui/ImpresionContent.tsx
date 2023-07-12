@@ -1,15 +1,9 @@
-interface Props {
-  starNumber: number;
-  text?: string;
-  isGold?: boolean;
-}
-
 function Star({ isActive }: { isActive: boolean }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      height={20}
-      width={20}
+      height={40}
+      width={40}
       viewBox="0 0 576 512"
       fill={isActive ? "#ffd700" : "#ccc"}
     >
@@ -18,18 +12,26 @@ function Star({ isActive }: { isActive: boolean }) {
   );
 }
 
-export default function Review({ starNumber, text, isGold }: Props) {
+export default function ImpresionContent() {
   const starsNumbers: number[] = [...(new Array(5).keys())];
 
   return (
-    <div class="flex justify-center items-start gap-2">
-      <div class="rating">
-        {starsNumbers.map((index) => <Star isActive={index <= starNumber} />)}
+    <aside class="flex flex-col gap-1">
+      <div class="flex justify-center items-center gap-1">
+        <div class="rating">
+          {starsNumbers.map((index) => <Star isActive={index <= 4} />)}
+        </div>
+
+        <div class="flex items-center justify-center text-4xl gap-1">
+          <span class="pl-3">5,0</span>
+        </div>
       </div>
 
-      <div class="flex items-center justify-center text-sm gap-1">
-        <span class={`${isGold && 'text-gold'} pl-3 text-sm`}>{text}</span>
-      </div>
-    </div>
+      <h2>
+        Baseado em <span class="font-bold">158</span> avaliações
+      </h2>
+
+      <a href="#avaliacoes" class="underline">ver todas as avaliações</a>
+    </aside>
   );
 }

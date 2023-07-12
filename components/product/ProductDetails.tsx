@@ -14,14 +14,18 @@ import { useOffer } from "$store/sdk/useOffer.ts";
 import { formatPrice } from "$store/sdk/format.ts";
 import { SendEventOnLoad } from "$store/sdk/analytics.tsx";
 import { mapProductToAnalyticsItem } from "deco-sites/std/commerce/utils/productToAnalyticsItem.ts";
+import type { Props as ProductShelfProps } from "$store/components/product/ProductShelf.tsx";
 import type { ProductDetailsPage } from "deco-sites/std/commerce/types.ts";
 import type { LoaderReturnType } from "$live/types.ts";
 
+import ImpresionContent from "$store/components/ui/ImpresionContent.tsx";
+import Comment from "$store/components/ui/Comment.tsx";
 import RatingContent from "$store/components/ui/RatingContent.tsx";
 import Rating from "$store/components/ui/Rating.tsx";
 import Review from "$store/components/ui/Review.tsx";
 import DiscountPercentage from "$store/components/product/DiscountPercentage.tsx";
 import ProductSelector from "./ProductVariantSelector.tsx";
+import ProductShelf from "$store/components/product/ProductShelf.tsx";
 import ProductImageZoom from "$store/islands/ProductImageZoom.tsx";
 import WishlistButton from "../wishlist/WishlistButton.tsx";
 
@@ -345,7 +349,7 @@ function Details({
               Opinião de quem comprou
             </h2>
             <div class="flex flex-col md:flex-row items-start w-full gap-8 md:gap-36 mb-8">
-              <RatingContent />
+              <ImpresionContent />
               <div class="flex flex-col items-start gap-4">
                 <Review starNumber={4} text="Excelente" />
                 <Review starNumber={4} text="Altíssima qualidade" />
@@ -377,6 +381,55 @@ function Details({
                 dangerouslySetInnerHTML={{ "__html": description }}
               />
             )}
+          </div>
+
+          {/* Product Shelfs */}
+          {/* <ProductShelf
+            title="Relacionados"
+            products={null}
+            itemsPerPage={4}
+          /> */}
+
+          {/* Rating */}
+          <div class="mt-4 sm:mt-6 px-4">
+            <h2 class={"border-b border-[#e5e5e5] mb-8 py-3 text-2xl"}>
+              Avaliações do Produto
+            </h2>
+            <div class="flex flex-col md:flex-row items-start w-full gap-8 md:gap-12 pb-8 border-b border-[#e5e5e5]">
+              <RatingContent />
+              {/* Rating Images */}
+              <ul class="flex flex-wrap gap-2 overflow-auto">
+                {slicedImages.map((img, index) => (
+                  <li class="">
+                    <Slider.Dot index={index}>
+                      <Image
+                        style={{ aspectRatio: ASPECT_RATIO }}
+                        class="group-disabled:border-base-300 border border-silver"
+                        width={78}
+                        height={78}
+                        src={img.url!}
+                        alt={img.alternateName}
+                        loading="eager"
+                      />
+                    </Slider.Dot>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <Comment
+              username="Marcelo"
+              comment="Bom! Conforme o esperado"
+              images={slicedImages}
+            />
+            <Comment
+              username="Roberto Silva"
+              comment="Produto de qualidade impecável!"
+            />
+            <Comment
+              username="Marcelo"
+              comment="Bom! Conforme o esperado"
+              images={slicedImages}
+            />
           </div>
         </div>
       </>

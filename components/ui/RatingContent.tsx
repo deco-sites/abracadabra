@@ -2,8 +2,8 @@ function Star({ isActive }: { isActive: boolean }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      height={40}
-      width={40}
+      height={30}
+      width={30}
       viewBox="0 0 576 512"
       fill={isActive ? "#ffd700" : "#ccc"}
     >
@@ -23,15 +23,13 @@ export default function RatingContent() {
         </div>
 
         <div class="flex items-center justify-center text-4xl gap-1">
-          <span class="pl-3">5,0</span>
+          <span class="pl-3">5.00</span>
         </div>
       </div>
 
       <h2>
-        Baseado em <span class="font-bold">158</span> avaliações
+        Baseado em 4 avaliações
       </h2>
-
-      <a href="#avaliacoes" class="underline">ver todas as avaliações</a>
     </aside>
   );
 }
