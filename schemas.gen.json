@@ -93,6 +93,7 @@
               "deco-sites/abracadabra/sections/Carousel.tsx",
               "deco-sites/abracadabra/sections/CategoriesIcons.tsx",
               "deco-sites/abracadabra/sections/CookieConsent.tsx",
+              "deco-sites/abracadabra/sections/DepartmentInfoSection.tsx",
               "deco-sites/abracadabra/sections/DesignSystem.tsx",
               "deco-sites/abracadabra/sections/Features.tsx",
               "deco-sites/abracadabra/sections/Footer.tsx",
@@ -8241,6 +8242,68 @@
       "required": [],
       "title": "deco-sites/abracadabra/components/home/categories.tsx@Props"
     },
+    "ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL2RlcGFydG1lbnQvRGVwYXJ0bWVudC50c3g=@DepartmentBanner": {
+      "type": "object",
+      "properties": {
+        "src": {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvY29tcG9uZW50cy90eXBlcy50cw==@Image",
+          "title": "Src"
+        },
+        "alt": {
+          "type": "string",
+          "title": "Alt"
+        },
+        "href": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "Href"
+        },
+        "width": {
+          "type": "number",
+          "title": "Width"
+        },
+        "height": {
+          "type": "number",
+          "title": "Height"
+        }
+      },
+      "required": [
+        "src",
+        "alt",
+        "width",
+        "height"
+      ],
+      "title": "DepartmentBanner"
+    },
+    "ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL2RlcGFydG1lbnQvRGVwYXJ0bWVudC50c3g=@Props": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "Title"
+        },
+        "text": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "Text"
+        },
+        "banner": {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL2RlcGFydG1lbnQvRGVwYXJ0bWVudC50c3g=@DepartmentBanner",
+          "title": "Banner"
+        }
+      },
+      "required": [
+        "banner"
+      ],
+      "title": "deco-sites/abracadabra/components/department/Department.tsx@Props"
+    },
     "ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9zZWN0aW9ucy9EZXNpZ25TeXN0ZW0udHN4@Colors": {
       "type": "object",
       "properties": {
@@ -8454,7 +8517,7 @@
       "required": [],
       "title": "OptionalColors"
     },
-    "ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9zZWN0aW9ucy9EZXNpZ25TeXN0ZW0udHN4@0ee895bf123d9324e725317c947ec149&Colors": {
+    "ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9zZWN0aW9ucy9EZXNpZ25TeXN0ZW0udHN4@4d2d613a34d07a8ac340bca14d8c5409&Colors": {
       "allOf": [
         {
           "$ref": "#/definitions/ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9zZWN0aW9ucy9EZXNpZ25TeXN0ZW0udHN4@Colors"
@@ -8470,7 +8533,7 @@
           "required": []
         }
       ],
-      "title": "0ee895bf123d9324e725317c947ec149&Colors"
+      "title": "4d2d613a34d07a8ac340bca14d8c5409&Colors"
     },
     "ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9zZWN0aW9ucy9EZXNpZ25TeXN0ZW0udHN4@Miscellaneous": {
       "type": "object",
@@ -8573,7 +8636,7 @@
       "type": "object",
       "properties": {
         "colors": {
-          "$ref": "#/definitions/ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9zZWN0aW9ucy9EZXNpZ25TeXN0ZW0udHN4@0ee895bf123d9324e725317c947ec149&Colors",
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9zZWN0aW9ucy9EZXNpZ25TeXN0ZW0udHN4@4d2d613a34d07a8ac340bca14d8c5409&Colors",
           "title": "Colors"
         },
         "miscellaneous": {
@@ -12328,6 +12391,27 @@
         }
       }
     },
+    "ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9zZWN0aW9ucy9EZXBhcnRtZW50SW5mb1NlY3Rpb24udHN4": {
+      "title": "deco-sites/abracadabra/sections/DepartmentInfoSection.tsx",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL2RlcGFydG1lbnQvRGVwYXJ0bWVudC50c3g=@Props"
+        }
+      ],
+      "required": [
+        "__resolveType"
+      ],
+      "properties": {
+        "__resolveType": {
+          "type": "string",
+          "enum": [
+            "deco-sites/abracadabra/sections/DepartmentInfoSection.tsx"
+          ],
+          "default": "deco-sites/abracadabra/sections/DepartmentInfoSection.tsx"
+        }
+      }
+    },
     "ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9zZWN0aW9ucy9EZXNpZ25TeXN0ZW0udHN4": {
       "title": "deco-sites/abracadabra/sections/DesignSystem.tsx",
       "type": "object",
@@ -13788,6 +13872,9 @@
         },
         {
           "$ref": "#/definitions/ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9zZWN0aW9ucy9Db29raWVDb25zZW50LnRzeA=="
+        },
+        {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9zZWN0aW9ucy9EZXBhcnRtZW50SW5mb1NlY3Rpb24udHN4"
         },
         {
           "$ref": "#/definitions/ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9zZWN0aW9ucy9EZXNpZ25TeXN0ZW0udHN4"
