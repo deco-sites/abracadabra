@@ -85,7 +85,9 @@ function Header(
 
   useEffect(() => {
     const handleScroll = () => {
-      if (self.window.innerWidth > 600 ? self.scrollY > 500 : self.scrollY > 20) {
+      if (
+        self.window.innerWidth > 600 ? self.scrollY > 500 : self.scrollY > 20
+      ) {
         setIsScrolled(true);
       }
 

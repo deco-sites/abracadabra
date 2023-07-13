@@ -71,6 +71,7 @@
               "./islands/Menu.tsx",
               "./islands/Newsletter.tsx",
               "./islands/OutOfStock.tsx",
+              "./islands/ProductCarousel.tsx",
               "./islands/ProductImageZoom.tsx",
               "./islands/ScrollableNavbar.tsx",
               "./islands/SearchControls.tsx",
@@ -7323,6 +7324,39 @@
       ],
       "title": "deco-sites/abracadabra/islands/Menu.tsx@Props"
     },
+    "ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9pc2xhbmRzL1Byb2R1Y3RDYXJvdXNlbC50c3g=@ProductCarouselProps": {
+      "type": "object",
+      "properties": {
+        "images": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "title": "Url"
+              },
+              "alternateName": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "title": "Alternate Name"
+              }
+            },
+            "required": []
+          },
+          "title": "Images"
+        }
+      },
+      "required": [
+        "images"
+      ],
+      "title": "deco-sites/abracadabra/islands/ProductCarousel.tsx@ProductCarouselProps"
+    },
     "ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL2hlYWRlci9OYXZJdGVtLnRzeA==@INavItem": {
       "type": "object",
       "properties": {
@@ -11902,6 +11936,27 @@
         }
       }
     },
+    "Li9pc2xhbmRzL1Byb2R1Y3RDYXJvdXNlbC50c3g=": {
+      "title": "./islands/ProductCarousel.tsx",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9pc2xhbmRzL1Byb2R1Y3RDYXJvdXNlbC50c3g=@ProductCarouselProps"
+        }
+      ],
+      "required": [
+        "__resolveType"
+      ],
+      "properties": {
+        "__resolveType": {
+          "type": "string",
+          "enum": [
+            "./islands/ProductCarousel.tsx"
+          ],
+          "default": "./islands/ProductCarousel.tsx"
+        }
+      }
+    },
     "Li9pc2xhbmRzL1Byb2R1Y3RJbWFnZVpvb20udHN4": {
       "title": "./islands/ProductImageZoom.tsx",
       "type": "object",
@@ -13729,6 +13784,9 @@
         },
         {
           "$ref": "#/definitions/Li9pc2xhbmRzL091dE9mU3RvY2sudHN4"
+        },
+        {
+          "$ref": "#/definitions/Li9pc2xhbmRzL1Byb2R1Y3RDYXJvdXNlbC50c3g="
         },
         {
           "$ref": "#/definitions/Li9pc2xhbmRzL1Byb2R1Y3RJbWFnZVpvb20udHN4"

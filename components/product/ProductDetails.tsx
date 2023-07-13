@@ -21,6 +21,7 @@ import type { LoaderReturnType } from "$live/types.ts";
 import ImpresionContent from "$store/components/ui/ImpresionContent.tsx";
 import Comment from "$store/components/ui/Comment.tsx";
 import RatingContent from "$store/components/ui/RatingContent.tsx";
+import ProductCarousel from "$store/islands/ProductCarousel.tsx";
 import Rating from "$store/components/ui/Rating.tsx";
 import Review from "$store/components/ui/Review.tsx";
 import DiscountPercentage from "$store/components/product/DiscountPercentage.tsx";
@@ -260,7 +261,7 @@ function Details({
   const { product, breadcrumbList } = page;
   const id = `product-image-gallery:${useId()}`;
   const images = useStableImages(product);
-  const slicedImages = images.slice(0, 6);
+  const slicedImages = images.slice(0, 12);
 
   const { description } = product;
 
@@ -318,8 +319,11 @@ function Details({
           </div>
 
           {/* Dots */}
-          <ul class="flex gap-2 lg:justify-start overflow-auto px-4 lg:px-0 lg:flex-col lg:col-start-1 lg:col-span-1 lg:row-start-1">
-            {slicedImages.map((img, index) => (
+          <ProductCarousel images={slicedImages} />
+          
+          {/* Mobile */}
+          <ul class="flex md:hidden gap-2 overflow-auto px-4">
+            {images.map((img, index) => (
               <li class="">
                 <Slider.Dot index={index}>
                   <Image
@@ -340,7 +344,7 @@ function Details({
             <ProductInfo page={page} />
           </div>
         </div>
-        <SliderJS rootId={id} actionType="mouseover"></SliderJS>
+        <SliderJS rootId={id} actionType="mouseover"/>
 
         <div class="w-full flex flex-col mt-24">
           {/* Review Info */}
@@ -384,13 +388,15 @@ function Details({
           </div>
 
           {/* Product Shelfs */}
-          {/* <div class="mt-4 sm:mt-6 px-4 w-full flex">
+          {
+            /* <div class="mt-4 sm:mt-6 px-4 w-full flex">
             <ProductShelf
               title="Relacionados"
               products={null}
               itemsPerPage={4}
             />
-          </div> */}
+          </div> */
+          }
 
           {/* Rating */}
           <div class="mt-4 sm:mt-6 px-4">
