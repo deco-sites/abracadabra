@@ -20,6 +20,12 @@ function Coupon() {
     }
   };
 
+  const handleRemoveCoupon = (e: MouseEvent) => {
+    e.preventDefault();
+
+    addCouponsToCart({ text: "" })
+  }
+
   return (
     <div class="flex justify-between items-center px-4 w-full">
       {displayInput.value && (
@@ -29,27 +35,37 @@ function Coupon() {
               id="Discount"
               width={20}
               height={20}
-              fill="#ccc"
+              class={coupon ? 'text-red-base' : 'text-[#ccc]'}
               strokeWidth={2}
             />
             <input
               id="coupon"
               name="coupon"
               ref={ref}
-              class="flex-1 focus:outline-none"
+              class={`${coupon && 'text-red-base font-bold'} flex-1 focus:outline-none`}
               type="text"
               value={coupon ?? ""}
               placeholder={"Adicionar cupom"}
             />
           </div>
-          <Button
-            type="submit"
-            htmlFor="coupon"
-            loading={loading.value}
-            onClick={applyCouponToCart}
-          >
-            Adicionar
-          </Button>
+          {!coupon ? (
+            <Button
+              type="submit"
+              htmlFor="coupon"
+              loading={loading.value}
+              onClick={applyCouponToCart}
+            >
+              Adicionar
+            </Button>
+          ) : (
+            <Button
+              class="bg-silver hover:bg-dark-gray text-white border-transparent hover:border-transparent"
+              loading={loading.value}
+              onClick={handleRemoveCoupon}
+            >
+              X
+            </Button>
+          )}
         </form>
       )}
     </div>

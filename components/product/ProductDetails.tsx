@@ -261,7 +261,6 @@ function Details({
   const { product, breadcrumbList } = page;
   const id = `product-image-gallery:${useId()}`;
   const images = useStableImages(product);
-  const slicedImages = images.slice(0, 12);
 
   const { description } = product;
 
@@ -296,7 +295,7 @@ function Details({
               listPrice={listPrice ?? 0}
             />
             <Slider class="carousel gap-6">
-              {slicedImages.map((img, index) => (
+              {images.map((img, index) => (
                 <Slider.Item
                   index={index}
                   class="carousel-item w-full group"
@@ -319,8 +318,8 @@ function Details({
           </div>
 
           {/* Dots */}
-          <ProductCarousel images={slicedImages} />
-          
+          <ProductCarousel images={images} />
+
           {/* Mobile */}
           <ul class="flex md:hidden gap-2 overflow-auto px-4">
             {images.map((img, index) => (
@@ -344,7 +343,7 @@ function Details({
             <ProductInfo page={page} />
           </div>
         </div>
-        <SliderJS rootId={id} actionType="mouseover"/>
+        <SliderJS rootId={id} actionType="mouseover" />
 
         <div class="w-full flex flex-col mt-24">
           {/* Review Info */}
@@ -407,7 +406,7 @@ function Details({
               <RatingContent />
               {/* Rating Images */}
               <ul class="flex flex-wrap gap-2 overflow-auto">
-                {slicedImages.map((img, index) => (
+                {images.map((img, index) => (
                   <li class="">
                     <Slider.Dot index={index}>
                       <Image
@@ -427,7 +426,7 @@ function Details({
             <Comment
               username="Marcelo"
               comment="Bom! Conforme o esperado"
-              images={slicedImages}
+              images={images}
             />
             <Comment
               username="Roberto Silva"
@@ -436,7 +435,7 @@ function Details({
             <Comment
               username="Marcelo"
               comment="Bom! Conforme o esperado"
-              images={slicedImages}
+              images={images}
             />
           </div>
         </div>
@@ -454,7 +453,7 @@ function Details({
     <div class="grid grid-cols-1 gap-4 sm:grid-cols-[50vw_25vw] sm:grid-rows-1 sm:justify-center">
       {/* Image slider */}
       <ul class="carousel carousel-center gap-6">
-        {[slicedImages[0], slicedImages[1] ?? slicedImages[0]].map((
+        {[images[0], images[1] ?? images[0]].map((
           img,
           index,
         ) => (
