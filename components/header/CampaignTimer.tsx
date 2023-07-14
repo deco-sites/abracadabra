@@ -10,7 +10,7 @@ export interface Props {
     mobile: LiveImage;
     alt?: string;
     lcp?: boolean;
-  },
+  };
   /**
    * @title Expires at date
    * @format datetime
@@ -98,13 +98,13 @@ function CampaignTimer({
           <div class="flex">
             <Picture preload={image.lcp}>
               <Source
-                media="(max-width: 767px)"
+                media="(max-width: 476px)"
                 fetchPriority={image.lcp ? "high" : "auto"}
                 src={image.mobile}
                 width={168}
                 height={142}
               />
-              <Source
+             <Source
                 media="(min-width: 768px)"
                 fetchPriority={image.lcp ? "high" : "auto"}
                 src={image.desktop}
