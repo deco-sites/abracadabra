@@ -5,7 +5,6 @@ import AddToCartButton from "$store/islands/AddToCartButton.tsx";
 import OutOfStock from "$store/islands/OutOfStock.tsx";
 import Installments from "./Installments.tsx";
 import Discount from "./Discount.tsx";
-import DiscountPercentage from "./DiscountPercentage.tsx";
 
 import { useOffer } from "$store/sdk/useOffer.ts";
 import { formatPrice } from "$store/sdk/format.ts";
@@ -172,10 +171,6 @@ function ProductCard(
               loading="lazy"
               decoding="async"
             />
-            <DiscountPercentage
-              listPrice={listPrice ?? 0}
-              price={price ?? 0}
-            />
           </a>
 
           {/* SKU Selector */}
@@ -207,28 +202,28 @@ function ProductCard(
         <h2 class="text-sm">{name}</h2>
       </div>
       <div>
-        <div class="flex items-end justify-between">
+        <div class="">
           {/* Prices */}
-          <div>
+          <div class="gap-2">
             {Math.floor((listPrice ?? 0) - (price ?? 0)) > 0 && (
               <div class="flex flex-col-reverse sm:flex-row gap-2 items-start sm:items-center">
-                <span class="line-through text-gray-base font-bold text-sm leading-[22px]">
+                <span class="line-through text-gray-base text-sm leading-[22px]">
                   {formatPrice(listPrice, offers!.priceCurrency!)}
                 </span>
+                <Discount
+                  listPrice={listPrice ?? 0}
+                  price={price ?? 0}
+                  currencySimbol={offers!.priceCurrency!}
+                />
               </div>
             )}
-            <span class="text-gray-base font-bold text-sm leading-[22px]">
+            <span class="text-black font-extrabold text-[17px] leading-[22px]">
               {formatPrice(price, offers!.priceCurrency!)}
             </span>
-            <span class="flex pt-2">
-              <Installments installments={installments} />
-            </span>
           </div>
-          <Discount
-            listPrice={listPrice ?? 0}
-            price={price ?? 0}
-            currencySimbol={offers!.priceCurrency!}
-          />
+          <span class={"flex"}>
+            <Installments installments={installments} />
+          </span>
         </div>
         <div>
           {availability === "https://schema.org/InStock"
@@ -239,10 +234,10 @@ function ProductCard(
                     text="ADICIONAR AO CARRINHO"
                     skuId={productID}
                     sellerId={seller}
+                    quantity={1}
                     price={price ?? 0}
                     discount={price && listPrice ? listPrice - price : 0}
                     name={product.name ?? ""}
-                    quantity={1}
                     productGroupId={product.isVariantOf?.productGroupID ?? ""}
                   />
                 )}

@@ -116,7 +116,7 @@ function Cart() {
   const handleCancelSimulation = () => {
     postalCode.value = "";
     simulateResult.value = null;
-  }
+  };
 
   // Empty State
   if (isCartEmpty) {
@@ -179,13 +179,15 @@ function Cart() {
                   id="ShoppingCart"
                   width={20}
                   height={20}
-                  class={simulateResult.value ? 'text-red-base' : 'text-[#ccc]'}
+                  class={simulateResult.value ? "text-red-base" : "text-[#ccc]"}
                   strokeWidth={2}
                 />
                 <input
                   as="input"
                   type="text"
-                  class={`${simulateResult.value && 'text-red-base font-bold'} flex-1 focus:outline-none`}
+                  class={`${
+                    simulateResult.value && "text-red-base font-bold"
+                  } flex-1 focus:outline-none`}
                   placeholder="Seu cep aqui"
                   value={postalCode.value}
                   maxLength={8}
@@ -195,22 +197,24 @@ function Cart() {
                 />
               </div>
 
-              {!simulateResult.value ? (
-                <Button
-                  type="submit"
-                  loading={loading.value}
-                >
-                  Calcular
-                </Button>
-              ) : (
-                <Button
-                  class="bg-silver hover:bg-dark-gray text-white border-transparent hover:border-transparent"
-                  onClick={handleCancelSimulation}
-                  loading={loading.value}
-                >
-                  X
-                </Button>
-              )}
+              {!simulateResult.value
+                ? (
+                  <Button
+                    type="submit"
+                    loading={loading.value}
+                  >
+                    Calcular
+                  </Button>
+                )
+                : (
+                  <Button
+                    class="bg-silver hover:bg-dark-gray text-white border-transparent hover:border-transparent"
+                    onClick={handleCancelSimulation}
+                    loading={loading.value}
+                  >
+                    X
+                  </Button>
+                )}
             </form>
           </div>
         </div>
@@ -231,12 +235,22 @@ function Cart() {
             <div class="flex justify-between items-center w-full">
               <span class="font-bold text-lg">Total</span>
               <span class="font-bold text-lg">
-                {formatPrice((total.value + (discounts?.value ?? 0) + (finalSimulateShippingPrice?.value ?? 0)) / 100, currencyCode!, locale)}
+                {formatPrice(
+                  (total.value + (discounts?.value ?? 0) +
+                    (finalSimulateShippingPrice?.value ?? 0)) / 100,
+                  currencyCode!,
+                  locale,
+                )}
               </span>
             </div>
 
             <div class="flex justify-end w-full text-silver">
-              ou 2x de {formatPrice(((total.value + (discounts?.value ?? 0) + (finalSimulateShippingPrice?.value ?? 0)) / 100) / 2, currencyCode!, locale)}
+              ou 2x de {formatPrice(
+                ((total.value + (discounts?.value ?? 0) +
+                  (finalSimulateShippingPrice?.value ?? 0)) / 100) / 2,
+                currencyCode!,
+                locale,
+              )}
             </div>
           </div>
         )}

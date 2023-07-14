@@ -23,8 +23,8 @@ function Coupon() {
   const handleRemoveCoupon = (e: MouseEvent) => {
     e.preventDefault();
 
-    addCouponsToCart({ text: "" })
-  }
+    addCouponsToCart({ text: "" });
+  };
 
   return (
     <div class="flex justify-between items-center px-4 w-full">
@@ -35,37 +35,41 @@ function Coupon() {
               id="Discount"
               width={20}
               height={20}
-              class={coupon ? 'text-red-base' : 'text-[#ccc]'}
+              class={coupon ? "text-red-base" : "text-[#ccc]"}
               strokeWidth={2}
             />
             <input
               id="coupon"
               name="coupon"
               ref={ref}
-              class={`${coupon && 'text-red-base font-bold'} flex-1 focus:outline-none`}
+              class={`${
+                coupon && "text-red-base font-bold"
+              } flex-1 focus:outline-none`}
               type="text"
               value={coupon ?? ""}
               placeholder={"Adicionar cupom"}
             />
           </div>
-          {!coupon ? (
-            <Button
-              type="submit"
-              htmlFor="coupon"
-              loading={loading.value}
-              onClick={applyCouponToCart}
-            >
-              Adicionar
-            </Button>
-          ) : (
-            <Button
-              class="bg-silver hover:bg-dark-gray text-white border-transparent hover:border-transparent"
-              loading={loading.value}
-              onClick={handleRemoveCoupon}
-            >
-              X
-            </Button>
-          )}
+          {!coupon
+            ? (
+              <Button
+                type="submit"
+                htmlFor="coupon"
+                loading={loading.value}
+                onClick={applyCouponToCart}
+              >
+                Adicionar
+              </Button>
+            )
+            : (
+              <Button
+                class="bg-silver hover:bg-dark-gray text-white border-transparent hover:border-transparent"
+                loading={loading.value}
+                onClick={handleRemoveCoupon}
+              >
+                X
+              </Button>
+            )}
         </form>
       )}
     </div>
