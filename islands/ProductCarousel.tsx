@@ -29,7 +29,7 @@ export default function VerticalCarousel({ images }: ProductCarouselProps) {
   return (
     <>
       {/* Desktop */}
-      <div class="hidden md:flex flex-col items-center justify-start h-[655px]">
+      <div class="hidden lg:flex flex-col items-center justify-start h-[655px]">
         <button
           onClick={handlePrevClick}
           disabled={!canGoPrev}

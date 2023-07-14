@@ -1,11 +1,8 @@
 import Image from "deco-sites/std/components/Image.tsx";
-import Avatar from "$store/components/ui/Avatar.tsx";
-import WishlistIcon from "$store/islands/WishlistButton.tsx";
 import AddToCartButton from "$store/islands/AddToCartButton.tsx";
 import OutOfStock from "$store/islands/OutOfStock.tsx";
 import Installments from "./Installments.tsx";
 import Discount from "./Discount.tsx";
-
 import { useOffer } from "$store/sdk/useOffer.ts";
 import { formatPrice } from "$store/sdk/format.ts";
 import { useVariantPossibilities } from "$store/sdk/useVariantPossiblities.ts";
@@ -13,7 +10,7 @@ import { mapProductToAnalyticsItem } from "deco-sites/std/commerce/utils/product
 import { SendEventOnClick } from "$store/sdk/analytics.tsx";
 import type { Product } from "deco-sites/std/commerce/types.ts";
 import { ClusterProps } from "../search/SearchResult.tsx";
-import Clusters, { ClusterBadge } from "./Clusters.tsx";
+import Clusters from "./Clusters.tsx";
 
 interface Props {
   product: Product;
@@ -32,11 +29,6 @@ const relative = (url: string) => {
 };
 
 const DESKTOP_IMAGE_SIZE = {
-  WIDTH: 271,
-  HEIGHT: 259,
-};
-
-const MOBILE_IMAGE_SIZE = {
   WIDTH: 271,
   HEIGHT: 259,
 };
@@ -136,7 +128,7 @@ function ProductCard(
           }
           {/* Exclusive Product Tag */}
           {clusterIdExclusiveFlag && (
-            <div class={"absolute z-10 top-1.5 left-1.5"}>
+            <div class={"absolute flex flex-col gap-1 z-10 top-1.5 left-1.5"}>
               <Clusters
                 cluster={[clusterIdExclusiveFlag]}
                 additionalProperty={additionalProperty}
@@ -190,7 +182,7 @@ function ProductCard(
           }
         </figure>
         <div
-          class={"flex flex-col lg:flex-row justify-between min-h-9 lg:min-h-6 mb-2"}
+          class={"flex flex-row justify-between min-h-9 lg:min-h-6 mb-2"}
         >
           <Clusters
             cluster={cluster}

@@ -9472,84 +9472,6 @@
       "required": [],
       "title": "deco-sites/abracadabra/components/ui/Partnerships.tsx@Props"
     },
-    "ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL3Byb2R1Y3QvUHJvZHVjdERldGFpbHMudHN4@Props": {
-      "type": "object",
-      "properties": {
-        "page": {
-          "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvY29tbWVyY2UvdHlwZXMudHM=@ProductDetailsPage|null",
-          "title": "Page"
-        },
-        "variant": {
-          "anyOf": [
-            {
-              "type": "string",
-              "const": "front-back"
-            },
-            {
-              "type": "string",
-              "const": "slider"
-            },
-            {
-              "type": "string",
-              "const": "auto"
-            }
-          ],
-          "type": "string",
-          "title": "Product view",
-          "description": "Ask for the developer to remove this option since this is here to help development only and should not be used in production"
-        }
-      },
-      "required": [
-        "page"
-      ],
-      "title": "deco-sites/abracadabra/components/product/ProductDetails.tsx@Props"
-    },
-    "ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL3Byb2R1Y3QvUHJvZHVjdFNoZWxmLnRzeA==@Props": {
-      "type": "object",
-      "properties": {
-        "title": {
-          "type": "string",
-          "title": "Title"
-        },
-        "products": {
-          "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvY29tbWVyY2UvdHlwZXMudHM=@Product[]|null",
-          "title": "Products"
-        },
-        "itemsPerPage": {
-          "type": [
-            "number",
-            "null"
-          ],
-          "title": "Items Per Page"
-        }
-      },
-      "required": [
-        "title",
-        "products"
-      ],
-      "title": "deco-sites/abracadabra/components/product/ProductShelf.tsx@Props"
-    },
-    "ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL3Byb2R1Y3QvUHJvZHVjdEdhbGxlcnkudHN4@Columns": {
-      "type": "object",
-      "properties": {
-        "mobile": {
-          "type": [
-            "number",
-            "null"
-          ],
-          "title": "Mobile"
-        },
-        "desktop": {
-          "type": [
-            "number",
-            "null"
-          ],
-          "title": "Desktop"
-        }
-      },
-      "required": [],
-      "title": "Columns"
-    },
     "ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL3NlYXJjaC9TZWFyY2hSZXN1bHQudHN4@FlagProps": {
       "type": "object",
       "properties": {
@@ -9608,6 +9530,96 @@
         "$ref": "#/definitions/ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL3NlYXJjaC9TZWFyY2hSZXN1bHQudHN4@ClusterProps"
       },
       "title": "ClusterProps[]"
+    },
+    "ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL3Byb2R1Y3QvUHJvZHVjdERldGFpbHMudHN4@Props": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvY29tbWVyY2UvdHlwZXMudHM=@ProductDetailsPage|null",
+          "title": "Page"
+        },
+        "variant": {
+          "anyOf": [
+            {
+              "type": "string",
+              "const": "front-back"
+            },
+            {
+              "type": "string",
+              "const": "slider"
+            },
+            {
+              "type": "string",
+              "const": "auto"
+            }
+          ],
+          "type": "string",
+          "title": "Product view",
+          "description": "Ask for the developer to remove this option since this is here to help development only and should not be used in production"
+        },
+        "cluster": {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL3NlYXJjaC9TZWFyY2hSZXN1bHQudHN4@ClusterProps[]",
+          "title": "Cluster"
+        }
+      },
+      "required": [
+        "page"
+      ],
+      "title": "deco-sites/abracadabra/components/product/ProductDetails.tsx@Props"
+    },
+    "ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL3Byb2R1Y3QvUHJvZHVjdFNoZWxmLnRzeA==@Props": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "title": "Title"
+        },
+        "products": {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvY29tbWVyY2UvdHlwZXMudHM=@Product[]|null",
+          "title": "Products"
+        },
+        "clusterIdExclusiveFlags": {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL3NlYXJjaC9TZWFyY2hSZXN1bHQudHN4@ClusterProps",
+          "title": "Cluster Id Exclusive Flags"
+        },
+        "cluster": {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL3NlYXJjaC9TZWFyY2hSZXN1bHQudHN4@ClusterProps[]",
+          "title": "Cluster"
+        },
+        "itemsPerPage": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "title": "Items Per Page"
+        }
+      },
+      "required": [
+        "title",
+        "products"
+      ],
+      "title": "deco-sites/abracadabra/components/product/ProductShelf.tsx@Props"
+    },
+    "ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL3Byb2R1Y3QvUHJvZHVjdEdhbGxlcnkudHN4@Columns": {
+      "type": "object",
+      "properties": {
+        "mobile": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "title": "Mobile"
+        },
+        "desktop": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "title": "Desktop"
+        }
+      },
+      "required": [],
+      "title": "Columns"
     },
     "ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL3NlYXJjaC9TZWFyY2hSZXN1bHQudHN4@Props": {
       "type": "object",

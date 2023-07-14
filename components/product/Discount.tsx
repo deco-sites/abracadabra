@@ -5,14 +5,26 @@ interface Props {
   price: number;
   listPrice: number;
   currencySimbol: string;
+  type?: "bordered" | "normal";
 }
 
-const Discount = ({ price, listPrice, currencySimbol }: Props) => {
+const Discount = ({ price, listPrice, currencySimbol, type = "normal" }: Props) => {
   const discountValue = Math.floor(listPrice - price);
 
   if (discountValue === 0) return null;
 
   const discountPercentage = Math.floor(discountValue * 100 / listPrice);
+
+  if (type === "bordered") {
+    return (
+      <div class="flex border border-red-medium px-4 py-[2px] rounded-md">
+        <span class="flex flex-col items-center justify-center text-[#F21A1A] text-sm font-bold">
+          <span>Economize</span>
+          {formatPrice(discountValue, currencySimbol)}
+        </span>
+      </div>
+    )
+  }
 
   return (
     <div class="flex gap-[6px]">

@@ -14,7 +14,6 @@ import { useOffer } from "$store/sdk/useOffer.ts";
 import { formatPrice } from "$store/sdk/format.ts";
 import { SendEventOnLoad } from "$store/sdk/analytics.tsx";
 import { mapProductToAnalyticsItem } from "deco-sites/std/commerce/utils/productToAnalyticsItem.ts";
-import type { Props as ProductShelfProps } from "$store/components/product/ProductShelf.tsx";
 import type { ProductDetailsPage } from "deco-sites/std/commerce/types.ts";
 import type { LoaderReturnType } from "$live/types.ts";
 
@@ -28,7 +27,8 @@ import DiscountPercentage from "$store/components/product/DiscountPercentage.tsx
 import ProductSelector from "./ProductVariantSelector.tsx";
 import ProductShelf from "$store/components/product/ProductShelf.tsx";
 import ProductImageZoom from "$store/islands/ProductImageZoom.tsx";
-import WishlistButton from "../wishlist/WishlistButton.tsx";
+import { ClusterProps } from "../search/SearchResult.tsx";
+import Clusters from "./Clusters.tsx";
 
 export type Variant = "front-back" | "slider" | "auto";
 
@@ -39,6 +39,7 @@ export interface Props {
    * @description Ask for the developer to remove this option since this is here to help development only and should not be used in production
    */
   variant?: Variant;
+  cluster?: ClusterProps[];
 }
 
 const WIDTH = 620;
@@ -61,7 +62,7 @@ function NotFound() {
   );
 }
 
-function ProductInfo({ page }: { page: ProductDetailsPage }) {
+function ProductInfo({ page, cluster }: { page: ProductDetailsPage, cluster?: ClusterProps[] }) {
   const {
     breadcrumbList,
     product,
@@ -73,6 +74,7 @@ function ProductInfo({ page }: { page: ProductDetailsPage }) {
     name,
     gtin,
     isVariantOf,
+    additionalProperty,
     review,
   } = product;
   const { price, listPrice, seller, installments, availability } = useOffer(
@@ -93,13 +95,14 @@ function ProductInfo({ page }: { page: ProductDetailsPage }) {
             Cod. {isVariantOf?.model}
           </span>
         </div>
-      </div>
-      <div class="w-full flex flex-col sm:flex-row items-center justify-center gap-1 my-4">
-        <div class="py-1 uppercase w-full flex items-center font-bold bg-rosybrown text-white text-xs justify-center">
-          Exclusivo
-        </div>
-        <div class="py-1 uppercase w-full flex items-center font-bold bg-blue-base text-white text-xs justify-center">
-          Pronta entrega
+        <div
+          class="w-full flex flex-col sm:flex-row items-center justify-between gap-1 my-4"
+        >
+          <Clusters
+            cluster={cluster}
+            additionalProperty={additionalProperty}
+            class="w-full lg:w-[calc(50%-0.25rem)] gap-2 content-center justify-center min-h-4 lg:min-h-6 text-center py-1"
+          />
         </div>
       </div>
       <div class="flex justify-center lg:justify-start my-7">
@@ -125,6 +128,7 @@ function ProductInfo({ page }: { page: ProductDetailsPage }) {
               listPrice={listPrice ?? 0}
               price={price ?? 0}
               currencySimbol={offers!.priceCurrency!}
+              type="bordered"
             />
           </div>
         </div>
@@ -257,7 +261,8 @@ const useStableImages = (product: ProductDetailsPage["product"]) => {
 function Details({
   page,
   variant,
-}: { page: ProductDetailsPage; variant: Variant }) {
+  cluster
+}: { page: ProductDetailsPage; variant: Variant, cluster?: ClusterProps[] }) {
   const { product, breadcrumbList } = page;
   const id = `product-image-gallery:${useId()}`;
   const images = useStableImages(product);
@@ -321,7 +326,7 @@ function Details({
           <ProductCarousel images={images} />
 
           {/* Mobile */}
-          <ul class="flex md:hidden gap-2 overflow-auto px-4">
+          <ul class="flex lg:hidden gap-2 overflow-auto px-4">
             {images.map((img, index) => (
               <li class="">
                 <Slider.Dot index={index}>
@@ -340,7 +345,7 @@ function Details({
 
           {/* Product Info */}
           <div class="px-4 lg:pr-0 lg:pl-6 lg:col-start-3 lg:col-span-1 lg:row-start-1">
-            <ProductInfo page={page} />
+            <ProductInfo page={page} cluster={cluster} />
           </div>
         </div>
         <SliderJS rootId={id} actionType="mouseover" />
@@ -481,7 +486,7 @@ function Details({
   );
 }
 
-function ProductDetails({ page, variant: maybeVar = "auto" }: Props) {
+function ProductDetails({ page, variant: maybeVar = "auto", cluster }: Props) {
   console.log(JSON.stringify(page?.product));
 
   /**
@@ -497,7 +502,7 @@ function ProductDetails({ page, variant: maybeVar = "auto" }: Props) {
 
   return (
     <div class="container max-w-[1180px] py-0 sm:py-10">
-      {page ? <Details page={page} variant={variant} /> : <NotFound />}
+      {page ? <Details page={page} variant={variant} cluster={cluster} /> : <NotFound />}
     </div>
   );
 }

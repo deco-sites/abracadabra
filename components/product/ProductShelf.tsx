@@ -8,16 +8,21 @@ import { mapProductToAnalyticsItem } from "deco-sites/std/commerce/utils/product
 import { useOffer } from "$store/sdk/useOffer.ts";
 import type { LoaderReturnType } from "$live/types.ts";
 import type { Product } from "deco-sites/std/commerce/types.ts";
+import { ClusterProps } from "../search/SearchResult.tsx";
 
 export interface Props {
   title: string;
   products: LoaderReturnType<Product[] | null>;
+  clusterIdExclusiveFlags?: ClusterProps;
+  cluster?: ClusterProps[];
   itemsPerPage?: number;
 }
 
 function ProductShelf({
   title,
   products,
+  cluster = [],
+  clusterIdExclusiveFlags,
 }: Props) {
   const id = useId();
 
@@ -40,7 +45,7 @@ function ProductShelf({
             index={index}
             class="carousel-item w-[270px] sm:w-[292px] mb-4"
           >
-            <ProductCard product={product} itemListName={title} />
+            <ProductCard product={product} itemListName={title} cluster={cluster} clusterIdExclusiveFlag={clusterIdExclusiveFlags} />
           </Slider.Item>
         ))}
       </Slider>
