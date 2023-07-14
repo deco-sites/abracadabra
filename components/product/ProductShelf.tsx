@@ -45,7 +45,12 @@ function ProductShelf({
             index={index}
             class="carousel-item w-[270px] sm:w-[292px] mb-4"
           >
-            <ProductCard product={product} itemListName={title} cluster={cluster} clusterIdExclusiveFlag={clusterIdExclusiveFlags} />
+            <ProductCard
+              product={product}
+              itemListName={title}
+              cluster={cluster}
+              clusterIdExclusiveFlag={clusterIdExclusiveFlags}
+            />
           </Slider.Item>
         ))}
       </Slider>

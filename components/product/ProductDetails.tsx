@@ -62,7 +62,9 @@ function NotFound() {
   );
 }
 
-function ProductInfo({ page, cluster }: { page: ProductDetailsPage, cluster?: ClusterProps[] }) {
+function ProductInfo(
+  { page, cluster }: { page: ProductDetailsPage; cluster?: ClusterProps[] },
+) {
   const {
     breadcrumbList,
     product,
@@ -95,9 +97,7 @@ function ProductInfo({ page, cluster }: { page: ProductDetailsPage, cluster?: Cl
             Cod. {isVariantOf?.model}
           </span>
         </div>
-        <div
-          class="w-full flex flex-col sm:flex-row items-center justify-between gap-1 my-4"
-        >
+        <div class="w-full flex flex-col sm:flex-row items-center justify-between gap-1 my-4">
           <Clusters
             cluster={cluster}
             additionalProperty={additionalProperty}
@@ -261,8 +261,8 @@ const useStableImages = (product: ProductDetailsPage["product"]) => {
 function Details({
   page,
   variant,
-  cluster
-}: { page: ProductDetailsPage; variant: Variant, cluster?: ClusterProps[] }) {
+  cluster,
+}: { page: ProductDetailsPage; variant: Variant; cluster?: ClusterProps[] }) {
   const { product, breadcrumbList } = page;
   const id = `product-image-gallery:${useId()}`;
   const images = useStableImages(product);
@@ -502,7 +502,9 @@ function ProductDetails({ page, variant: maybeVar = "auto", cluster }: Props) {
 
   return (
     <div class="container max-w-[1180px] py-0 sm:py-10">
-      {page ? <Details page={page} variant={variant} cluster={cluster} /> : <NotFound />}
+      {page
+        ? <Details page={page} variant={variant} cluster={cluster} />
+        : <NotFound />}
     </div>
   );
 }

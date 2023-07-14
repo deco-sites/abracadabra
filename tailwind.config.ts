@@ -19,6 +19,7 @@ export default {
       gainsboro: "#E5E5E5",
       gold: "#ffd700",
       silver: "#C0C0C0",
+      lavender: "#e9e7e7",
       cyan: {
         dark: "#049091",
       },

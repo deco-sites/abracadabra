@@ -6932,7 +6932,35 @@
       "type": "object",
       "properties": {
         "image": {
-          "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvY29tcG9uZW50cy90eXBlcy50cw==@Image",
+          "type": "object",
+          "properties": {
+            "desktop": {
+              "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvY29tcG9uZW50cy90eXBlcy50cw==@Image",
+              "title": "Desktop"
+            },
+            "mobile": {
+              "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvY29tcG9uZW50cy90eXBlcy50cw==@Image",
+              "title": "Mobile"
+            },
+            "alt": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "title": "Alt"
+            },
+            "lcp": {
+              "type": [
+                "boolean",
+                "null"
+              ],
+              "title": "Lcp"
+            }
+          },
+          "required": [
+            "desktop",
+            "mobile"
+          ],
           "title": "Image"
         },
         "expiresAt": {
@@ -6991,7 +7019,9 @@
           "default": "Time left for a campaign to end wth a link"
         }
       },
-      "required": [],
+      "required": [
+        "image"
+      ],
       "title": "Props"
     },
     "ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9jb21wb25lbnRzL2hlYWRlci9Ub3BiYXIudHN4@TopbarLeftProp": {

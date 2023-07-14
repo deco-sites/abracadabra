@@ -8,7 +8,9 @@ interface Props {
   type?: "bordered" | "normal";
 }
 
-const Discount = ({ price, listPrice, currencySimbol, type = "normal" }: Props) => {
+const Discount = (
+  { price, listPrice, currencySimbol, type = "normal" }: Props,
+) => {
   const discountValue = Math.floor(listPrice - price);
 
   if (discountValue === 0) return null;
@@ -23,7 +25,7 @@ const Discount = ({ price, listPrice, currencySimbol, type = "normal" }: Props) 
           {formatPrice(discountValue, currencySimbol)}
         </span>
       </div>
-    )
+    );
   }
 
   return (

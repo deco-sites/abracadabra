@@ -1,8 +1,16 @@
 import { useId } from "preact/hooks";
 import { HTML, Image as LiveImage } from "deco-sites/std/components/types.ts";
+import { Picture, Source } from "deco-sites/std/components/Picture.tsx";
 
 export interface Props {
-  image?: LiveImage;
+  image: {
+    /** @description desktop otimized image */
+    desktop: LiveImage;
+    /** @description mobile otimized image */
+    mobile: LiveImage;
+    alt?: string;
+    lcp?: boolean;
+  },
   /**
    * @title Expires at date
    * @format datetime
@@ -85,19 +93,38 @@ function CampaignTimer({
 
   return (
     <>
-      <div class="bg-gainsboro text-cyan-dark w-full h-full justify-center items-center text-center flex">
-        <div class="flex sm:grid sm:grid-cols-3 sm:gap-4 divide-x divide-white sm:grid-flow-col text-center sm:auto-cols-max items-center justify-between sm:justify-center lg:container px-4 lg:px-16 w-full">
-          <div class="flex justify-center">
-            <picture>
-              <img src={image} class="w-[80%] md:w-full h-full" />
-            </picture>
+      <div class="bg-silver text-black w-full min-h-[90px] justify-center items-center text-center flex md:py-3 px-4 xl:px-0">
+        <div class="flex items-center justify-between gap-4 md:gap-0 w-auto xl:min-w-[1120px]">
+          <div class="flex">
+            <Picture preload={image.lcp}>
+              <Source
+                media="(max-width: 767px)"
+                fetchPriority={image.lcp ? "high" : "auto"}
+                src={image.mobile}
+                width={168}
+                height={142}
+              />
+              <Source
+                media="(min-width: 768px)"
+                fetchPriority={image.lcp ? "high" : "auto"}
+                src={image.desktop}
+                width={220}
+                height={70}
+              />
+              <img
+                class="object-cover max-w-full"
+                loading={image.lcp ? "eager" : "lazy"}
+                src={image.desktop}
+                alt={image.alt}
+              />
+            </Picture>
           </div>
-          <div class="flex flex-1 text-center px-1 sm:px-6 md:px-8">
+          <div class="flex max-w-full lg:max-w-[420px] xl:max-w-[580px] text-center px-1 sm:px-6 md:px-8">
             <div class="text-[10px] sm:text-sm xl:text-xl leading-tight tracking-tighter">
               <span dangerouslySetInnerHTML={{ __html: text }} />
             </div>
           </div>
-          <div class="flex items-center justify-center h-20">
+          <div class="flex items-center h-20">
             <div class="flex flex-col items-center justify-center text-center sm:gap-1 min-w-full">
               {/* <h1 class="text-sm md:text-xl font-bold">Termina em:</h1> */}
 
