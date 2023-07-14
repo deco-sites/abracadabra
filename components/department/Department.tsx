@@ -19,7 +19,26 @@ const Department = (props: Props) => {
   const { banner, title, text } = props;
 
   return (
-    <div class="flex flex-col justify-center items-center">
+    <>
+    {/* Mobile Version */}
+    <div class="md:hidden flex flex-col justify-center items-center">
+      <a href={banner.href}>
+        <Image
+          src={banner.src}
+          alt={banner.alt}
+          width={banner.width}
+          height={banner.height}
+          class="max-w-sm"
+        />
+      </a>
+      <h1 class="text-4xl mt-4 mb-4 text-gray-base">{title}</h1>
+      <p class="max-w-sm mx-auto text-center text-gray-base text-sm leading-6">
+        {text}
+      </p>
+    </div>
+
+    {/* Desktop Version */}
+    <div class="hidden md:flex flex-col justify-center items-center">
       <a href={banner.href}>
         <Image
           src={banner.src}
@@ -33,6 +52,7 @@ const Department = (props: Props) => {
         {text}
       </p>
     </div>
+    </>
   );
 };
 
