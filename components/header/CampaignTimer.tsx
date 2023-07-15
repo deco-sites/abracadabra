@@ -104,7 +104,7 @@ function CampaignTimer({
                 width={168}
                 height={142}
               />
-             <Source
+              <Source
                 media="(min-width: 768px)"
                 fetchPriority={image.lcp ? "high" : "auto"}
                 src={image.desktop}

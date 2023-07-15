@@ -19,12 +19,14 @@ import * as $$$$$9 from "./islands/Newsletter.tsx";
 import * as $$$$$10 from "./islands/OutOfStock.tsx";
 import * as $$$$$11 from "./islands/ProductCarousel.tsx";
 import * as $$$$$12 from "./islands/ProductImageZoom.tsx";
-import * as $$$$$13 from "./islands/ScrollableNavbar.tsx";
-import * as $$$$$14 from "./islands/SearchControls.tsx";
-import * as $$$$$15 from "./islands/ShippingSimulation.tsx";
-import * as $$$$$16 from "./islands/SliderJS.tsx";
-import * as $$$$$17 from "./islands/Stamps.tsx";
-import * as $$$$$18 from "./islands/WishlistButton.tsx";
+import * as $$$$$13 from "./islands/QuestionsAndAnswers.tsx";
+import * as $$$$$14 from "./islands/ScrollableNavbar.tsx";
+import * as $$$$$15 from "./islands/SearchControls.tsx";
+import * as $$$$$16 from "./islands/ShippingSimulation.tsx";
+import * as $$$$$17 from "./islands/SliderJS.tsx";
+import * as $$$$$18 from "./islands/Stamps.tsx";
+import * as $$$$$19 from "./islands/WishlistButton.tsx";
+import * as $$$$$20 from "./islands/WriteRating.tsx";
 import * as $$$$$$$$0 from "./sections/BannerGrid.tsx";
 import * as $$$$$$$$1 from "./sections/BannerPLP.tsx";
 import * as $$$$$$$$2 from "./sections/Carousel.tsx";
@@ -43,6 +45,7 @@ import * as $$$$$$$$14 from "./sections/ProductShelf.tsx";
 import * as $$$$$$$$15 from "./sections/SearchResult.tsx";
 import * as $$$$$$$$16 from "./sections/WhatsApp.tsx";
 import * as $$$$$$$$17 from "./sections/WishlistGallery.tsx";
+import * as $$$$$$$$$$$0 from "./actions/question.ts";
 import * as $live_middleware from "$live/routes/_middleware.ts";
 import * as $live_workbench from "$live/routes/live/workbench.ts";
 import * as $live_invoke from "$live/routes/live/invoke/index.ts";
@@ -185,12 +188,14 @@ const manifest = {
     "./islands/OutOfStock.tsx": $$$$$10,
     "./islands/ProductCarousel.tsx": $$$$$11,
     "./islands/ProductImageZoom.tsx": $$$$$12,
-    "./islands/ScrollableNavbar.tsx": $$$$$13,
-    "./islands/SearchControls.tsx": $$$$$14,
-    "./islands/ShippingSimulation.tsx": $$$$$15,
-    "./islands/SliderJS.tsx": $$$$$16,
-    "./islands/Stamps.tsx": $$$$$17,
-    "./islands/WishlistButton.tsx": $$$$$18,
+    "./islands/QuestionsAndAnswers.tsx": $$$$$13,
+    "./islands/ScrollableNavbar.tsx": $$$$$14,
+    "./islands/SearchControls.tsx": $$$$$15,
+    "./islands/ShippingSimulation.tsx": $$$$$16,
+    "./islands/SliderJS.tsx": $$$$$17,
+    "./islands/Stamps.tsx": $$$$$18,
+    "./islands/WishlistButton.tsx": $$$$$19,
+    "./islands/WriteRating.tsx": $$$$$20,
   },
   "sections": {
     "$live/sections/PageInclude.tsx": i2$$$$0,
@@ -225,6 +230,29 @@ const manifest = {
     "deco-sites/std/sections/SEOPDP.tsx": i2$$$$11,
     "deco-sites/std/sections/SEOPLP.tsx": i2$$$$12,
     "deco-sites/std/sections/VTEXPortalDataLayerCompatibility.tsx": i2$$$$13,
+  },
+  "actions": {
+    "$live/actions/workflows/cancel.ts": i2$$$$$0,
+    "$live/actions/workflows/run.ts": i2$$$$$1,
+    "$live/actions/workflows/signal.ts": i2$$$$$2,
+    "$live/actions/workflows/start.ts": i2$$$$$3,
+    "deco-sites/abracadabra/actions/question.ts": $$$$$$$$$$$0,
+    "deco-sites/std/actions/vtex/cart/addItems.ts": i2$$$$$4,
+    "deco-sites/std/actions/vtex/cart/getInstallment.ts": i2$$$$$5,
+    "deco-sites/std/actions/vtex/cart/removeItemAttachment.ts": i2$$$$$6,
+    "deco-sites/std/actions/vtex/cart/removeItems.ts": i2$$$$$7,
+    "deco-sites/std/actions/vtex/cart/simulation.ts": i2$$$$$8,
+    "deco-sites/std/actions/vtex/cart/updateAttachment.ts": i2$$$$$9,
+    "deco-sites/std/actions/vtex/cart/updateCoupons.ts": i2$$$$$10,
+    "deco-sites/std/actions/vtex/cart/updateItemAttachment.ts": i2$$$$$11,
+    "deco-sites/std/actions/vtex/cart/updateItemPrice.ts": i2$$$$$12,
+    "deco-sites/std/actions/vtex/cart/updateItems.ts": i2$$$$$13,
+    "deco-sites/std/actions/vtex/cart/updateProfile.ts": i2$$$$$14,
+    "deco-sites/std/actions/vtex/cart/updateUser.ts": i2$$$$$15,
+    "deco-sites/std/actions/vtex/newsletter/subscribe.ts": i2$$$$$16,
+    "deco-sites/std/actions/vtex/notifyme.ts": i2$$$$$17,
+    "deco-sites/std/actions/vtex/wishlist/addItem.ts": i2$$$$$18,
+    "deco-sites/std/actions/vtex/wishlist/removeItem.ts": i2$$$$$19,
   },
   "loaders": {
     "$live/loaders/state.ts": i2$$$0,
@@ -272,28 +300,6 @@ const manifest = {
   "flags": {
     "$live/flags/audience.ts": i2$$$$$$$$$0,
     "$live/flags/everyone.ts": i2$$$$$$$$$1,
-  },
-  "actions": {
-    "$live/actions/workflows/cancel.ts": i2$$$$$0,
-    "$live/actions/workflows/run.ts": i2$$$$$1,
-    "$live/actions/workflows/signal.ts": i2$$$$$2,
-    "$live/actions/workflows/start.ts": i2$$$$$3,
-    "deco-sites/std/actions/vtex/cart/addItems.ts": i2$$$$$4,
-    "deco-sites/std/actions/vtex/cart/getInstallment.ts": i2$$$$$5,
-    "deco-sites/std/actions/vtex/cart/removeItemAttachment.ts": i2$$$$$6,
-    "deco-sites/std/actions/vtex/cart/removeItems.ts": i2$$$$$7,
-    "deco-sites/std/actions/vtex/cart/simulation.ts": i2$$$$$8,
-    "deco-sites/std/actions/vtex/cart/updateAttachment.ts": i2$$$$$9,
-    "deco-sites/std/actions/vtex/cart/updateCoupons.ts": i2$$$$$10,
-    "deco-sites/std/actions/vtex/cart/updateItemAttachment.ts": i2$$$$$11,
-    "deco-sites/std/actions/vtex/cart/updateItemPrice.ts": i2$$$$$12,
-    "deco-sites/std/actions/vtex/cart/updateItems.ts": i2$$$$$13,
-    "deco-sites/std/actions/vtex/cart/updateProfile.ts": i2$$$$$14,
-    "deco-sites/std/actions/vtex/cart/updateUser.ts": i2$$$$$15,
-    "deco-sites/std/actions/vtex/newsletter/subscribe.ts": i2$$$$$16,
-    "deco-sites/std/actions/vtex/notifyme.ts": i2$$$$$17,
-    "deco-sites/std/actions/vtex/wishlist/addItem.ts": i2$$$$$18,
-    "deco-sites/std/actions/vtex/wishlist/removeItem.ts": i2$$$$$19,
   },
   "functions": {
     "deco-sites/std/functions/butterCMSAds.ts": i2$0,

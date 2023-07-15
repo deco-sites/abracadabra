@@ -36,6 +36,7 @@ function Navbar({
               src={asset("/logo_cadabra_site.png")}
               width={42}
               height={42}
+              alt="Logo Abracadabra"
             />
           </a>
 
@@ -50,6 +51,7 @@ function Navbar({
                 src={asset("/icon-user.png")}
                 width={23}
                 height={23}
+                alt="User Icon"
               />
             </a>
             <Buttons variant="cart" />

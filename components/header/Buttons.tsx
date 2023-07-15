@@ -85,6 +85,7 @@ function CartButton() {
           src={asset("/icon-minicart.png")}
           width={23}
           height={23}
+          alt="Cart Icon"
         />
       </div>
     </Button>

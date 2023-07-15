@@ -73,12 +73,14 @@
               "./islands/OutOfStock.tsx",
               "./islands/ProductCarousel.tsx",
               "./islands/ProductImageZoom.tsx",
+              "./islands/QuestionsAndAnswers.tsx",
               "./islands/ScrollableNavbar.tsx",
               "./islands/SearchControls.tsx",
               "./islands/ShippingSimulation.tsx",
               "./islands/SliderJS.tsx",
               "./islands/Stamps.tsx",
               "./islands/WishlistButton.tsx",
+              "./islands/WriteRating.tsx",
               "$live/handlers/devPage.ts",
               "$live/handlers/fresh.ts",
               "$live/handlers/proxy.ts",
@@ -134,6 +136,7 @@
               "$live/actions/workflows/run.ts",
               "$live/actions/workflows/signal.ts",
               "$live/actions/workflows/start.ts",
+              "deco-sites/abracadabra/actions/question.ts",
               "deco-sites/std/actions/vtex/cart/addItems.ts",
               "deco-sites/std/actions/vtex/cart/getInstallment.ts",
               "deco-sites/std/actions/vtex/cart/removeItemAttachment.ts",
@@ -10376,6 +10379,29 @@
       ],
       "title": "deco-cx/live/actions/workflows/start.ts@Props"
     },
+    "ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9hY3Rpb25zL3F1ZXN0aW9uLnRz@Props": {
+      "type": "object",
+      "properties": {
+        "question": {
+          "type": "string",
+          "title": "Question"
+        },
+        "name": {
+          "type": "string",
+          "title": "Name"
+        },
+        "email": {
+          "type": "string",
+          "title": "Email"
+        }
+      },
+      "required": [
+        "question",
+        "name",
+        "email"
+      ],
+      "title": "deco-sites/abracadabra/actions/question.ts@Props"
+    },
     "ZGVjby1zaXRlcy9zdGQvcGFja3MvdnRleC9hY3Rpb25zL2NhcnQvYWRkSXRlbXMudHM=@Item": {
       "type": "object",
       "properties": {
@@ -12015,6 +12041,22 @@
         }
       }
     },
+    "Li9pc2xhbmRzL1F1ZXN0aW9uc0FuZEFuc3dlcnMudHN4": {
+      "title": "./islands/QuestionsAndAnswers.tsx",
+      "type": "object",
+      "required": [
+        "__resolveType"
+      ],
+      "properties": {
+        "__resolveType": {
+          "type": "string",
+          "enum": [
+            "./islands/QuestionsAndAnswers.tsx"
+          ],
+          "default": "./islands/QuestionsAndAnswers.tsx"
+        }
+      }
+    },
     "Li9pc2xhbmRzL1Njcm9sbGFibGVOYXZiYXIudHN4": {
       "title": "./islands/ScrollableNavbar.tsx",
       "type": "object",
@@ -12118,6 +12160,22 @@
             "./islands/WishlistButton.tsx"
           ],
           "default": "./islands/WishlistButton.tsx"
+        }
+      }
+    },
+    "Li9pc2xhbmRzL1dyaXRlUmF0aW5nLnRzeA==": {
+      "title": "./islands/WriteRating.tsx",
+      "type": "object",
+      "required": [
+        "__resolveType"
+      ],
+      "properties": {
+        "__resolveType": {
+          "type": "string",
+          "enum": [
+            "./islands/WriteRating.tsx"
+          ],
+          "default": "./islands/WriteRating.tsx"
         }
       }
     },
@@ -13277,6 +13335,27 @@
         }
       }
     },
+    "ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9hY3Rpb25zL3F1ZXN0aW9uLnRz": {
+      "title": "deco-sites/abracadabra/actions/question.ts",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9hY3Rpb25zL3F1ZXN0aW9uLnRz@Props"
+        }
+      ],
+      "required": [
+        "__resolveType"
+      ],
+      "properties": {
+        "__resolveType": {
+          "type": "string",
+          "enum": [
+            "deco-sites/abracadabra/actions/question.ts"
+          ],
+          "default": "deco-sites/abracadabra/actions/question.ts"
+        }
+      }
+    },
     "ZGVjby1zaXRlcy9zdGQvYWN0aW9ucy92dGV4L2NhcnQvYWRkSXRlbXMudHM=": {
       "title": "deco-sites/std/actions/vtex/cart/addItems.ts",
       "docs": "https://developers.vtex.com/docs/api-reference/checkout-api#post-/api/checkout/pub/orderForm/-orderFormId-/items",
@@ -13834,6 +13913,9 @@
           "$ref": "#/definitions/Li9pc2xhbmRzL1Byb2R1Y3RJbWFnZVpvb20udHN4"
         },
         {
+          "$ref": "#/definitions/Li9pc2xhbmRzL1F1ZXN0aW9uc0FuZEFuc3dlcnMudHN4"
+        },
+        {
           "$ref": "#/definitions/Li9pc2xhbmRzL1Njcm9sbGFibGVOYXZiYXIudHN4"
         },
         {
@@ -13850,6 +13932,9 @@
         },
         {
           "$ref": "#/definitions/Li9pc2xhbmRzL1dpc2hsaXN0QnV0dG9uLnRzeA=="
+        },
+        {
+          "$ref": "#/definitions/Li9pc2xhbmRzL1dyaXRlUmF0aW5nLnRzeA=="
         }
       ]
     },
@@ -14063,6 +14148,9 @@
         },
         {
           "$ref": "#/definitions/JGxpdmUvYWN0aW9ucy93b3JrZmxvd3Mvc3RhcnQudHM="
+        },
+        {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9hYnJhY2FkYWJyYS9hY3Rpb25zL3F1ZXN0aW9uLnRz"
         },
         {
           "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvYWN0aW9ucy92dGV4L2NhcnQvYWRkSXRlbXMudHM="

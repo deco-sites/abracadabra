@@ -18,7 +18,10 @@ import type { ProductDetailsPage } from "deco-sites/std/commerce/types.ts";
 import type { LoaderReturnType } from "$live/types.ts";
 
 import ImpresionContent from "$store/components/ui/ImpresionContent.tsx";
+import ReviewComparison from "$store/components/ui/ReviewComparison.tsx";
 import Comment from "$store/components/ui/Comment.tsx";
+import WriteRating from "$store/components/ui/WriteRating.tsx";
+import QuestionsAndAnswers from "$store/components/ui/QuestionsAndAnswers.tsx";
 import RatingContent from "$store/components/ui/RatingContent.tsx";
 import ProductCarousel from "$store/islands/ProductCarousel.tsx";
 import Rating from "$store/components/ui/Rating.tsx";
@@ -428,6 +431,7 @@ function Details({
                 ))}
               </ul>
             </div>
+            <ReviewComparison />
             <Comment
               username="Marcelo"
               comment="Bom! Conforme o esperado"
@@ -443,6 +447,13 @@ function Details({
               images={images}
             />
           </div>
+
+          <div class="mt-4 sm:mt-6 px-4">
+            <WriteRating />
+          </div>
+
+          {/* Q&A */}
+          <QuestionsAndAnswers />
         </div>
       </>
     );

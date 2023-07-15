@@ -2,6 +2,7 @@ interface Props {
   starNumber: number;
   text?: string;
   isGold?: boolean;
+  isReviewComparison?: boolean;
 }
 
 function Star({ isActive }: { isActive: boolean }) {
@@ -18,17 +19,17 @@ function Star({ isActive }: { isActive: boolean }) {
   );
 }
 
-export default function Review({ starNumber, text, isGold }: Props) {
+export default function Review({ starNumber, text, isGold, isReviewComparison = false }: Props) {
   const starsNumbers: number[] = [...(new Array(5).keys())];
 
   return (
-    <div class="flex justify-center items-start gap-2">
+    <div class={`flex items-start gap-2 ${isReviewComparison ? 'flex-col justify-start' : 'flex-row justify-center'}`}>
       <div class="rating">
         {starsNumbers.map((index) => <Star isActive={index <= starNumber} />)}
       </div>
 
-      <div class="flex items-center justify-center text-sm gap-1">
-        <span class={`${isGold && "text-gold"} pl-3 text-sm`}>{text}</span>
+      <div class="text-sm gap-1">
+        <span class={`${isGold && "text-gold"} ${!isReviewComparison && 'pl-3'} text-sm`}>{text}</span>
       </div>
     </div>
   );
